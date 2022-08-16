@@ -3,8 +3,9 @@
 
 </template>
 <script>
+import { PAGES_NAMES} from "../../config";
 export default {
-    name:'Laws',
+    name: PAGES_NAMES.LAWS_PAGE,
 
   data: () => ({
     //

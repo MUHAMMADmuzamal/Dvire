@@ -3,8 +3,9 @@
 
 </template>
 <script>
+import { PAGES_NAMES} from "../../config";
 export default {
-    name:'Card',
+    name: PAGES_NAMES.CARD_PAGE,
 
   data: () => ({
     //

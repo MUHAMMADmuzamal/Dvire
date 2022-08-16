@@ -3,8 +3,9 @@
 
 </template>
 <script>
+import { PAGES_NAMES} from "../../config";
 export default {
-    name:'News',
+    name: PAGES_NAMES.NEWS_PAGE,
 
   data: () => ({
     //

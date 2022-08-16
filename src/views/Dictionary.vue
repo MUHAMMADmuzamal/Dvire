@@ -3,8 +3,9 @@
 
 </template>
 <script>
+import { PAGES_NAMES} from "../../config";
 export default {
-    name:'Dictionary',
+    name: PAGES_NAMES.DICTIONARY_PAGE,
 
   data: () => ({
     //

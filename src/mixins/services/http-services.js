@@ -1,3 +1,4 @@
+
 export default {
     computed: {
         // filteredBlogs: function(){
@@ -5,8 +6,12 @@ export default {
         //         return blog.title.match(this.search);
         //     });
         // },
-    getAll:()=>{
-            
-    }
+    // getAll:()=>{
+    //     return axios.get(`${APP_SETTINGS.API_PATH.CATEGORY.categoryListing}`, {
+    //         headers: {
+    //           Authorization: "Bearer " + auth.user.token,
+    //         },
+    //       });
+    // }
     }
 };

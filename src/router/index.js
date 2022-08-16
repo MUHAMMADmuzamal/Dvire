@@ -6,38 +6,39 @@ import Dictionary from "../views/Dictionary";
 import Laws from "../views/Laws";
 import News from "../views/News";
 import About from "../views/AboutView.vue";
+import {PATH, PAGES_NAMES} from '../../config'
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
-    name: "home",
+    path: PATH.LANDING_PAGE,
+    name: PAGES_NAMES.LANDING_PAGE,
     component: HomeView,
   },
   {
-    path: "/card",
-    name: "card",
+    path: PATH.CARD_PAGE,
+    name: PAGES_NAMES.CARD_PAGE,
     component: Card,
   },
   {
-    path: "/news",
-    name: "news",
+    path: PATH.NEWS_PAGE,
+    name: PAGES_NAMES.NEWS_PAGE,
     component: News,
   },
   {
-    path: "/laws",
-    name: "laws",
+    path: PATH.LAWS_PAGE,
+    name: PAGES_NAMES.LAWS_PAGE,
     component: Laws,
   },
   {
-    path: "/dictionary",
-    name: "dictionary",
+    path: PATH.DICTIONARY_PAGE,
+    name: PAGES_NAMES.DICTIONARY_PAGE,
     component: Dictionary,
   },
   {
-    path: "/about",
-    name: "about",
+    path: PATH.ABOUT_PAGE,
+    name: PAGES_NAMES.ABOUT_PAGE,
     component: About,
   },
   // {
