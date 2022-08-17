@@ -21,6 +21,7 @@
         <v-list-item
           v-for="item in menuItems"
           :key="item.title"
+          :to="item.path"
           link
         >
           <v-list-item-icon>
@@ -33,13 +34,12 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-        <v-toolbar>
-          <span class="hidden-sm-and-up">
-              <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-          </span>
+        <v-toolbar :color="color">
           <v-toolbar-title>
             <router-link :to="landing_page" custom v-slot="{ navigate }">
-              <span @click="navigate" @keypress.enter="navigate" role="link" style="cursor: pointer">{{ appTitle }}</span>
+              <span @click="navigate" @keypress.enter="navigate" role="link" style="cursor: pointer">
+              <v-img :src="logo"></v-img>
+              </span>
             </router-link>
           </v-toolbar-title>
           <v-spacer></v-spacer>
@@ -52,6 +52,9 @@
               {{ item.title }}
             </v-btn>
           </v-toolbar-items>
+          <span class="hidden-sm-and-up">
+              <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+          </span>
         </v-toolbar>
   </div>
 </template>
@@ -64,6 +67,7 @@ export default {
         landing_page: PATH.LANDING_PAGE,
         appTitle: BRAND_NAME,
         drawer: false,
+        color: "#F8F4EF",
         profile_image:"https://randomuser.me/api/portraits/men/78.jpg",
         user_name:"Ali",
         menuItems: [
@@ -73,6 +77,7 @@ export default {
             { title: PAGES_NAMES.DICTIONARY_PAGE, path: PATH.DICTIONARY_PAGE },
             { title: PAGES_NAMES.LAWS_PAGE, path: PATH.LAWS_PAGE },
             { title: PAGES_NAMES.NEWS_PAGE, path: PATH.NEWS_PAGE },
+            { title: PAGES_NAMES.LANG_PAGE, path: PATH.LANG_PAGE },
       ]
   }),
 };

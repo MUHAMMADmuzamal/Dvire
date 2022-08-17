@@ -1,0 +1,45 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "email": "test1@gmail.com",
+      "address": "address 1",
+      "password": "123456",
+      "username": "test1",
+      "companycode": "12345",
+      "mobile": "1234589"
+    },
+    {
+      "id": 2,
+      "email": "test2@gmail.com",
+      "address": "address 1",
+      "password": "123456",
+      "username": "test2",
+      "companycode": "12345",
+      "mobile": "1234589"
+    },
+    {
+      "email": "test1@gmail.com",
+      "address": "address 1",
+      "password": "123456",
+      "username": "test1",
+      "companycode": "12345",
+      "mobile": "1234589",
+      "id": 3
+    }
+  ]
+}

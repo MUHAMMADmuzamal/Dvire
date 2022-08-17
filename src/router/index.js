@@ -1,11 +1,12 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import Landing from "../views/Landing.vue";
 import Card from "../views/Card.vue";
 import Dictionary from "../views/Dictionary";
 import Laws from "../views/Laws";
 import News from "../views/News";
 import About from "../views/AboutView.vue";
+import login from "../views/Login.vue";
 import {PATH, PAGES_NAMES} from '../../config'
 
 Vue.use(VueRouter);
@@ -14,7 +15,7 @@ const routes = [
   {
     path: PATH.LANDING_PAGE,
     name: PAGES_NAMES.LANDING_PAGE,
-    component: HomeView,
+    component: Landing,
   },
   {
     path: PATH.CARD_PAGE,
@@ -40,6 +41,11 @@ const routes = [
     path: PATH.ABOUT_PAGE,
     name: PAGES_NAMES.ABOUT_PAGE,
     component: About,
+  },
+  {
+    path: "/testing",
+    name: "testing",
+    component: login,
   },
   // {
   //   path: "/about",
