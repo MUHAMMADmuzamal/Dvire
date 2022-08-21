@@ -1,27 +1,35 @@
 <template>
   <div>
     <section-1 />
-    <h1 class="d-flex justify-center"><b>Degalai</b></h1>
-    <section-2 />
+      
+          <section-2 />
     <section-3 />
+    <section-4 />
+    <section-5 />
+
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Section_1 from "@/components/Section_1.vue";
-import Section_2 from "@/components/Section_2.vue";
-import Section_3 from "@/components/Section_3.vue";
-import {IMAGES, PAGES_NAMES} from "../../config";
+import Section_1 from "@/components/Sections/Section_1.vue";
+import Section_2 from "@/components/Sections/Section_2.vue";
+import Section_3 from "@/components/Sections/Section_3.vue";
+import Section_4 from "@/components/Sections/Section_4.vue";
+import Section_5 from "@/components/Sections/Section_5.vue";
+import {IMAGES, PAGES_NAMES,COLORS} from "../../config";
 export default {
   name: PAGES_NAMES.LANDING_PAGE,
   components: {
     "section-1":Section_1,
     "section-2":Section_2,
     "section-3":Section_3,
+    "section-4":Section_4,
+    "section-5":Section_5,
   },
   data: () => ({
-    logo: IMAGES.COMPANY_LOGO
+    logo: IMAGES.COMPANY_LOGO,
+    card_color: COLORS.MAIN_COLOR_1,
   }),
 };
 </script>

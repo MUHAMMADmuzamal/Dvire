@@ -1,8 +1,8 @@
 import axios from 'axios';
-
+import {APP_SETTINGS} from '../../../config'
 class HttpApiService {
 	constructor(token) {
-		this._baseURL = '  http://localhost:3000/api/v1';
+		this._baseURL = APP_SETTINGS.API_PATH;
 		this._token = token;
 		this.createAxiosInstance();
 	}
@@ -56,7 +56,6 @@ class HttpApiService {
 			this._axiosInstance
 				.get(`${endpoint}`, conf)
 				.then((response) => {
-					console.log(response)
 					resolve(response);
 				})
 				.catch((error) => {

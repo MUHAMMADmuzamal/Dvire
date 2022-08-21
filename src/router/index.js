@@ -6,7 +6,9 @@ import Dictionary from "../views/Dictionary";
 import Laws from "../views/Laws";
 import News from "../views/News";
 import About from "../views/AboutView.vue";
-import login from "../views/Login.vue";
+import Login from "../views/Login.vue";
+import Signup from "../views/Signup.vue";
+import ForgetPass from "../views/ForgetPassword.vue";
 import {PATH, PAGES_NAMES} from '../../config'
 
 Vue.use(VueRouter);
@@ -43,9 +45,19 @@ const routes = [
     component: About,
   },
   {
-    path: "/testing",
-    name: "testing",
-    component: login,
+    path: PATH.LOGIN_PAGE,
+    name: PAGES_NAMES.LOGIN_PAGE,
+    component: Login,
+  },
+  {
+    path: PATH.SIGNUP_PAGE,
+    name: PAGES_NAMES.SIGNUP_PAGE,
+    component: Signup,
+  },
+  {
+    path: PATH.FORGET_PASSWORD_PAGE,
+    name: PAGES_NAMES.FORGET_PASSWORD_PAGE,
+    component: ForgetPass,
   },
   // {
   //   path: "/about",
