@@ -22,30 +22,30 @@
             Degalai iš perdirbamų atliekų, saulės ir vėjo – toks turėtų būti mūsų pasirinkimas, kad sumažintume  CO2 emisijas ir sukurtume klimatui neutralią ekonomiką.
         </p>     
         <v-row class="d-none d-md-flex text-center" style="width:80%; margin:auto;">
-          <v-col md="4">
-              <img :src="leaf_image" alt="" srcset="" style="margin-bottom: -5vh; padding-top: 30px;"/>
+          <v-col md="4" class="mb-n13">
+              <img :src="leaf_image" alt="" srcset="" style=" padding-top: 30px;"/>
           </v-col>
-          <v-col md="4">
-              <img :src="gas_image" alt="" srcset="" style="margin-bottom: -5vh; padding-top: 30px;"/>
+          <v-col md="4" class="mb-n13">
+              <img :src="gas_image" alt="" srcset="" style=" padding-top: 30px;"/>
           </v-col>
-          <v-col md="4">
-              <img :src="flash_image" alt="" srcset="" style="margin-bottom: -5vh; padding-top: 30px;" class="pr-4"/>
+          <v-col md="4" class="mb-n13">
+              <img :src="flash_image" alt="" srcset="" style=" padding-top: 30px;" class="pr-4"/>
           </v-col>
         </v-row>
 <!-- --------------------------------mobile view---------------------------------------------- -->
         <v-row class="d-md-none text-center">
-          <v-col xs="12">
-              <img :src="leaf_image" alt="" srcset="" style="margin-bottom: -4vh; padding-top: 30px;"/>
+          <v-col xs="12"  class="mb-n8">
+              <img :src="leaf_image" alt="" srcset="" style=" padding-top: 30px;"/>
           </v-col>
         </v-row>
         <v-row class="d-md-none text-center">
-          <v-col xs="12">
-              <img :src="gas_image" alt="" srcset="" style="margin-bottom: -4vh; padding-top: 30px;"/>
+          <v-col xs="12"  class="mb-n8">
+              <img :src="gas_image" alt="" srcset="" style=" padding-top: 30px;"/>
           </v-col>
         </v-row>
         <v-row class="d-md-none text-center">
-          <v-col xs="12">
-              <img :src="flash_image" alt="" srcset="" style="margin-bottom: -4vh; padding-top: 30px;" class="pr-4"/>
+          <v-col xs="12"  class="mb-n8">
+              <img :src="flash_image" alt="" srcset="" style=" padding-top: 30px;" class="pr-4"/>
           </v-col>
         </v-row>
   </v-container>

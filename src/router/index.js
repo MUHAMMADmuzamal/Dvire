@@ -9,10 +9,30 @@ import About from "../views/AboutView.vue";
 import Login from "../views/Login.vue";
 import Signup from "../views/Signup.vue";
 import ForgetPass from "../views/ForgetPassword.vue";
-import {PATH, PAGES_NAMES} from '../../config'
+//dashboard
+import DashBoard from "../views/dashboard/Dashboard.vue";
+import D_About from "../views/dashboard/About.vue";
+import D_Posts from "../views/dashboard/Posts.vue";
+import D_Types from "../views/dashboard/Types.vue";
+import {PATH, PAGES_NAMES, DASHBOARD} from '../../config'
 
 Vue.use(VueRouter);
 
+// function r_route (path, file, name, children,dashboard=false) {
+//   let component = ''
+//   if (dashboard) {
+//     component = require(`../views/dashboard/${file}.vue`)
+//   }else{
+//     component = require(`../views/${file}.vue`)
+//   }
+//   return {
+//     exact: true,
+//     path,
+//     name,
+//     children,
+//     component: component
+//   }
+// }
 const routes = [
   {
     path: PATH.LANDING_PAGE,
@@ -58,6 +78,27 @@ const routes = [
     path: PATH.FORGET_PASSWORD_PAGE,
     name: PAGES_NAMES.FORGET_PASSWORD_PAGE,
     component: ForgetPass,
+  },
+  //dashboard 
+  {
+    path: DASHBOARD.PATH.DASHBOARD,
+    name: DASHBOARD.PAGES_NAMES.DASHBOARD_PAGE,
+    component: DashBoard,
+  },
+  {
+    path: DASHBOARD.PATH.D_ABOUT_PAGE,
+    name: "D_"+DASHBOARD.PAGES_NAMES.D_ABOUT_PAGE,
+    component: D_About,
+  },
+  {
+    path: DASHBOARD.PATH.D_POSTS_PAGE,
+    name: "D_"+DASHBOARD.PAGES_NAMES.D_POSTS_PAGE,
+    component: D_Posts,
+  },
+  {
+    path: DASHBOARD.PATH.D_TYPES_PAGE,
+    name: "D_"+DASHBOARD.PAGES_NAMES.D_TYPES_PAGE,
+    component: D_Types,
   },
   // {
   //   path: "/about",

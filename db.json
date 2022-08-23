@@ -2,15 +2,60 @@
   "posts": [
     {
       "id": 1,
+      "type": "t1",
       "title": "json-server",
-      "author": "typicode"
+      "author": "typicode",
+      "description": "qwertyuiowertyuiowertyuiowertyuiowertyuioertyuiopwxcvbnsdfghjklsdfghjkldfghjklfghjk"
+    },
+    {
+      "id": 2,
+      "type": "t1",
+      "title": "json-server1",
+      "author": "typicode1",
+      "description": "qwertyuiowertyuiowertyuiowertyuiowertyuioertyuiopwxcvbnsdfghjklsdfghjkldfghjklfghjk"
+    },
+    {
+      "type": "t1",
+      "title": "New post",
+      "author": "vue js",
+      "description": "vue js desc",
+      "id": 4
+    },
+    {
+      "type": "t2",
+      "title": "new post 1",
+      "author": "p1",
+      "description": "p1 desc",
+      "id": 5
     }
   ],
-  "comments": [
+  "types": [
     {
       "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "name": "type update"
+    },
+    {
+      "id": 2,
+      "name": "type2"
+    },
+    {
+      "id": 4,
+      "name": "type4"
+    },
+    {
+      "id": 5,
+      "name": "type5"
+    },
+    {
+      "name": "new type",
+      "id": 6
+    }
+  ],
+  "about": [
+    {
+      "id": 1,
+      "title": "title",
+      "description": "lordqwerqwerqwe"
     }
   ],
   "users": [
@@ -21,7 +66,8 @@
       "password": "123456",
       "username": "test1",
       "companycode": "12345",
-      "mobile": "1234589"
+      "mobile": "1234589",
+      "role": 1
     },
     {
       "id": 2,
@@ -30,7 +76,8 @@
       "password": "123456",
       "username": "test2",
       "companycode": "12345",
-      "mobile": "1234589"
+      "mobile": "1234589",
+      "role": 2
     },
     {
       "email": "test1@gmail.com",
@@ -39,7 +86,8 @@
       "username": "test1",
       "companycode": "12345",
       "mobile": "1234589",
-      "id": 3
+      "id": 3,
+      "role": 1
     },
     {
       "email": "test1@gmail.com",
@@ -48,7 +96,8 @@
       "username": "test1",
       "companycode": "12345",
       "mobile": "1234589",
-      "id": 4
+      "id": 4,
+      "role": 2
     },
     {
       "email": "test1@gmail.com",
@@ -57,7 +106,8 @@
       "username": "test1",
       "companycode": "12345",
       "mobile": "1234589",
-      "id": 5
+      "id": 5,
+      "role": 1
     },
     {
       "email": "test1@gmail.com",
@@ -66,7 +116,8 @@
       "username": "test1",
       "companycode": "12345",
       "mobile": "1234589",
-      "id": 6
+      "id": 6,
+      "role": 1
     },
     {
       "email": "test1@gmail.com",
@@ -75,7 +126,8 @@
       "username": "test1",
       "companycode": "12345",
       "mobile": "1234589",
-      "id": 7
+      "id": 7,
+      "role": 1
     }
   ]
 }

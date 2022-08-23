@@ -68,8 +68,24 @@ const PATH = {
   PAYMENT_CARD_PAGE : "/paymentcard",
   CONSULTATION_ORDER_PAGE : "/Consultationorder",
 };
+const baseUrl_dashboard = '/dashboard'
+const DASHBOARD = {
+    PATH:{
+      DASHBOARD : baseUrl_dashboard,
+      D_ABOUT_PAGE : baseUrl_dashboard + '/about',
+      D_POSTS_PAGE : baseUrl_dashboard + '/posts',
+      D_TYPES_PAGE : baseUrl_dashboard + '/types',
+    },
+    PAGES_NAMES:{
+      DASHBOARD_PAGE: "Dashboard",
+      D_ABOUT_PAGE: "About",
+      D_POSTS_PAGE: "Posts",
+      D_TYPES_PAGE: "Types",
+    }
+};
 
-const baseUrl = "http://restapi.adequateshop.com";
+// const baseUrl = "http://restapi.adequateshop.com";
+const baseUrl = "http://localhost:3000";
 // const baseUrl = "https://api.groupick.in/api/v1";
 
 const APP_SETTINGS = {
@@ -100,7 +116,10 @@ const APP_SETTINGS = {
     ACCOUNT: {
       registerAccount: baseUrl + "/api/authaccount/registration",
       loginAccount: baseUrl + "/api/authaccount/login",
-      getProfile: baseUrl + "/api/users/",
+    },
+    POSTS:{
+      Posts: baseUrl + "/posts",
+      Types: baseUrl + "/types",
     },
   },
 };
@@ -110,4 +129,4 @@ const COLORS = {
     MAIN_COLOR_1 : "#F8F4EF",
     SECTION_3_COLOR : "#0F4C81",
 };
-export { BRAND_NAME, IMAGES, PATH, PAGES_NAMES, COLORS, APP_SETTINGS };
+export { BRAND_NAME, IMAGES, PATH, PAGES_NAMES, COLORS, APP_SETTINGS , DASHBOARD};

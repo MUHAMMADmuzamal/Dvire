@@ -1,5 +1,5 @@
 <template>
-  <v-footer
+  <!-- <v-footer
     dark
     padless
   >
@@ -31,6 +31,61 @@
       <v-container  class="pb-4">
         <hr>
         <center>© Visos teisės saugomos UAB „Dvire”</center>
+      </v-container>
+  </v-container>
+  </v-footer> -->
+  <v-footer
+    dark
+    padless
+  >
+  <v-container fluid style="background-color:#0F4C81 ; color:white">
+    <v-container class="d-flex justify-center">
+      <v-row class="pt-5 pb-5 mb-5">
+        <v-col class=" pa-7">
+          <v-img 
+          :src="logo"
+          max-width="123"
+          class="mb-md-7"
+          ></v-img>
+          <br>
+          <a class="d-none d-md-flex" href="" style="color:white;">Privatumo politika</a>
+          <br>
+          <a class="d-none d-md-flex" href="" style="color:white;">Kita teisinė informacija</a>
+        </v-col>
+        <v-col class=" pa-7">
+          <h1 class="mb-md-10">Kontaktai</h1>
+          El. paštas: <a href="" style="color:white;">info@dvire.lt</a>
+          <br> 
+          Tel. nr.: <a href="" style="color:white;">+370 (699) 01960</a>
+        </v-col>
+        <v-col class=" pa-7">
+          <h1 class="mb-md-5">Sekite mus</h1>
+          <br>
+          <a href="" class="mx-2"><img :src="linkedin_icon" alt="" srcset=""></a>
+          <a href="" class="mx-2"><img :src="fb_icon" alt="" srcset=""></a>
+  <!-- -----------mobile view-------------------------------------------------------------- -->
+                <v-row class="d-md-none">
+                  <v-col class="py-12">
+                    <a class="" href="" style="color:white;">Privatumo politika</a>
+                    <br>
+                    <a class="" href="" style="color:white;">Kita teisinė informacija</a>
+                  
+                  </v-col>
+                </v-row>
+
+        </v-col>
+
+       
+      </v-row>
+
+      
+
+    </v-container>
+
+      
+      <v-container >
+        <hr> 
+        <center  class="pt-6">© Visos teisės saugomos UAB „Dvire”</center>
       </v-container>
   </v-container>
   </v-footer>
