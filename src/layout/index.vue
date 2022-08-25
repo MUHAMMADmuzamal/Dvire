@@ -1,10 +1,12 @@
 <template>
-<v-app>
-    <app-header/>
-    <v-main>
+<v-app class="pa-4">
+<div class="pa-4">
+      <app-header/>
+    <v-main >
       <router-view />
     </v-main>
     <app-footer/>
+</div>
 </v-app>
 
 </template>

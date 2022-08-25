@@ -111,11 +111,9 @@
 </template>
 <script>
   import {PATH } from "../../../config";
-  import HttpApiService from '../../mixins/services/http-api-services'
   import Account from '../../mixins/services/account.service'
   import { required,  email, min, regex } from 'vee-validate/dist/rules'
   import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
-  const http_api_services = new HttpApiService("token");
   const account =  Account;
   setInteractionMode('eager')
 
@@ -164,7 +162,7 @@
         this.$refs.observer.reset()
       }, 
       async login () {
-                // this.$cookies.set('user',user);
+                
                 // console.log("set cookie");
                 // console.log(user);
                 // console.log("now get cookie cookie");
@@ -174,10 +172,14 @@
                   "password":this.password
                 }
                 const res = await account.userLogin(user);
-                // const res = await http_api_services.getAllProducts();
                 console.log(res)
-                
-                
+                const cooke={
+                  auth:{
+                    token:res.data[0]
+                  },
+                  info:res.data[1]
+                }
+                this.$cookies.set('user',cooke);
         },
     },
   }

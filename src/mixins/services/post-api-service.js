@@ -13,6 +13,7 @@ class PostsApiService extends HttpApiService {
 		return this.update(PATH.Posts+`/${post.id}`, post);
 	}
 	async addPost(post) {
+		console.log(post)
 		return this.post(PATH.Posts, post);
 	}
 	async deletePost(post) {

@@ -34,7 +34,14 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-        <v-toolbar :color="color">
+    <v-app-bar
+      :color="color_change"
+      :fixed="fixed_nav_bar"
+      width="100%"
+      elevate-on-scroll
+    >
+        <!-- <v-toolbar :color="color"> -->
+          <v-spacer></v-spacer>
           <v-toolbar-title>
             <router-link :to="landing_page" custom v-slot="{ navigate }">
               <span @click="navigate" @keypress.enter="navigate" role="link" style="cursor: pointer">
@@ -53,6 +60,7 @@
               {{ item.title }}
             </v-btn>
           </v-toolbar-items>
+          <v-spacer></v-spacer>
           <span v-if="!dashboard"  class="hidden-sm-and-up">
               <v-app-bar-nav-icon @click="showHideDrawar()"></v-app-bar-nav-icon>
           </span>
@@ -60,17 +68,20 @@
           <span  v-if="dashboard">
               <v-app-bar-nav-icon @click="showHideDrawar()"></v-app-bar-nav-icon>
           </span>
-        </v-toolbar>
+        <!-- </v-toolbar> -->
+        </v-app-bar>
   </div>
 </template>
 <script>
-import {IMAGES, PATH, BRAND_NAME, PAGES_NAMES} from "../../config";
+import {IMAGES, PATH, BRAND_NAME, COLORS} from "../../config";
 export default {
   name: "Header",
   data: () => ({
         logo: IMAGES.COMPANY_LOGO,
         landing_page: PATH.LANDING_PAGE,
         appTitle: BRAND_NAME,
+        color_change:COLORS.MAIN_COLOR_1,
+        fixed_nav_bar:false,
         // drawer: false,
         // dashboard:false,
         // showMenuButton:true,
@@ -116,9 +127,26 @@ export default {
         return this.$store.state.app_header_states.dashboard;
   },
   },
+    created () {
+      window.addEventListener("scroll", this.handleScroll);
+    },
+  destroyed() {
+    window.removeEventListener("scroll", this.handleScroll);
+  },
+
 
 
   methods:{
+    handleScroll(event) {
+            if (window.scrollY > 0) {
+              this.fixed_nav_bar=true;
+              this.color_change="white";
+            }else{
+              this.fixed_nav_bar=false;
+              this.color_change=COLORS.MAIN_COLOR_1;
+            }
+      // console.log(window.scrollY);
+    },
     showHideDrawar: function(){
       this.drawer = !this.drawer;
     },

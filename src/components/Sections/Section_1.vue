@@ -58,9 +58,10 @@
           </v-col>
         </v-row>
 
-        <v-row>
+        <v-row id="degalai">
           <v-col>
-            <div class="d-flex justify-center" style="border-left: 2px solid black;
+            <a href="#degalai">
+              <div class="d-flex justify-center" style="border-left: 2px solid black;
               height: 44px;
               position: ;
               left: 50%;
@@ -70,6 +71,7 @@
               
               "> 
             </div>
+            </a>
           </v-col>
         </v-row>
       

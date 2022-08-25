@@ -1,32 +1,76 @@
 <template>
     <dash-board>
         <v-container>
-            <h3 class="my-3">About page</h3>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias architecto cum debitis eligendi et eveniet facere fugiat illo incidunt libero, maxime nihil, non nulla omnis quis sint sunt velit voluptates.
-            </p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A fugiat, in incidunt iure praesentium reiciendis sapiente voluptate. Cum cumque delectus dignissimos iure, laboriosam nesciunt numquam odit, quis quisquam sapiente suscipit?
-            </p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab atque beatae deleniti ea earum impedit officia tenetur ut voluptas voluptatem. Aliquam atque, culpa dolorem eos libero possimus quaerat rem repellendus.
-            </p>
+            <!-- <h3 class="my-3">{{about.title}}</h3> -->
+            <input type="text" v-model="about.title">
+               <editor
+               :api-key="api_key"
+                    :init="{
+                        height: 500,
+                        menubar: false,                        
+                          plugins: [
+                                    'advlist', 'autolink', 'link', 'image', 'lists', 'charmap', 'preview', 'anchor', 'pagebreak',
+                                    'searchreplace', 'wordcount', 'visualblocks', 'code', 'fullscreen', 'insertdatetime', 'media',
+                                    'table', 'emoticons', 'template', 'help'
+                                ],
+                                toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | ' +
+                                    'bullist numlist outdent indent | link image | print preview media fullscreen | ' +
+                                    'forecolor backcolor emoticons | help',
+                                menu: {
+                                    favs: { title: 'My Favorites', items: 'code visualaid | searchreplace | emoticons' }
+                                },
+                                menubar: 'favs file edit view insert format tools table help',
+                                content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
+                    }"
+                    v-model="about.description"
+                    />
+                    <v-btn
+                    depressed
+                    elevation="2"
+                    @click="update()"
+                    >Update</v-btn>
+                    <v-btn
+                    depressed
+                    elevation="2"
+                    >Reset</v-btn>
         </v-container>
     </dash-board>
 </template>
 
 <script>
 import Dashboard from './Dashboard.vue';
+import AboutApiService from '../../mixins/services/about-api-service'
+import Editor from '@tinymce/tinymce-vue'
+import {API_KEY} from '../../../config'
     export default {
-         name:"DashboardAbout",
+        name:"DashboardAbout",
         components:{
             'dash-board':Dashboard,
+            'editor': Editor,
         },
-      data () {
-        return {}
+      data: ()=>( {
+        about:{
+            id:'',
+            title:'',
+            description:''
+        },
+        api_key:API_KEY.TINY_MCE.Key,
+        aboutApi:  new  AboutApiService($cookies.get('user').auth.token),
+      }),
+       created () {
+      this.initialize()
+    },
+     methods: {
+      async initialize () {
+        
+         const res  = await this.aboutApi.getData()
+        this.about=res.data[0]
       },
+      async update(){
+        const res  = await this.aboutApi.updateData(this.about)
+        console.log(res)
 
-      mounted () {
-      }
+      },
+     },
     }
 </script>

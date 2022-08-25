@@ -103,6 +103,19 @@
       </validation-provider>
       <validation-provider
         v-slot="{ errors }"
+        name="gas_planned_to_have_vehicles"
+        :rules="{
+        }"
+      >
+        <v-text-field
+          v-model="gas_planned_to_have_vehicles"
+          counter
+          :error-messages="errors"
+          label="Gas Planned to have Vehicles"
+        ></v-text-field>
+      </validation-provider>
+      <validation-provider
+        v-slot="{ errors }"
         name="email"
         rules="required|email"
       >
@@ -114,6 +127,16 @@
           required
         ></v-text-field>
       </validation-provider>
+
+        <v-text-field
+            v-model="password"
+
+            name="input-10-1"
+            label="Password"
+            hint="At least 8 characters"
+            counter
+          ></v-text-field>
+           
       <validation-provider
         v-slot="{ errors }"
         name="receive_news_and_notices"
@@ -123,18 +146,6 @@
           :error-messages="errors"
           :value="receive_news_and_notices"
           label="Receive News and Notices"
-          type="checkbox"
-        ></v-checkbox>
-      </validation-provider>
-      <validation-provider
-        v-slot="{ errors }"
-        name="gas_planned_to_have_vehicles"
-      >
-        <v-checkbox
-          v-model="gas_planned_to_have_vehicles"
-          :error-messages="errors"
-          :value="gas_planned_to_have_vehicles"
-          label="Gas Planned to have Vehicles"
           type="checkbox"
         ></v-checkbox>
       </validation-provider>
@@ -257,7 +268,7 @@
       phoneNumber:'',
       receive_news_and_notices: true,
       gas_available_for_transport:'',
-      gas_planned_to_have_vehicles:true,
+      gas_planned_to_have_vehicles:'',
       email: '',
       password:'',
       show: false,
@@ -277,8 +288,8 @@
         this.date=(new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
         this.phoneNumber='',
         this.receive_news_and_notices= true,
-        this.gas_available_for_transport=0,
-        this.gas_planned_to_have_vehicles=true,
+        this.gas_available_for_transport='',
+        this.gas_planned_to_have_vehicles='',
         this.email= '',
         this.password='',
         this.$refs.observer.reset()
@@ -291,25 +302,22 @@
                 // console.log("now get cookie cookie");
                 // console.log(this.$cookies.get('user'))
                 const user = {
+
                     name: this.name,
                     email: this.email,
-                    password:this.password,
+                    password: this.password,
+                    password_confirmation : this.password,
+                    remember_token : "",
+                    surname : this.surname,
+                    address: this.address,
+                    company_code:this.company_code,
+                    vat_code : this.vat_code,
+                    date : this.date,
+                    phone_no : this.phoneNumber,
+                    gas_available : this.gas_available_for_transport,
+                    gas_planned : this.gas_planned_to_have_vehicles,
+                    // notification: this.receive_news_and_notices,
                 }
-                // const user = {
-                //     name: this.name,
-                //     address:this.address,
-                //     surname:this.surname,
-                //     company_code:this.company_code,
-                //     vat_code:this.vat_code,
-                //     date:this.date,
-                //     phoneNumber:this.phoneNumber,
-                //     receive_news_and_notices: this.receive_news_and_notices,
-                //     gas_available_for_transport:this.gas_available_for_transport,
-                //     gas_planned_to_have_vehicles:this.gas_planned_to_have_vehicles,
-                //     email: this.email,
-                //     password:this.password,
-                // }
-                console.log(user)
                 const res = await account.registerUser(user);
                 // const res = await http_api_services.getAllProducts();
                 console.log(res)

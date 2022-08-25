@@ -130,14 +130,14 @@
 
 <script>
 import Dashboard from './Dashboard.vue';
-import PostsApiService from '../../mixins/services/post-api-service';
-const typeApi =  new  PostsApiService();
+import TypesApiService from '../../mixins/services/post-api-service';
  export default {
   name:"DashboardTypes",
   components:{
             'dash-board':Dashboard,
         },
     data: () => ({
+      typeApi:  new  TypesApiService($cookies.get('user').auth.token),
       search: '',
       dialog: false,
       dialogDelete: false,
@@ -181,9 +181,8 @@ const typeApi =  new  PostsApiService();
 
     methods: {
       async initialize () {
-         const type  = await typeApi.getAllTypes()
+         const type  = await this.typeApi.getAllTypes()
         this.types=type.data
-        console.log(type.data)
       },
       editItem (item) {
         this.editedIndex = this.types.indexOf(item)
@@ -200,7 +199,7 @@ const typeApi =  new  PostsApiService();
       async deleteItemConfirm () {
         const delete_type = this.types[this.editedIndex];
         this.types.splice(this.editedIndex, 1)
-        let res = await typeApi.deleteType(delete_type)
+        let res = await this.typeApi.deleteType(delete_type)
         console.log(res)
         this.closeDelete()
       },
@@ -225,10 +224,10 @@ const typeApi =  new  PostsApiService();
         let res ='';
         if (this.editedIndex > -1) {
           Object.assign(this.types[this.editedIndex], this.editedItem)
-           res = await typeApi.updateType(this.types[this.editedIndex])
+           res = await this.typeApi.updateType(this.types[this.editedIndex])
         } else {
           this.types.push(this.editedItem)
-          res = await typeApi.addType(this.editedItem)
+          res = await this.typeApi.addType(this.editedItem)
         }
         console.log(res)
         this.close()

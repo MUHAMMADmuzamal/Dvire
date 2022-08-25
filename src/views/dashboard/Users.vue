@@ -2,7 +2,7 @@
   <dash-board>
     <v-card>
     <v-card-title>
-      Posts
+      Users
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
@@ -15,7 +15,7 @@
 
     <v-data-table
     :headers="headers"
-    :items="posts"
+    :items="users"
     sort-by="title"
     class="elevation-1"
     :search="search"
@@ -24,7 +24,7 @@
       <v-toolbar
         flat
       >
-        <v-toolbar-title>Posts</v-toolbar-title>
+        <v-toolbar-title>Users</v-toolbar-title>
         <v-divider
           class="mx-4"
           inset
@@ -33,9 +33,7 @@
         <v-spacer></v-spacer>
         <v-dialog
           v-model="dialog"
-          fullscreen
-          hide-overlay
-          transition="dialog-bottom-transition"
+          max-width="500px"
         >
           <template v-slot:activator="{ on, attrs }">
             <v-btn
@@ -71,13 +69,10 @@
                     sm="6"
                     md="4"
                   >
-                    <v-select
-                    :items="types"
-                    label="Standard"
-                    item-text="name"
-                    item-value="name"
-                    v-model="editedItem.type.name"
-                    ></v-select>
+                    <v-text-field
+                      v-model="editedItem.type"
+                      label="Type"
+                    ></v-text-field>
                   </v-col>
                   <v-col
                     cols="12"
@@ -94,33 +89,12 @@
                     sm="6"
                     md="4"
                   >
-                    <!-- <v-textarea
+                    <v-textarea
                       name="input-7-1"
                       label="Description"
                       hint="Hint text"
                        v-model="editedItem.description"
-                    ></v-textarea> -->
-                    <editor
-                    :api-key="api_key"
-                          :init="{
-                            
-                              menubar: false,                        
-                                plugins: [
-                                          'advlist', 'autolink', 'link', 'image', 'lists', 'charmap', 'preview', 'anchor', 'pagebreak',
-                                          'searchreplace', 'wordcount', 'visualblocks', 'code', 'fullscreen', 'insertdatetime', 'media',
-                                          'table', 'emoticons', 'template', 'help'
-                                      ],
-                                      toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | ' +
-                                          'bullist numlist outdent indent | link image | print preview media fullscreen | ' +
-                                          'forecolor backcolor emoticons | help',
-                                      menu: {
-                                          favs: { title: 'My Favorites', items: 'code visualaid | searchreplace | emoticons' }
-                                      },
-                                      menubar: 'favs file edit view insert format tools table help',
-                                      content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
-                          }"
-                          v-model="editedItem.description"
-                    />
+                    ></v-textarea>
                   </v-col>
                 </v-row>
               </v-container>
@@ -188,49 +162,42 @@
 
 <script>
 import Dashboard from './Dashboard.vue';
-import PostsApiService from '../../mixins/services/post-api-service';
-import {API_KEY} from '../../../config'
-import Editor from '@tinymce/tinymce-vue'
+import UsersApiService from '../../mixins/services/user-api-service';
+const userApi =  new  UsersApiService(this.$cookies.get('user').auth.token);
  export default {
-  name:"DashboardPosts",
+  name:"DashboardUsers",
   components:{
             'dash-board':Dashboard,
-            'editor': Editor,
         },
     data: () => ({
-      postApi :  new  PostsApiService($cookies.get('user').auth.token),
-      api_key:API_KEY.TINY_MCE.Key,
       search: '',
       dialog: false,
       dialogDelete: false,
       headers: [
         {
-          text: 'Title',
+          text: 'User',
           align: 'start',
           sortable: false,
           value: 'title',
         },
-        { text: 'Type', value: 'type.name' },
-        { text: 'Description', value: 'description' },
-        { text: 'Author', value: 'author' },
+        { text: 'Surname', value: 'surname' },
+        { text: 'Address', value: 'address' },
+        { text: 'Email', value: 'email' },
         { text: 'Actions', value: 'actions', sortable: false },
       ],
-      posts: [],
-      types: [],
+      users: [],
       editedIndex: -1,
       editedItem: {
         title: '',
-        type_id: '',
+        type: '',
         author:'',
         description: '',
-        type:''
       },
       defaultItem: {
         title: '',
-        type_id: '',
+        type: '',
         author:'',
         description: '',
-        type:''
       },
     }),
 
@@ -255,27 +222,25 @@ import Editor from '@tinymce/tinymce-vue'
 
     methods: {
       async initialize () {
-         const post  = await this.postApi.getAllPosts()
-         const type  = await this.postApi.getAllTypes()
-        this.posts=post.data
-        this.types=type.data
+         const post  = await userApi.getAllUsers()
+        this.Users=post.data
       },
       editItem (item) {
-        this.editedIndex = this.posts.indexOf(item)
+        this.editedIndex = this.Users.indexOf(item)
         this.editedItem = Object.assign({}, item)
         this.dialog = true
       },
 
       deleteItem (item) {
-        this.editedIndex = this.posts.indexOf(item)
+        this.editedIndex = this.Users.indexOf(item)
         this.editedItem = Object.assign({}, item)
         this.dialogDelete = true
       },
 
       async deleteItemConfirm () {
-        const delete_post = this.posts[this.editedIndex];
-        this.posts.splice(this.editedIndex, 1)
-        let res = await this.postApi.deletePost(delete_post)
+        const delete_post = this.Users[this.editedIndex];
+        this.Users.splice(this.editedIndex, 1)
+        let res = await userApi.deletePost(delete_post)
         console.log(res)
         this.closeDelete()
       },
@@ -299,17 +264,11 @@ import Editor from '@tinymce/tinymce-vue'
       async save () {
         let res ='';
         if (this.editedIndex > -1) {
-          let x = this.types.filter((a)=>{
-            if(a.name==this.editedItem.type.name)
-            {return a}
-            });
-          this.editedItem.type.id = x[0].id;
-          this.editedItem.type_id = x[0].id;
-          Object.assign(this.posts[this.editedIndex], this.editedItem)
-           res = await this.postApi.updatePost(this.posts[this.editedIndex])
+          Object.assign(this.Users[this.editedIndex], this.editedItem)
+           res = await userApi.updatePost(this.Users[this.editedIndex])
         } else {
-          this.posts.push(this.editedItem)
-          res = await this.postApi.addPost(this.editedItem)
+          this.Users.push(this.editedItem)
+          res = await userApi.addPost(this.editedItem)
         }
         console.log(res)
         this.close()

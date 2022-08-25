@@ -85,41 +85,39 @@ const DASHBOARD = {
 };
 
 // const baseUrl = "http://restapi.adequateshop.com";
-const baseUrl = "http://localhost:3000";
+const baseUrl = "http://localhost:8000";
+// const baseUrl = "http://localhost:3000";
 // const baseUrl = "https://api.groupick.in/api/v1";
 
 const APP_SETTINGS = {
   API_PATH: {
     BASEURL: baseUrl,
     // ACCOUNT: {
-    //   registerAccount: baseUrl + "/auth/signup/",
-    //   loginAccount: baseUrl + "/auth/login/",
-    //   profileUpdate: baseUrl + "/auth/update/",
+    //   registerAccount: baseUrl + "/api/register",
+    //   loginAccount: baseUrl + "/api/login",
     // },
-    // PRODUCT: {
-    //   productListing: baseUrl + "/products/",
-    //   createProduct: baseUrl + "/products/",
-    //   uploadImage: baseUrl + "/products",
+    // POSTS:{
+    //   Posts: baseUrl + "/api/posts",
+    //   Types: baseUrl + "/api/types",
     // },
-    // CATEGORY: {
-    //   categoryListing: baseUrl + "/categories/",
-    // },
-    // CATALOG:{
-    //   bulkupload: baseUrl + "/catalogs/bulk-add/",
-    //   bulkimageupload: baseUrl + "/catalogs/bulk-add/images/file/",
-    //   bulkgetimages: baseUrl + "/catalogs/bulk-add/getallimages/",
-    //   bulkgetdata: baseUrl + "/catalogs/bulk-add/info",
-    //   download_excel_file: download_base_url + "/media/template.xlsx",
+    // ABOUT:{
+    //   About: baseUrl + "/api/about",
     // },
 
     // Testing Api Paths
     ACCOUNT: {
-      registerAccount: baseUrl + "/api/authaccount/registration",
-      loginAccount: baseUrl + "/api/authaccount/login",
+      registerAccount: baseUrl + "/api/register",
+      loginAccount: baseUrl + "/api/login",
     },
     POSTS:{
-      Posts: baseUrl + "/posts",
-      Types: baseUrl + "/types",
+      Posts: baseUrl + "/api/post",
+      Types: baseUrl + "/api/type",
+    },
+    ABOUT:{
+      About: baseUrl + "/about",
+    },
+    USER:{
+      User: baseUrl + "/userS",
     },
   },
 };
@@ -129,4 +127,10 @@ const COLORS = {
     MAIN_COLOR_1 : "#F8F4EF",
     SECTION_3_COLOR : "#0F4C81",
 };
-export { BRAND_NAME, IMAGES, PATH, PAGES_NAMES, COLORS, APP_SETTINGS , DASHBOARD};
+
+const API_KEY={
+  TINY_MCE:{
+    Key:'aml8k16foy26t9p28u0jp4ma2ogwa84fv6zyf0l9lf09opw3',
+  }
+}
+export { BRAND_NAME, IMAGES, PATH, PAGES_NAMES, COLORS, APP_SETTINGS , DASHBOARD, API_KEY};

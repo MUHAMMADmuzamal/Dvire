@@ -11,6 +11,8 @@ class AccountDataService {
       data,
       {
         headers: {
+          // 'Accept': 'application/json',
+          // 'Content-Type': 'application/json',
           // Authorization: 'Bearer ' + auth.yodha_user.token
         },
       }
