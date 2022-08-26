@@ -98,6 +98,16 @@
                     sm="6"
                     md="4"
                   >
+                    <v-text-field
+                      v-model="editedItem.short_description"
+                      label="Short Description"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                  >
                     <editor
                     :api-key="api_key"
                           :init="{
@@ -210,7 +220,7 @@ import Editor from '@tinymce/tinymce-vue'
           value: 'title',
         },
         { text: 'Type', value: 'type.name' },
-        { text: 'Description', value: 'description' },
+        { text: 'Description', value: 'short_description' },
         { text: 'Author', value: 'author' },
         { text: 'Actions', value: 'actions', sortable: false },
       ],
@@ -221,6 +231,7 @@ import Editor from '@tinymce/tinymce-vue'
         title: '',
         type_id: '',
         author:'',
+        short_description: '',
         description: '',
         type:''
       },
@@ -229,6 +240,7 @@ import Editor from '@tinymce/tinymce-vue'
         type_id: '',
         author:'',
         description: '',
+        short_description: '',
         type:''
       },
     }),

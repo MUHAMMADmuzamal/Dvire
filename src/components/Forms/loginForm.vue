@@ -110,7 +110,7 @@
   </validation-observer> -->
 </template>
 <script>
-  import {PATH } from "../../../config";
+  import {PATH,NOTIFCATIONS } from "../../../config";
   import Account from '../../mixins/services/account.service'
   import { required,  email, min, regex } from 'vee-validate/dist/rules'
   import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
@@ -177,6 +177,11 @@
                   info:res.data[1]
                 }
                 this.$cookies.set('user',cooke);
+                if (res.status == 200) {
+                  this.$toast.success(NOTIFCATIONS.LOGIN.SUCCESS)
+                }else{
+                  this.$toast.success(NOTIFCATIONS.ERROR)
+                }
         },
     },
   }

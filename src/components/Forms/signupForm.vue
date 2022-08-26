@@ -130,11 +130,14 @@
 
         <v-text-field
             v-model="password"
-
             name="input-10-1"
             label="Password"
             hint="At least 8 characters"
             counter
+            :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+            :type="show ? 'text' : 'password'"
+            @click:append="show = !show"
+            required
           ></v-text-field>
            
       <validation-provider
@@ -212,12 +215,10 @@
   </validation-observer> -->
 </template>
 <script>
-  import {PATH } from "../../../config";
-  import HttpApiService from '../../mixins/services/http-api-services'
+  import {NOTIFCATIONS } from "../../../config";
   import Account from '../../mixins/services/account.service'
   import { required,  email, min,max, regex, digits } from 'vee-validate/dist/rules'
   import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
-  const http_api_services = new HttpApiService("token");
   const account =  Account;
   setInteractionMode('eager')
 
@@ -319,7 +320,11 @@
                     // notification: this.receive_news_and_notices,
                 }
                 const res = await account.registerUser(user);
-                // const res = await http_api_services.getAllProducts();
+                if (res.status == 200) {
+                  this.$toast.success(NOTIFCATIONS.SIGNUP.SUCCESS)
+                }else{
+                  this.$toast.success(NOTIFCATIONS.ERROR)
+                }
                 console.log(res)
                 
                 

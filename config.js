@@ -139,6 +139,12 @@ const NOTIFCATIONS={
     DELETE:"Type Deleted",
     ADD:"Type Added Successfully.",
     UPDATE:"Type Update Successfully.",
-  }
+  },
+  SIGNUP:{
+    SUCCESS:"Account Created Successfully."
+  },
+  LOGIN:{
+    SUCCESS:"Login Successfully."
+  },
 }
 export { BRAND_NAME, IMAGES, PATH, PAGES_NAMES, COLORS, APP_SETTINGS , DASHBOARD, API_KEY, NOTIFCATIONS};
