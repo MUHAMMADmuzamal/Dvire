@@ -131,9 +131,9 @@
 <script>
 import Dashboard from './Dashboard.vue';
 import TypesApiService from '../../mixins/services/post-api-service';
-import {NOTIFCATIONS} from '../../../config'
+import {NOTIFCATIONS,DASHBOARD} from '../../../config'
  export default {
-  name:"DashboardTypes",
+  name:DASHBOARD.PAGES_NAMES.D_TYPES_PAGE,
   components:{
             'dash-board':Dashboard,
         },

@@ -4,17 +4,17 @@ class PagesApiService extends HttpApiService {
 		super(token);
 	}
 
-	async getData(path) {
+	async getPages(path) {
 		return this.get(path);
 	}
-	async updateData(path,page) {
-		return this.update(path, page);
+	async updatePageData(path,page) {
+		return this.update(path+`/${page.id}`, page);
 		// return this.update(path+`/${page.id}`, page);
 	}
-	async addData(path,page) {
+	async addPageData(path,page) {
 		return this.post(path, page);
 	}
-	async deleteData(path,page) {
+	async deletePage(path,page) {
 		return this.delete(path,page.id);
 	}
 }

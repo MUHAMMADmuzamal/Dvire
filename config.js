@@ -46,6 +46,24 @@ const PAGES_NAMES = {
     PAYMENT_CARD_PAGE : "Purchase of a fuel payment card",
     CONSULTATION_ORDER_PAGE : "Consultation order",
 };
+const PAGES_IDS = {
+    LANDING_PAGE_ID: 1,
+    ABOUT_PAGE_ID: 2,
+    CARD_PAGE_ID: 11,
+    DICTIONARY_PAGE_ID: 0,
+    LAWS_PAGE_ID: 0,
+    NEWS_PAGE_ID: 3,
+    BLOG_PAGE_ID: 0,
+    LANG_PAGE_ID : 0,
+    
+    CONTACTS_PAGE_ID : 4,
+    PROPS_PAGE_ID : 5,
+    GAS_STATION_NETWORK_MAP_PAGE_ID :6,
+    REQUEST_FORM_PAGE_ID : 7,
+    SELF_SERVICE_PAGE_ID : 8,
+    PAYMENT_CARD_PAGE_ID : 9,
+    CONSULTATION_ORDER_PAGE_ID : 10,
+};
 
 let BRAND_NAME = "Dvire";
 
@@ -78,7 +96,7 @@ const DASHBOARD = {
       D_POSTS_PAGE : baseUrl_dashboard + '/posts',
       D_TYPES_PAGE : baseUrl_dashboard + '/types',
       D_BLOG_ADD_PAGE: baseUrl_dashboard + "/post",
-      // D_BLOG_EDIT_REDIRECT_PAGE: baseUrl_dashboard + "/post/",
+      D_EDIT_PAGES_PAGE: baseUrl_dashboard + "/editpages/",
       
     },
     PAGES_NAMES:{
@@ -86,7 +104,8 @@ const DASHBOARD = {
       D_ABOUT_PAGE: "About",
       D_POSTS_PAGE: "Posts",
       D_TYPES_PAGE: "Types",
-      D_BLOG_ADD_PAGE: "Add Post",
+      D_EDIT_PAGES_PAGE: "EditPages",
+      D_USERS_PAGE: "Users",
     }
 };
 
@@ -107,11 +126,14 @@ const APP_SETTINGS = {
       Types: baseUrl + "/api/type",
     },
     ABOUT:{
-      About: baseUrl + "/api/page/1",
+      About: baseUrl + "/api/page/" + PAGES_IDS.ABOUT_PAGE_ID,
     },
     USER:{
       User: baseUrl + "/users",
     },
+    PAGES:{
+      ALL_PAGES: baseUrl + '/api/page',
+    }
   },
 };
 
@@ -147,4 +169,4 @@ const NOTIFCATIONS={
     SUCCESS:"Login Successfully."
   },
 }
-export { BRAND_NAME, IMAGES, PATH, PAGES_NAMES, COLORS, APP_SETTINGS , DASHBOARD, API_KEY, NOTIFCATIONS};
+export { BRAND_NAME, IMAGES, PATH, PAGES_NAMES, COLORS, APP_SETTINGS , DASHBOARD, API_KEY, NOTIFCATIONS, PAGES_IDS};

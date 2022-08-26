@@ -25,7 +25,7 @@ export default {
     },
      methods: {
       async initialize () {
-         const res  = await this.aboutApi.getData(PATH.About)
+         const res  = await this.aboutApi.getPages(PATH.About)
         this.about=res.data
       },
      },

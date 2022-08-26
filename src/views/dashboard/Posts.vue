@@ -200,7 +200,7 @@ import PostsApiService from '../../mixins/services/post-api-service';
 import {API_KEY, DASHBOARD,NOTIFCATIONS} from '../../../config'
 import Editor from '@tinymce/tinymce-vue'
  export default {
-  name:"DashboardPosts",
+  name:DASHBOARD.PAGES_NAMES.D_POSTS_PAGE,
   components:{
             'dash-board':Dashboard,
             'editor': Editor,
