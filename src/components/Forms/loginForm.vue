@@ -163,9 +163,6 @@
       }, 
       async login () {
                 
-                // console.log("set cookie");
-                // console.log(user);
-                // console.log("now get cookie cookie");
                 // console.log(this.$cookies.get('user'))
                 const user = {
                   "email":this.email,

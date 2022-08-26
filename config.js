@@ -117,7 +117,7 @@ const APP_SETTINGS = {
       About: baseUrl + "/about",
     },
     USER:{
-      User: baseUrl + "/userS",
+      User: baseUrl + "/users",
     },
   },
 };
