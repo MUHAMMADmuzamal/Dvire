@@ -2,7 +2,7 @@
   <dash-board>
     <v-card>
     <v-card-title>
-      Posts
+      
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
@@ -38,15 +38,19 @@
           transition="dialog-bottom-transition"
         >
           <template v-slot:activator="{ on, attrs }">
-            <v-btn
+            <!-- <router-link :to="post_page" custom v-slot="{ navigate }">
+              <span @click="navigate" @keypress.enter="navigate" role="link" style="cursor: pointer"> -->
+              <v-btn
               color="primary"
               dark
               class="mb-2"
-              v-bind="attrs"
+                v-bind="attrs"
               v-on="on"
             >
-              New Item
+              New Post
             </v-btn>
+              <!-- </span>
+            </router-link> -->
           </template>
           <v-card>
             <v-card-title>
@@ -73,10 +77,10 @@
                   >
                     <v-select
                     :items="types"
-                    label="Standard"
+                    label="Type"
                     item-text="name"
-                    item-value="name"
-                    v-model="editedItem.type.name"
+                    item-value="id"
+                    v-model="editedItem.type_id"
                     ></v-select>
                   </v-col>
                   <v-col
@@ -94,16 +98,10 @@
                     sm="6"
                     md="4"
                   >
-                    <!-- <v-textarea
-                      name="input-7-1"
-                      label="Description"
-                      hint="Hint text"
-                       v-model="editedItem.description"
-                    ></v-textarea> -->
                     <editor
                     :api-key="api_key"
                           :init="{
-                            
+                            height:500,
                               menubar: false,                        
                                 plugins: [
                                           'advlist', 'autolink', 'link', 'image', 'lists', 'charmap', 'preview', 'anchor', 'pagebreak',
@@ -189,7 +187,7 @@
 <script>
 import Dashboard from './Dashboard.vue';
 import PostsApiService from '../../mixins/services/post-api-service';
-import {API_KEY} from '../../../config'
+import {API_KEY, DASHBOARD} from '../../../config'
 import Editor from '@tinymce/tinymce-vue'
  export default {
   name:"DashboardPosts",
@@ -200,6 +198,7 @@ import Editor from '@tinymce/tinymce-vue'
     data: () => ({
       postApi :  new  PostsApiService($cookies.get('user').auth.token),
       api_key:API_KEY.TINY_MCE.Key,
+      post_page: DASHBOARD.PATH.D_BLOG_ADD_PAGE,
       search: '',
       dialog: false,
       dialogDelete: false,
@@ -264,6 +263,7 @@ import Editor from '@tinymce/tinymce-vue'
         this.editedIndex = this.posts.indexOf(item)
         this.editedItem = Object.assign({}, item)
         this.dialog = true
+        // this.$router.push(DASHBOARD.PATH.D_BLOG_EDIT_REDIRECT_PAGE+`/${item.id}`) 
       },
 
       deleteItem (item) {
@@ -299,12 +299,12 @@ import Editor from '@tinymce/tinymce-vue'
       async save () {
         let res ='';
         if (this.editedIndex > -1) {
-          let x = this.types.filter((a)=>{
-            if(a.name==this.editedItem.type.name)
-            {return a}
-            });
-          this.editedItem.type.id = x[0].id;
-          this.editedItem.type_id = x[0].id;
+          // let x = this.types.filter((a)=>{
+          //   if(a.name==this.editedItem.type.name)
+          //   {return a}
+          //   });
+          // this.editedItem.type.id = x[0].id;
+          // this.editedItem.type_id = x[0].id;
           Object.assign(this.posts[this.editedIndex], this.editedItem)
            res = await this.postApi.updatePost(this.posts[this.editedIndex])
         } else {
@@ -312,6 +312,7 @@ import Editor from '@tinymce/tinymce-vue'
           res = await this.postApi.addPost(this.editedItem)
         }
         console.log(res)
+        this.initialize()
         this.close()
       },
     },

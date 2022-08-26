@@ -32,6 +32,7 @@ const PAGES_NAMES = {
     DICTIONARY_PAGE: "Dictionary",
     LAWS_PAGE: "Laws",
     NEWS_PAGE: "News",
+    BLOG_PAGE: "Blogs",
     LANG_PAGE : "LT | EN",
     LOGIN_PAGE : "Login",
     SIGNUP_PAGE : "Signup",
@@ -55,6 +56,7 @@ const PATH = {
   DICTIONARY_PAGE: "/dictionary",
   LAWS_PAGE: "/laws",
   NEWS_PAGE: "/news",
+  BLOG_PAGE: "/blogs",
   LANG_PAGE : "/lang",
   LOGIN_PAGE : "/login",
   SIGNUP_PAGE : "/signup",
@@ -75,12 +77,16 @@ const DASHBOARD = {
       D_ABOUT_PAGE : baseUrl_dashboard + '/about',
       D_POSTS_PAGE : baseUrl_dashboard + '/posts',
       D_TYPES_PAGE : baseUrl_dashboard + '/types',
+      D_BLOG_ADD_PAGE: baseUrl_dashboard + "/post",
+      // D_BLOG_EDIT_REDIRECT_PAGE: baseUrl_dashboard + "/post/",
+      
     },
     PAGES_NAMES:{
       DASHBOARD_PAGE: "Dashboard",
       D_ABOUT_PAGE: "About",
       D_POSTS_PAGE: "Posts",
       D_TYPES_PAGE: "Types",
+      D_BLOG_ADD_PAGE: "Add Post",
     }
 };
 
@@ -92,19 +98,6 @@ const baseUrl = "http://localhost:8000";
 const APP_SETTINGS = {
   API_PATH: {
     BASEURL: baseUrl,
-    // ACCOUNT: {
-    //   registerAccount: baseUrl + "/api/register",
-    //   loginAccount: baseUrl + "/api/login",
-    // },
-    // POSTS:{
-    //   Posts: baseUrl + "/api/posts",
-    //   Types: baseUrl + "/api/types",
-    // },
-    // ABOUT:{
-    //   About: baseUrl + "/api/about",
-    // },
-
-    // Testing Api Paths
     ACCOUNT: {
       registerAccount: baseUrl + "/api/register",
       loginAccount: baseUrl + "/api/login",
@@ -114,7 +107,7 @@ const APP_SETTINGS = {
       Types: baseUrl + "/api/type",
     },
     ABOUT:{
-      About: baseUrl + "/about",
+      About: baseUrl + "/api/page/1",
     },
     USER:{
       User: baseUrl + "/users",

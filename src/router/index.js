@@ -5,6 +5,7 @@ import Card from "../views/Card.vue";
 import Dictionary from "../views/Dictionary";
 import Laws from "../views/Laws";
 import News from "../views/News";
+import Blogs from "../views/Blogs";
 import About from "../views/AboutView.vue";
 import Login from "../views/Login.vue";
 import Signup from "../views/Signup.vue";
@@ -48,6 +49,11 @@ const routes = [
     path: PATH.NEWS_PAGE,
     name: PAGES_NAMES.NEWS_PAGE,
     component: News,
+  },
+  {
+    path: PATH.BLOG_PAGE,
+    name: PAGES_NAMES.BLOG_PAGE,
+    component: Blogs,
   },
   {
     path: PATH.LAWS_PAGE,

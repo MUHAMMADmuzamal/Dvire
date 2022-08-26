@@ -22,7 +22,7 @@
                                 menubar: 'favs file edit view insert format tools table help',
                                 content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
                     }"
-                    v-model="about.description"
+                    v-model="about.content"
                     />
                     <v-btn
                     depressed
@@ -39,9 +39,10 @@
 
 <script>
 import Dashboard from './Dashboard.vue';
-import AboutApiService from '../../mixins/services/about-api-service'
+import PagesApiService from '../../mixins/services/pages-api-service'
 import Editor from '@tinymce/tinymce-vue'
-import {API_KEY} from '../../../config'
+import {API_KEY,APP_SETTINGS} from '../../../config'
+const PATH = APP_SETTINGS.API_PATH.ABOUT
     export default {
         name:"DashboardAbout",
         components:{
@@ -52,10 +53,10 @@ import {API_KEY} from '../../../config'
         about:{
             id:'',
             title:'',
-            description:''
+            content:''
         },
         api_key:API_KEY.TINY_MCE.Key,
-        aboutApi:  new  AboutApiService($cookies.get('user').auth.token),
+        aboutApi:  new  PagesApiService($cookies.get('user').auth.token),
       }),
        created () {
       this.initialize()
@@ -63,11 +64,11 @@ import {API_KEY} from '../../../config'
      methods: {
       async initialize () {
         
-         const res  = await this.aboutApi.getData()
-        this.about=res.data[0]
+         const res  = await this.aboutApi.getData(PATH.About)
+        this.about=res.data
       },
       async update(){
-        const res  = await this.aboutApi.updateData(this.about)
+        const res  = await this.aboutApi.updateData(PATH.About,this.about)
         console.log(res)
 
       },

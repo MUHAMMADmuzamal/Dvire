@@ -9,6 +9,9 @@ class PostsApiService extends HttpApiService {
 	async getAllPosts() {
 		return this.get(PATH.Posts);
 	}
+	async getPost(id) {
+		return this.get(PATH.Posts+`/${id}`);
+	}
 	async updatePost(post) {
 		return this.update(PATH.Posts+`/${post.id}`, post);
 	}

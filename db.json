@@ -2,32 +2,34 @@
   "posts": [
     {
       "id": 1,
-      "type": "t1",
-      "title": "json-server",
-      "author": "typicode",
-      "description": "qwertyuiowertyuiowertyuiowertyuiowertyuioertyuiopwxcvbnsdfghjklsdfghjkldfghjklfghjk"
-    },
-    {
+      "type_id": 1,
+      "title": "Post",
+      "description": "Hello this is first post type is sadasdads",
+      "author": "Hello",
+      "created_at": "2022-08-26T07:49:05.000000Z",
+      "updated_at": "2022-08-26T10:59:42.000000Z",
+      "type": {
+          "id": 1,
+          "name": "Books",
+          "created_at": "2022-08-26T07:42:23.000000Z",
+          "updated_at": "2022-08-26T07:42:23.000000Z"
+      }
+  },
+  {
       "id": 2,
-      "type": "t1",
-      "title": "json-server1",
-      "author": "typicode1",
-      "description": "qwertyuiowertyuiowertyuiowertyuiowertyuioertyuiopwxcvbnsdfghjklsdfghjkldfghjklfghjk"
-    },
-    {
-      "type": "t1",
-      "title": "New post",
-      "author": "vue js",
-      "description": "vue js desc",
-      "id": 4
-    },
-    {
-      "type": "t2",
-      "title": "new post 1",
-      "author": "p1",
-      "description": "p1 desc",
-      "id": 5
-    }
+      "type_id": 1,
+      "title": "Hello",
+      "description": "Hello this is first post 2",
+      "author": "test",
+      "created_at": "2022-08-26T10:59:17.000000Z",
+      "updated_at": "2022-08-26T10:59:17.000000Z",
+      "type": {
+          "id": 1,
+          "name": "Books",
+          "created_at": "2022-08-26T07:42:23.000000Z",
+          "updated_at": "2022-08-26T07:42:23.000000Z"
+      }
+  }
   ],
   "types": [
     {

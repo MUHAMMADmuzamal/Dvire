@@ -16,6 +16,7 @@ export default new Vuex.Store({
         { title: PAGES_NAMES.LAWS_PAGE, path: PATH.LAWS_PAGE },
         { title: PAGES_NAMES.NEWS_PAGE, path: PATH.NEWS_PAGE },
         { title: PAGES_NAMES.LANG_PAGE, path: PATH.LANG_PAGE },
+        { title: PAGES_NAMES.BLOG_PAGE, path: PATH.BLOG_PAGE },
         { title: DASHBOARD.PAGES_NAMES.DASHBOARD_PAGE, path: DASHBOARD.PATH.DASHBOARD },
   ],
       dashboard_menu_items:[
