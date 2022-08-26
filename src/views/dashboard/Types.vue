@@ -131,6 +131,7 @@
 <script>
 import Dashboard from './Dashboard.vue';
 import TypesApiService from '../../mixins/services/post-api-service';
+import {NOTIFCATIONS} from '../../../config'
  export default {
   name:"DashboardTypes",
   components:{
@@ -201,6 +202,11 @@ import TypesApiService from '../../mixins/services/post-api-service';
         this.types.splice(this.editedIndex, 1)
         let res = await this.typeApi.deleteType(delete_type)
         console.log(res)
+          if (res.status != 200) {
+            this.$toast.error(NOTIFCATIONS.TYPE.ERROR);
+          }else{
+            this.$toast.error(NOTIFCATIONS.TYPE.DELETE);
+          }
         this.closeDelete()
       },
 
@@ -225,11 +231,23 @@ import TypesApiService from '../../mixins/services/post-api-service';
         if (this.editedIndex > -1) {
           Object.assign(this.types[this.editedIndex], this.editedItem)
            res = await this.typeApi.updateType(this.types[this.editedIndex])
+
+          if (res.status != 200) {
+            this.$toast.error(NOTIFCATIONS.TYPE.ERROR);
+          }else{
+            this.$toast.success(NOTIFCATIONS.TYPE.UPDATE);
+          }
         } else {
           this.types.push(this.editedItem)
           res = await this.typeApi.addType(this.editedItem)
+          if (res.status != 200) {
+            this.$toast.error(NOTIFCATIONS.TYPE.ERROR);
+          }else{
+            this.$toast.success(NOTIFCATIONS.TYPE.ADD);
+          }
         }
         console.log(res)
+        this.initialize()
         this.close()
       },
     },

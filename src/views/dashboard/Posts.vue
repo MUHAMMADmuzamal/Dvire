@@ -187,7 +187,7 @@
 <script>
 import Dashboard from './Dashboard.vue';
 import PostsApiService from '../../mixins/services/post-api-service';
-import {API_KEY, DASHBOARD} from '../../../config'
+import {API_KEY, DASHBOARD,NOTIFCATIONS} from '../../../config'
 import Editor from '@tinymce/tinymce-vue'
  export default {
   name:"DashboardPosts",
@@ -277,6 +277,12 @@ import Editor from '@tinymce/tinymce-vue'
         this.posts.splice(this.editedIndex, 1)
         let res = await this.postApi.deletePost(delete_post)
         console.log(res)
+          if (res.status != 200) {
+            this.$toast.error(NOTIFCATIONS.ERROR);
+          }else{
+            this.$toast.error(NOTIFCATIONS.POST.DELETE);
+          }
+        
         this.closeDelete()
       },
 
@@ -307,11 +313,22 @@ import Editor from '@tinymce/tinymce-vue'
           // this.editedItem.type_id = x[0].id;
           Object.assign(this.posts[this.editedIndex], this.editedItem)
            res = await this.postApi.updatePost(this.posts[this.editedIndex])
+          if (res.status == 200) {
+            this.$toast.success(NOTIFCATIONS.POST.UPDATE);
+          }else{
+            this.$toast.error(NOTIFCATIONS.ERROR);
+          }
         } else {
           this.posts.push(this.editedItem)
           res = await this.postApi.addPost(this.editedItem)
+          if (res.status == 200) {
+            this.$toast.success(NOTIFCATIONS.POST.ADD);
+          }else{
+            this.$toast.error(NOTIFCATIONS.ERROR);
+          }
         }
         console.log(res)
+        
         this.initialize()
         this.close()
       },

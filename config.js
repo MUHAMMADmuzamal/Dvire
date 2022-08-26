@@ -126,4 +126,19 @@ const API_KEY={
     Key:'aml8k16foy26t9p28u0jp4ma2ogwa84fv6zyf0l9lf09opw3',
   }
 }
-export { BRAND_NAME, IMAGES, PATH, PAGES_NAMES, COLORS, APP_SETTINGS , DASHBOARD, API_KEY};
+
+
+const NOTIFCATIONS={
+  ERROR:"Something Went Wrong",
+  POST:{
+    DELETE:"Post Deleted",
+    ADD:"Post Added Successfully.",
+    UPDATE:"Post Update Successfully.",
+  },
+  TYPE:{
+    DELETE:"Type Deleted",
+    ADD:"Type Added Successfully.",
+    UPDATE:"Type Update Successfully.",
+  }
+}
+export { BRAND_NAME, IMAGES, PATH, PAGES_NAMES, COLORS, APP_SETTINGS , DASHBOARD, API_KEY, NOTIFCATIONS};
