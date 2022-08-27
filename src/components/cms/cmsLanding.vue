@@ -1,10 +1,12 @@
 <template>
 <v-container>
+
           <v-text-field
           v-model="page.title"
             label="Title"
           ></v-text-field>
-               <editor
+          <div>
+                 <editor
                :api-key="api_key"
                     :init="{
                         height: 500,
@@ -23,8 +25,10 @@
                                 menubar: 'favs file edit view insert format tools table help',
                                 content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
                     }"
-                    v-model="page.content"
+                    v-model="section1"
                     />
+              </div>
+
         </v-container>
 </template>
 
@@ -32,16 +36,45 @@
 import Editor from '@tinymce/tinymce-vue'
 import {API_KEY} from '../../../config'
     export default {
-      name:"CmsAbout",
+      name:"CmsLanding",
       props:['PageData'],
       components:{
             'editor': Editor,
         },
       data: ()=>( {
         api_key:API_KEY.TINY_MCE.Key,
+        section1:"",
+        section2:"",
+        section3:"",
+        section4:"",
+        section5:"",
       }),
+      watch: {
+        section1: function (val) {
+          
+          this.page.content = JSON.stringify(this.full_page)
+          console.log(this.page.content)
+        },
+      },
       created() {
           this.page = this.PageData
-      },      
+          this.section1= this.page.content.section1      
+          this.section2= this.page.content.section2     
+          this.section3= this.page.content.section3      
+          this.section4= this.page.content.section4      
+          this.section5= this.page.content.section5      
+      },
+      computed:{
+        full_page:function(){
+          return {
+                    section1:this.section1,
+                    section2:this.section2,
+                    section3:this.section3,
+                    section4:this.section4,
+                    section5:this.section5,
+          }
+        }
+      }
+      
     }
 </script>
