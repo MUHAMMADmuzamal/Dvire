@@ -45,6 +45,10 @@ const PAGES_NAMES = {
     SELF_SERVICE_PAGE : "Self-Service",
     PAYMENT_CARD_PAGE : "Purchase of a fuel payment card",
     CONSULTATION_ORDER_PAGE : "Consultation order",
+    LEGAL_ENVIRONMENT_PAGE : "Legal Environment",
+    EU_INVESTMENTS_PAGE : "EU Investments",
+    EU_INVESTMENTS_WITHOUT_SPACE_PAGE : "EUInvestments",
+    LEGAL_ENVIRONMENT_WITHOUT_SPACE_PAGE : "LegalEnvironment",
 };
 const PAGES_IDS = {
     LANDING_PAGE_ID: 1,
@@ -87,6 +91,8 @@ const PATH = {
   SELF_SERVICE_PAGE : "/selfservice",
   PAYMENT_CARD_PAGE : "/paymentcard",
   CONSULTATION_ORDER_PAGE : "/Consultationorder",
+  LEGAL_ENVIRONMENT_PAGE: "/LegalEnvironment",
+  EU_INVESTMENTS_PAGE: "/euinvestments"
 };
 const baseUrl_dashboard = '/dashboard'
 const DASHBOARD = {

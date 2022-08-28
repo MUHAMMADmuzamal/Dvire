@@ -10,6 +10,8 @@ import About from "../views/AboutView.vue";
 import Login from "../views/Login.vue";
 import Signup from "../views/Signup.vue";
 import ForgetPass from "../views/ForgetPassword.vue";
+import LegalEnvironment from "../views/LegalEnvironment.vue";
+import EUInvestments from "../views/EUInvestments.vue";
 //dashboard
 import DashBoard from "../views/dashboard/Dashboard.vue";
 import D_Posts from "../views/dashboard/Posts.vue";
@@ -69,6 +71,16 @@ const routes = [
     path: PATH.FORGET_PASSWORD_PAGE,
     name: PAGES_NAMES.FORGET_PASSWORD_PAGE,
     component: ForgetPass,
+  },
+  {
+    path: PATH.LEGAL_ENVIRONMENT_PAGE,
+    name: PAGES_NAMES.LEGAL_ENVIRONMENT_PAGE,
+    component: LegalEnvironment,
+  },
+  {
+    path: PATH.EU_INVESTMENTS_PAGE,
+    name: PAGES_NAMES.EU_INVESTMENTS_PAGE,
+    component: EUInvestments,
   },
   //dashboard 
   {
