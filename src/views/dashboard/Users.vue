@@ -24,7 +24,7 @@
       <v-toolbar
         flat
       >
-        <v-toolbar-title>Users</v-toolbar-title>
+        <v-toolbar-title>users</v-toolbar-title>
         <v-divider
           class="mx-4"
           inset
@@ -33,7 +33,9 @@
         <v-spacer></v-spacer>
         <v-dialog
           v-model="dialog"
-          max-width="500px"
+           fullscreen
+          hide-overlay
+          transition="dialog-bottom-transition"
         >
           <template v-slot:activator="{ on, attrs }">
             <v-btn
@@ -60,8 +62,8 @@
                     md="4"
                   >
                     <v-text-field
-                      v-model="editedItem.title"
-                      label="Title"
+                      v-model="editedItem.name"
+                      label="Name"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -70,8 +72,8 @@
                     md="4"
                   >
                     <v-text-field
-                      v-model="editedItem.type"
-                      label="Type"
+                      v-model="editedItem.surname"
+                      label="Surname"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -80,8 +82,8 @@
                     md="4"
                   >
                     <v-text-field
-                      v-model="editedItem.author"
-                      label="Author"
+                      v-model="editedItem.address"
+                      label="Address"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -89,12 +91,88 @@
                     sm="6"
                     md="4"
                   >
-                    <v-textarea
-                      name="input-7-1"
-                      label="Description"
-                      hint="Hint text"
-                       v-model="editedItem.description"
-                    ></v-textarea>
+                    <v-text-field
+                      v-model="editedItem.company_code"
+                      label="Company Code"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                  >
+                    <v-text-field
+                      v-model="editedItem.vat_code"
+                      label="Vat Code"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                  >
+                    <!-- <v-text-field
+                      v-model="editedItem.date"
+                      label="Date"
+                    ></v-text-field> -->
+                    <v-date-picker v-model="editedItem.date"></v-date-picker>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                  >
+                    <v-text-field
+                      v-model="editedItem.phone_no"
+                      label="Phone number"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                  >
+                    <v-text-field
+                      v-model="editedItem.gas_available"
+                      label="Gas Available"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                  >
+                    <v-text-field
+                      v-model="editedItem.gas_planned"
+                      label="Gas Planned"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                  >
+                    <v-text-field
+                      v-model="editedItem.notification"
+                      label="Notification"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                  >
+                    <!-- <v-text-field
+                      v-model="editedItem.is_admin"
+                      label="Is Admin"
+                    ></v-text-field> -->
+                    <v-select
+                    :items="is_admin"
+                    label="Is Admin"
+                    item-text="text"
+                    item-value="value"
+                    v-model="editedItem.is_admin"
+                  ></v-select>
                   </v-col>
                 </v-row>
               </v-container>
@@ -163,41 +241,58 @@
 <script>
 import Dashboard from './Dashboard.vue';
 import UsersApiService from '../../mixins/services/user-api-service';
-const userApi =  new  UsersApiService(this.$cookies.get('user').auth.token);
  export default {
   name:"DashboardUsers",
   components:{
             'dash-board':Dashboard,
         },
     data: () => ({
+      userApi :  new  UsersApiService($cookies.get('user').auth.token),
       search: '',
       dialog: false,
       dialogDelete: false,
       headers: [
         {
-          text: 'User',
+          text: 'User Name',
           align: 'start',
           sortable: false,
-          value: 'title',
+          value: 'name',
         },
         { text: 'Surname', value: 'surname' },
-        { text: 'Address', value: 'address' },
+        { text: 'Is Admin', value: 'is_admin' },
         { text: 'Email', value: 'email' },
         { text: 'Actions', value: 'actions', sortable: false },
       ],
       users: [],
+      is_admin:[{text:'True',value:1}, {text:'False',value:0}],
       editedIndex: -1,
       editedItem: {
-        title: '',
-        type: '',
-        author:'',
-        description: '',
+          name: "",
+          email: "",
+          surname : "",
+          address: "",
+          company_code:"",
+          vat_code : "",
+          date : "",
+          phone_no : "",
+          gas_available : "",
+          gas_planned : "",
+          notification: "",
+          is_admin:0,
       },
       defaultItem: {
-        title: '',
-        type: '',
-        author:'',
-        description: '',
+          name: "",
+          email: "",
+          surname : "",
+          address: "",
+          company_code:"",
+          vat_code : "",
+          date : "",
+          phone_no : "",
+          gas_available : "",
+          gas_planned : "",
+          notification: "",
+          is_admin:0,
       },
     }),
 
@@ -222,25 +317,26 @@ const userApi =  new  UsersApiService(this.$cookies.get('user').auth.token);
 
     methods: {
       async initialize () {
-         const post  = await userApi.getAllUsers()
-        this.Users=post.data
+         const post  = await this.userApi.getAllUsers()
+         console.log(post)
+        this.users=post.data
       },
       editItem (item) {
-        this.editedIndex = this.Users.indexOf(item)
+        this.editedIndex = this.users.indexOf(item)
         this.editedItem = Object.assign({}, item)
         this.dialog = true
       },
 
       deleteItem (item) {
-        this.editedIndex = this.Users.indexOf(item)
+        this.editedIndex = this.users.indexOf(item)
         this.editedItem = Object.assign({}, item)
         this.dialogDelete = true
       },
 
       async deleteItemConfirm () {
-        const delete_post = this.Users[this.editedIndex];
-        this.Users.splice(this.editedIndex, 1)
-        let res = await userApi.deletePost(delete_post)
+        const delete_post = this.users[this.editedIndex];
+        this.users.splice(this.editedIndex, 1)
+        let res = await this.userApi.deleteUser(delete_post)
         console.log(res)
         this.closeDelete()
       },
@@ -264,11 +360,12 @@ const userApi =  new  UsersApiService(this.$cookies.get('user').auth.token);
       async save () {
         let res ='';
         if (this.editedIndex > -1) {
-          Object.assign(this.Users[this.editedIndex], this.editedItem)
-           res = await userApi.updatePost(this.Users[this.editedIndex])
+          Object.assign(this.users[this.editedIndex], this.editedItem)
+          console.log(this.users[this.editedIndex])
+           res = await this.userApi.updateUser(this.users[this.editedIndex])
         } else {
-          this.Users.push(this.editedItem)
-          res = await userApi.addPost(this.editedItem)
+          this.users.push(this.editedItem)
+          res = await this.userApi.addUser(this.editedItem)
         }
         console.log(res)
         this.close()

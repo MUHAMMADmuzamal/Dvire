@@ -7,7 +7,7 @@ class UsersApiService extends HttpApiService {
 	}
 
 	async getAllUsers() {
-		return this.get(PATH.Users);
+		return this.get(PATH.AllUsers);
 	}
 	async updateUser(user) {
 		return this.update(PATH.Users+`/${user.id}`, user);

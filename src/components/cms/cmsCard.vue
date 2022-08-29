@@ -24,18 +24,6 @@
                     :init="editor_setting"
                     v-model="section3"
                     />
-            <h1>Section: 4</h1>
-                 <editor
-               :api-key="api_key"
-                    :init="editor_setting"
-                    v-model="section4"
-                    />
-            <h1>Section: 5</h1>
-                 <editor
-               :api-key="api_key"
-                    :init="editor_setting"
-                    v-model="section5"
-                    />
               </div>
 
         </v-container>
@@ -55,8 +43,6 @@ import {API_KEY} from '../../../config'
         section1:"",
         section2:"",
         section3:"",
-        section4:"",
-        section5:"",
         editor_setting:{
                         height: 500,
                         menubar: false,                        
@@ -85,28 +71,18 @@ import {API_KEY} from '../../../config'
         section3: function (val) {
           this.page.content = JSON.stringify(this.full_page)
         },
-        section4: function (val) {
-          this.page.content = JSON.stringify(this.full_page)
-        },
-        section5: function (val) {
-          this.page.content = JSON.stringify(this.full_page)
-        },
       },
       created() {
           this.page = this.PageData
-          if ('section1' in this.page.content) {
-              this.section1= this.page.content.section1      
-              this.section2= this.page.content.section2     
-              this.section3= this.page.content.section3      
-              this.section4= this.page.content.section4      
-              this.section5= this.page.content.section5  
+          if ("section1" in this.page.content) {
+            this.section1= this.page.content.section1      
+            this.section2= this.page.content.section2     
+            this.section3= this.page.content.section3   
           }else{
             this.section1= ""      
             this.section2= ""     
             this.section3= "" 
-            this.section4= ""     
-            this.section5= ""
-          }    
+          }
       },
       computed:{
         full_page:function(){
@@ -114,8 +90,6 @@ import {API_KEY} from '../../../config'
                     section1:this.section1,
                     section2:this.section2,
                     section3:this.section3,
-                    section4:this.section4,
-                    section5:this.section5,
           }
         }
       }

@@ -26,9 +26,10 @@ export default new Vuex.Store({
   ],
       dashboard_menu_items:[
         { title: DASHBOARD.PAGES_NAMES.DASHBOARD_PAGE, path: DASHBOARD.PATH.DASHBOARD},
-        { title: DASHBOARD.PAGES_NAMES.D_ABOUT_PAGE, path: DASHBOARD.PATH.D_ABOUT_PAGE},
         { title: DASHBOARD.PAGES_NAMES.D_POSTS_PAGE, path: DASHBOARD.PATH.D_POSTS_PAGE},
         { title: DASHBOARD.PAGES_NAMES.D_EDIT_PAGES_PAGE, path: DASHBOARD.PATH.D_EDIT_PAGES_PAGE},
+        { title: DASHBOARD.PAGES_NAMES.D_TYPES_PAGE, path: DASHBOARD.PATH.D_TYPES_PAGE},
+        { title: DASHBOARD.PAGES_NAMES.D_USERS_PAGE, path: DASHBOARD.PATH.D_USERS_PAGE},
   ],
   dashboard: false,
     },

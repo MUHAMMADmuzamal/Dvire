@@ -51,66 +51,9 @@
       <span @click="navigate" @keypress.enter="navigate" role="link" style="cursor: pointer; color: blue;">Forget Password?</span>
   </router-link>
   </validation-observer>
-
-
-  <!-- <validation-observer
-    ref="observer"
-    v-slot="{ invalid }"
-  >
-    <form @submit.prevent="submit">
-      <validation-provider
-        v-slot="{ errors }"
-        name="password"
-        rules="required|min:6"
-      >
-      <v-text-field
-            v-model="password"
-            :error-messages="errors"
-            :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-            :type="show ? 'text' : 'password'"
-            name="password"
-            label="Password"
-            hint="At least 6 characters"
-            counter
-            @click:append="show = !show"
-            required
-          ></v-text-field>
-        <v-text-field
-          v-model="password"
-          :counter="7"
-          :error-messages="errors"
-          label="Phone Number"
-          required
-        ></v-text-field>
-      </validation-provider>
-      <validation-provider
-        v-slot="{ errors }"
-        name="email"
-        rules="required|email"
-      >
-        <v-text-field
-          v-model="email"
-          :error-messages="errors"
-          label="E-mail"
-          required
-        ></v-text-field>
-      </validation-provider>
-
-      <v-btn
-        class="mr-4"
-        type="submit"
-        :disabled="invalid"
-      >
-        submit
-      </v-btn>
-      <v-btn @click="clear">
-        clear
-      </v-btn>
-    </form>
-  </validation-observer> -->
 </template>
 <script>
-  import {PATH,NOTIFCATIONS } from "../../../config";
+  import {PATH,NOTIFCATIONS, PAGES_NAMES } from "../../../config";
   import Account from '../../mixins/services/account.service'
   import { required,  email, min, regex } from 'vee-validate/dist/rules'
   import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
@@ -179,6 +122,7 @@
                 this.$cookies.set('user',cooke);
                 if (res.status == 200) {
                   this.$toast.success(NOTIFCATIONS.LOGIN.SUCCESS)
+                  this.$router.push({name:PAGES_NAMES.LANDING_PAGE})
                 }else{
                   this.$toast.success(NOTIFCATIONS.ERROR)
                 }

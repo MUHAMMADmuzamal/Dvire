@@ -36,6 +36,12 @@
                     :init="editor_setting"
                     v-model="section5"
                     />
+            <h1>Section: 6</h1>
+                 <editor
+               :api-key="api_key"
+                    :init="editor_setting"
+                    v-model="section6"
+                    />
               </div>
 
         </v-container>
@@ -57,6 +63,7 @@ import {API_KEY} from '../../../config'
         section3:"",
         section4:"",
         section5:"",
+        section6:"",
         editor_setting:{
                         height: 500,
                         menubar: false,                        
@@ -91,21 +98,26 @@ import {API_KEY} from '../../../config'
         section5: function (val) {
           this.page.content = JSON.stringify(this.full_page)
         },
+        section6: function (val) {
+          this.page.content = JSON.stringify(this.full_page)
+        },
       },
       created() {
           this.page = this.PageData
-          if ('section1' in this.page.content) {
+          if ("section1" in this.page.content) {
               this.section1= this.page.content.section1      
               this.section2= this.page.content.section2     
               this.section3= this.page.content.section3      
               this.section4= this.page.content.section4      
               this.section5= this.page.content.section5  
+              this.section6= this.page.content.section6  
           }else{
             this.section1= ""      
             this.section2= ""     
             this.section3= "" 
             this.section4= ""     
             this.section5= ""
+            this.section6= ""
           }    
       },
       computed:{
@@ -116,6 +128,7 @@ import {API_KEY} from '../../../config'
                     section3:this.section3,
                     section4:this.section4,
                     section5:this.section5,
+                    section6:this.section6,
           }
         }
       }

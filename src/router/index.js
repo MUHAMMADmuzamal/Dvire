@@ -16,6 +16,7 @@ import EUInvestments from "../views/EUInvestments.vue";
 import DashBoard from "../views/dashboard/Dashboard.vue";
 import D_Posts from "../views/dashboard/Posts.vue";
 import D_Types from "../views/dashboard/Types.vue";
+import D_Users from "../views/dashboard/Users.vue";
 import D_EditPages from "../views/dashboard/EditPages.vue";
 import {PATH, PAGES_NAMES, DASHBOARD} from '../../config'
 
@@ -102,6 +103,11 @@ const routes = [
     path: DASHBOARD.PATH.D_EDIT_PAGES_PAGE,
     name: "D_"+DASHBOARD.PAGES_NAMES.D_EDIT_PAGES_PAGE,
     component: D_EditPages,
+  },
+  {
+    path: DASHBOARD.PATH.D_USERS_PAGE,
+    name: "D_"+DASHBOARD.PAGES_NAMES.D_USERS_PAGE,
+    component: D_Users,
   },
   // {
   //   path: "/about",

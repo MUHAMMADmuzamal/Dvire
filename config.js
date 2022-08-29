@@ -67,6 +67,7 @@ const PAGES_IDS = {
     SELF_SERVICE_PAGE_ID : 8,
     PAYMENT_CARD_PAGE_ID : 9,
     CONSULTATION_ORDER_PAGE_ID : 10,
+    LEGAL_ENVIRONMENT_PAGE_ID : 0,
 };
 
 let BRAND_NAME = "Dvire";
@@ -103,6 +104,7 @@ const DASHBOARD = {
       D_TYPES_PAGE : baseUrl_dashboard + '/types',
       D_BLOG_ADD_PAGE: baseUrl_dashboard + "/post",
       D_EDIT_PAGES_PAGE: baseUrl_dashboard + "/editpages/",
+      D_USERS_PAGE: baseUrl_dashboard + "/users",
       
     },
     PAGES_NAMES:{
@@ -115,10 +117,9 @@ const DASHBOARD = {
     }
 };
 
-// const baseUrl = "http://restapi.adequateshop.com";
-const baseUrl = "http://localhost:8000";
+// const baseUrl = "http://localhost:8000";
 // const baseUrl = "http://localhost:3000";
-// const baseUrl = "https://api.groupick.in/api/v1";
+const baseUrl = "https://testing.fostermarketing.pk";
 
 const APP_SETTINGS = {
   API_PATH: {
@@ -134,8 +135,9 @@ const APP_SETTINGS = {
     ABOUT:{
       About: baseUrl + "/api/page/" + PAGES_IDS.ABOUT_PAGE_ID,
     },
-    USER:{
-      User: baseUrl + "/users",
+    USERS:{
+      Users: baseUrl + "/api/user",
+      AllUsers: baseUrl + "/api/allusers",
     },
     PAGES:{
       ALL_PAGES: baseUrl + '/api/page',
@@ -173,6 +175,9 @@ const NOTIFCATIONS={
   },
   LOGIN:{
     SUCCESS:"Login Successfully."
+  },
+  PAGES:{
+    UPDATE:"Update Successfully."
   },
 }
 export { BRAND_NAME, IMAGES, PATH, PAGES_NAMES, COLORS, APP_SETTINGS , DASHBOARD, API_KEY, NOTIFCATIONS, PAGES_IDS};
