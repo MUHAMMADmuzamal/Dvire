@@ -1,20 +1,4 @@
 <template>
-  <!-- <v-container class=" mt-4" :style="{ 'background-color': card_color }">
-        <p class="text-center pa-4">
-            Degalai iš perdirbamų atliekų, saulės ir vėjo – toks turėtų būti mūsų pasirinkimas, kad sumažintume  CO2 emisijas ir sukurtume klimatui neutralią ekonomiką.
-        </p>
-        <v-row class="text-center">
-          <v-col md="4">
-              <img :src="leaf_image" alt="" srcset="" style="margin-bottom: -40px; padding-top: 30px;"/>
-          </v-col>
-          <v-col md="4">
-              <img :src="gas_image" alt="" srcset="" style="margin-bottom: -40px; padding-top: 30px;"/>
-          </v-col>
-          <v-col md="4">
-              <img :src="flash_image" alt="" srcset="" style="margin-bottom: -40px; padding-top: 30px;" class="pr-4"/>
-          </v-col>
-        </v-row>
-  </v-container> -->
   <v-container fluid class=" pa-5 mb-5 mt-5 ">
     <h1 class="text-center">Degalai</h1>
     <v-container class=" mt-4" :style="{ 'background-color': card_color }">

@@ -1,8 +1,7 @@
 <template>
   <div>
     <section-1 />
-      
-          <section-2 />
+    <section-2 />
     <section-3 />
     <section-4 />
     <section-5 />
@@ -17,7 +16,9 @@ import Section_2 from "@/components/Sections/Section_2.vue";
 import Section_3 from "@/components/Sections/Section_3.vue";
 import Section_4 from "@/components/Sections/Section_4.vue";
 import Section_5 from "@/components/Sections/Section_5.vue";
-import {IMAGES, PAGES_NAMES,COLORS} from "../../config";
+import {IMAGES, PAGES_NAMES,COLORS,APP_SETTINGS,PAGES_IDS} from "../../config";
+import PagesApiService from '../mixins/services/pages-api-service'
+import {json_parse} from '../mixins/helperFunction'
 export default {
   name: PAGES_NAMES.LANDING_PAGE,
   components: {
@@ -30,6 +31,21 @@ export default {
   data: () => ({
     logo: IMAGES.COMPANY_LOGO,
     card_color: COLORS.MAIN_COLOR_1,
+    pagesApi: new PagesApiService($cookies.get('user').auth.token),
+    content:"",
+    title:"",
   }),
+  created () {
+        this.initialize()
+    },
+  methods: {
+        async initialize () {
+            const pages  = await this.pagesApi.getPages(APP_SETTINGS.API_PATH.PAGES.ALL_PAGES+'/'+PAGES_IDS.LANDING_PAGE_ID)
+            this.content=json_parse(pages.data.content)
+            this.title= pages.data.title
+            console.log(pages.data,this.content)
+      },
+
+     },
 };
 </script>
