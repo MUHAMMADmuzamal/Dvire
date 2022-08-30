@@ -120,7 +120,7 @@ import CmsEUInvestments from "../../components/cms/cmsEUInvestments.vue";
                 this.$toast.error(NOTIFCATIONS.ERROR)
             }
             this.initialize()
-            console.log(res)
+            // console.log(res)
       },
       get_page_from_array(value){
         return  this.pages.filter((a)=>{

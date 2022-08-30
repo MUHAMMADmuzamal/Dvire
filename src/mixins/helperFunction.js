@@ -6,7 +6,7 @@ export function json_parse(str) {
     }
     return str
 }
-  export function isJson(str) {
+export function isJson(str) {
     try {
         str = JSON.parse(str);
     } catch (e) {

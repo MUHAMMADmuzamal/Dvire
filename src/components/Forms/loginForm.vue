@@ -105,14 +105,14 @@
         this.$refs.observer.reset()
       }, 
       async login () {
-                
+                const query = new URLSearchParams(window.location.search)
                 // console.log(this.$cookies.get('user'))
                 const user = {
                   "email":this.email,
                   "password":this.password
                 }
                 const res = await account.userLogin(user);
-                console.log(res)
+                // console.log(res)
                 const cooke={
                   auth:{
                     token:res.data[0]
@@ -122,7 +122,11 @@
                 this.$cookies.set('user',cooke);
                 if (res.status == 200) {
                   this.$toast.success(NOTIFCATIONS.LOGIN.SUCCESS)
-                  this.$router.push({name:PAGES_NAMES.LANDING_PAGE})
+                  if (query.has('returnUrl')) {
+                    this.$router.push({path:query.get('returnUrl')})
+                  }else{
+                    this.$router.push({name:PAGES_NAMES.LANDING_PAGE})
+                  }                  
                 }else{
                   this.$toast.success(NOTIFCATIONS.ERROR)
                 }

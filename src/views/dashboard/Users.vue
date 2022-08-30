@@ -337,7 +337,7 @@ import UsersApiService from '../../mixins/services/user-api-service';
         const delete_post = this.users[this.editedIndex];
         this.users.splice(this.editedIndex, 1)
         let res = await this.userApi.deleteUser(delete_post)
-        console.log(res)
+        // console.log(res)
         this.closeDelete()
       },
 
@@ -361,13 +361,12 @@ import UsersApiService from '../../mixins/services/user-api-service';
         let res ='';
         if (this.editedIndex > -1) {
           Object.assign(this.users[this.editedIndex], this.editedItem)
-          console.log(this.users[this.editedIndex])
            res = await this.userApi.updateUser(this.users[this.editedIndex])
         } else {
           this.users.push(this.editedItem)
           res = await this.userApi.addUser(this.editedItem)
         }
-        console.log(res)
+        // console.log(res)
         this.close()
       },
     },

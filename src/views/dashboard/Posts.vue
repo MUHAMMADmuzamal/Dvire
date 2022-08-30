@@ -339,7 +339,7 @@ import Editor from '@tinymce/tinymce-vue'
             this.$toast.error(NOTIFCATIONS.ERROR);
           }
         }
-        console.log(res)
+        // console.log(res)
         
         this.initialize()
         this.close()

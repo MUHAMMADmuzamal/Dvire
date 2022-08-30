@@ -2,7 +2,7 @@
   <div>
     <v-navigation-drawer
       v-model="drawer"
-      absolute
+      fixed
       temporary
     >
       <v-list-item>
@@ -125,21 +125,10 @@ export default {
         appTitle: BRAND_NAME,
         color_change:COLORS.MAIN_COLOR_1,
         fixed_nav_bar:false,
-        // drawer: false,
-        // dashboard:false,
-        // showMenuButton:true,
         color: "#F8F4EF",
         profile_image:"https://randomuser.me/api/portraits/men/78.jpg",
-        user_name:"Ali",
-      //   menuItems: [
-      //       { title: PAGES_NAMES.LANDING_PAGE, path: PATH.LANDING_PAGE },
-      //       { title: PAGES_NAMES.ABOUT_PAGE, path: PATH.ABOUT_PAGE},
-      //       { title: PAGES_NAMES.CARD_PAGE, path: PATH.CARD_PAGE },
-      //       { title: PAGES_NAMES.DICTIONARY_PAGE, path: PATH.DICTIONARY_PAGE },
-      //       { title: PAGES_NAMES.LAWS_PAGE, path: PATH.LAWS_PAGE },
-      //       { title: PAGES_NAMES.NEWS_PAGE, path: PATH.NEWS_PAGE },
-      //       { title: PAGES_NAMES.LANG_PAGE, path: PATH.LANG_PAGE },
-      // ],
+        user_name:"Guest",
+
   }),
   computed:{
     menuItems:function(){

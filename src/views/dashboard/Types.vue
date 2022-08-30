@@ -201,7 +201,7 @@ import {NOTIFCATIONS,DASHBOARD} from '../../../config'
         const delete_type = this.types[this.editedIndex];
         this.types.splice(this.editedIndex, 1)
         let res = await this.typeApi.deleteType(delete_type)
-        console.log(res)
+        // console.log(res)
           if (res.status != 200) {
             this.$toast.error(NOTIFCATIONS.TYPE.ERROR);
           }else{
@@ -246,7 +246,7 @@ import {NOTIFCATIONS,DASHBOARD} from '../../../config'
             this.$toast.success(NOTIFCATIONS.TYPE.ADD);
           }
         }
-        console.log(res)
+        // console.log(res)
         this.initialize()
         this.close()
       },

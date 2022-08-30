@@ -35,6 +35,7 @@ const PAGES_NAMES = {
     BLOG_PAGE: "Blogs",
     LANG_PAGE : "LT | EN",
     LOGIN_PAGE : "Login",
+    LOGOUT_PAGE : "Logout",
     SIGNUP_PAGE : "Signup",
     PROFILE_PAGE : "Profile",
     FORGET_PASSWORD_PAGE : "ForgetPassword",
@@ -82,6 +83,7 @@ const PATH = {
   BLOG_PAGE: "/blogs",
   LANG_PAGE : "/lang",
   LOGIN_PAGE : "/login",
+  LOGOUT_PAGE : "/logout",
   SIGNUP_PAGE : "/signup",
   PROFILE_PAGE : "/profile",
   FORGET_PASSWORD_PAGE: '/forgetpass',
@@ -117,9 +119,9 @@ const DASHBOARD = {
     }
 };
 
-// const baseUrl = "http://localhost:8000";
+const baseUrl = "http://localhost:8000";
 // const baseUrl = "http://localhost:3000";
-const baseUrl = "https://testing.fostermarketing.pk";
+// const baseUrl = "https://testing.fostermarketing.pk";
 
 const APP_SETTINGS = {
   API_PATH: {
@@ -176,8 +178,16 @@ const NOTIFCATIONS={
   LOGIN:{
     SUCCESS:"Login Successfully."
   },
+  LOGIN:{
+    SUCCESS:"Logout Successfully."
+  },
   PAGES:{
     UPDATE:"Update Successfully."
   },
 }
-export { BRAND_NAME, IMAGES, PATH, PAGES_NAMES, COLORS, APP_SETTINGS , DASHBOARD, API_KEY, NOTIFCATIONS, PAGES_IDS};
+
+const ROLES={
+  ADMIN:"admin",
+  USER:"user",
+}
+export { BRAND_NAME, IMAGES, PATH, PAGES_NAMES, COLORS, APP_SETTINGS , DASHBOARD, API_KEY, NOTIFCATIONS, PAGES_IDS,ROLES};

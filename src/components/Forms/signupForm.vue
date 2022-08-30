@@ -273,7 +273,7 @@
                 }else{
                   this.$toast.success(NOTIFCATIONS.ERROR)
                 }
-                console.log(res)
+                // console.log(res)
                 
                 
         },
