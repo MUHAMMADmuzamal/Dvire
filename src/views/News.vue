@@ -2,40 +2,33 @@
 <div>
   <v-container fluid class="pa-md-16 py-16" style="background-color: #F8F4EF;">
     <v-container class="pa-md-6">
-      <v-row class="pa-md-6 my-10" style="background-color:white; border:2px solid #25ACAB;">
+      <v-row class="pa-sm-6 my-10" style="background-color:white; border:2px solid #25ACAB;">
         
-        <v-col md="6" class="d-md-none">
+        <div class="d-md-none col-sm-12">
           <v-img
-          contain
+          aspect-ratio="1.5"
           src="../assets/images/factory.jpg"
           ></v-img>
-        </v-col>
+        </div>
 
         <v-col md="6">
-          <h1>
+          <h1 class="pt-6" >
             Biometaną planuojama išgauti ir Lietuvoje – aplinkai draugiško kuro jėgainė kils prie Panevėžio
           </h1>
           <p class="py-6">
             Kol kas visas Lietuvoje naudojamas biometanas yra importuojamas iš užsienio šalių tarptautinių sertifikatų keliu ir Lietuvoje negaminamas. Vis dėlto artimiausia
           </p>
 
-          <v-btn
-          elevation="0"
-          x-large                
-          tile
-          width=""
-          class="col-md-6"
-          style="color:white "
-          color="#25ACAB"
-          >
-          Siųsti
-          </v-btn>
+          <!-- <button class="btn1 col-sm-6" >Skaityti</button> -->
+          <div class="col-sm-6">
+            <generic-button text="Skaityti"/>
+          </div>
 
         </v-col>
 
         <v-col md="6" class="d-none d-md-flex align-start">
           <v-img
-          contain
+          aspect-ratio="1.5"
           src="../assets/images/factory.jpg"
           ></v-img>
         </v-col>
@@ -47,20 +40,19 @@
 
   <!-- ------------------------------------------------------------------------- -->
   <v-container>
-    <v-row class="d-flex justify-space-around  mt-n16 ">
-      <v-col > 
+    <v-row class=" mt-n16 ">
+      <div class="col-sm-6 col-md-4">
         <div elevation class="pa-4 box_shadow">
           <v-img 
           height=""
           aspect-ratio="1.5"
           contain
-          style="position: relative;"
           src="../assets/images/DNR.jpg"></v-img>
           <h2>Biometano ir vandenilio gamintojus</h2>
           <p>Konsultuojame, kaip lengvai prisitaikyti prie naujų aplinkosaugos reikalavimų. Konsultuojame, kaip lengvai prisitaikyti prie naujų aplinkosaugos …</p>
         </div>
-      </v-col>
-      <v-col > 
+      </div>
+      <div class="col-sm-6 col-md-4"> 
         <div class="pa-4 box_shadow">
           <v-img 
           height=""
@@ -70,8 +62,8 @@
           <h2>Biometano ir vandenilio gamintojus</h2>
           <p>Konsultuojame, kaip lengvai prisitaikyti prie naujų aplinkosaugos reikalavimų. Konsultuojame, kaip lengvai prisitaikyti prie naujų aplinkosaugos …</p>
         </div>
-      </v-col>
-      <v-col > 
+      </div>
+      <div class="col-sm-6 col-md-4"> 
         <div class="pa-4 box_shadow">
           <v-img 
           height=""
@@ -82,14 +74,14 @@
           <h2>Biometano ir vandenilio gamintojus</h2>
           <p>Konsultuojame, kaip lengvai prisitaikyti prie naujų aplinkosaugos reikalavimų. Konsultuojame, kaip lengvai prisitaikyti prie naujų aplinkosaugos …</p>
         </div>
-      </v-col>
+      </div>
     </v-row>
   </v-container>
 
   <!-- ----------------------------------------------------- -->
   <v-container>
-    <v-row class="d-flex justify-space-around ">
-      <v-col > 
+    <v-row class=" ">
+      <div class="col-sm-6 col-md-4"> 
         <div elevation class="pa-4 box_shadow">
           <v-img 
           height=""
@@ -100,8 +92,8 @@
           <h2>Biometano ir vandenilio gamintojus</h2>
           <p>Konsultuojame, kaip lengvai prisitaikyti prie naujų aplinkosaugos reikalavimų. Konsultuojame, kaip lengvai prisitaikyti prie naujų aplinkosaugos …</p>
         </div>
-      </v-col>
-      <v-col > 
+      </div>
+      <div class="col-sm-6 col-md-4">
         <div class="pa-4 box_shadow">
           <v-img 
           height=""
@@ -111,8 +103,8 @@
           <h2>Biometano ir vandenilio gamintojus</h2>
           <p>Konsultuojame, kaip lengvai prisitaikyti prie naujų aplinkosaugos reikalavimų. Konsultuojame, kaip lengvai prisitaikyti prie naujų aplinkosaugos …</p>
         </div>
-      </v-col>
-      <v-col > 
+      </div>
+      <div class="col-sm-6 col-md-4"> 
         <div class="pa-4 box_shadow">
           <v-img 
           height=""
@@ -123,34 +115,26 @@
           <h2>Biometano ir vandenilio gamintojus</h2>
           <p>Konsultuojame, kaip lengvai prisitaikyti prie naujų aplinkosaugos reikalavimų. Konsultuojame, kaip lengvai prisitaikyti prie naujų aplinkosaugos …</p>
         </div>
-      </v-col>
+      </div>
     </v-row>
 
     <v-row>
       <v-col class="d-flex justify-center py-16">
-        <v-btn
-          elevation="0"
-          x-large                
-          tile
-          width=""
-          
-          class="col-md-3"
-          style="color:white "
-          color="#25ACAB"
-          >
-          Rodyti daugiau
-          </v-btn>
+        <!-- <button class="btn1" >Rodyti daugiau</button> -->
+        <generic-button text="Rodyti daugiau"/>
       </v-col>
     </v-row>
   </v-container>
 </div>
-
 </template>
 <script>
 import { PAGES_NAMES} from "../../config";
+import GenericButton from '../components/GenericButton/GenericButton.vue'
 export default {
     name: PAGES_NAMES.NEWS_PAGE,
-
+  components:{
+    'generic-button':GenericButton,
+  },
   data: () => ({
     //
   }),

@@ -32,7 +32,11 @@ export default {
     logo: IMAGES.COMPANY_LOGO,
     card_color: COLORS.MAIN_COLOR_1,
     pagesApi: new PagesApiService($cookies.get('user').auth.token),
-    content:"",
+    section1:"",
+    section2:"",
+    section3:"",
+    section4:"",
+    section5:"",
     title:"",
   }),
   created () {
@@ -43,7 +47,15 @@ export default {
             const pages  = await this.pagesApi.getPages(APP_SETTINGS.API_PATH.PAGES.ALL_PAGES+'/'+PAGES_IDS.LANDING_PAGE_ID)
             this.content=json_parse(pages.data.content)
             this.title= pages.data.title
-            console.log(pages.data,this.content)
+            if (this.page.content != null) {
+              if ('section1' in this.page.content) {
+                this.section1= this.page.content.section1      
+                this.section2= this.page.content.section2     
+                this.section3= this.page.content.section3      
+                this.section4= this.page.content.section4      
+                this.section5= this.page.content.section5  
+              }  
+            }
       },
 
      },

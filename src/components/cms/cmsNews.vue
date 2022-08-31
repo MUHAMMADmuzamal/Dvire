@@ -4,69 +4,69 @@
           <v-text-field
           v-model="page.title"
             label="Title"
+            counter
           ></v-text-field>
           <div>
             <h1>Section: 1</h1>
-                 <editor
-               :api-key="api_key"
-                    :init="editor_setting"
-                    v-model="section1"
-                    />
-              </div>
-
+                  <v-text-field
+                    v-model="section1.heading_1"
+                    counter
+                    label="Heading 1"
+                  ></v-text-field>
+                   <v-textarea
+                    v-model="section1.paragraph_1"
+                    counter
+                    label="Paragraph 1"
+                    hint=""
+                  ></v-textarea>
+                  <v-text-field
+                    v-model="section1.buttonText"
+                    counter
+                    label="Button Text"
+                  ></v-text-field>
+                  <v-text-field
+                    v-model="section1.Image"
+                    counter
+                    label="Image full name with extension"
+                  ></v-text-field>
+          </div>
+          <update-button v-on:update="update()"/>
         </v-container>
 </template>
 
 <script>
-import Editor from '@tinymce/tinymce-vue'
-import {API_KEY} from '../../../config'
+import { json_parse } from '@/mixins/helperFunction'
+import UpdateButton from '../updateButton/updateButton.vue'
     export default {
       name:"CmsLanding",
       props:['PageData'],
       components:{
-            'editor': Editor,
+            'update-button':UpdateButton,
         },
       data: ()=>( {
-        api_key:API_KEY.TINY_MCE.Key,
-        section1:"",
-        editor_setting:{
-                        height: 500,
-                        menubar: false,                        
-                          plugins: [
-                                    'advlist', 'autolink', 'link', 'image', 'lists', 'charmap', 'preview', 'anchor', 'pagebreak',
-                                    'searchreplace', 'wordcount', 'visualblocks', 'code', 'fullscreen', 'insertdatetime', 'media',
-                                    'table', 'emoticons', 'template', 'help'
-                                ],
-                                toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | ' +
-                                    'bullist numlist outdent indent | link image | print preview media fullscreen | ' +
-                                    'forecolor backcolor emoticons | help',
-                                menu: {
-                                    favs: { title: 'My Favorites', items: 'code visualaid | searchreplace | emoticons' }
-                                },
-                                menubar: 'favs file edit view insert format tools table help',
-                                content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
-                    }
-      }),
-      watch: {
-        section1: function (val) {
-          this.page.content = JSON.stringify(this.full_page)
+          section1:{
+            heading_1:"Biometaną planuojama išgauti ir Lietuvoje – aplinkai draugiško kuro jėgainė kils prie Panevėžio",
+            paragraph_1:"Kol kas visas Lietuvoje naudojamas biometanas yra importuojamas iš užsienio šalių tarptautinių sertifikatų keliu ir Lietuvoje negaminamas. Vis dėlto artimiausia",
+            buttonText: "Skaityti",
+            Image: "factory.jpg"
         },
-      },
+      }),
       created() {
           this.page = this.PageData
-          if ("section1" in this.page.content) {
-            this.section1= this.page.content.section1      
-          }else{
-            this.section1= ""      
-          }      
+          if (this.page.content != null) {
+            if ('section1' in this.page.content) {
+              this.section1= this.page.content.section1       
+            }  
+          }  
       },
-      computed:{
-        full_page:function(){
-          return {
+      methods:{
+        update:function(){
+          this.page.content = JSON.stringify({
                     section1:this.section1,
-          }
+          })
+          this.$emit('update')
         }
-      }
+      },
       
     }
 </script>

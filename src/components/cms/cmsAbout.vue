@@ -25,23 +25,31 @@
                     }"
                     v-model="page.content"
                     />
+                    <update-button v-on:update="update()"/>
         </v-container>
 </template>
 
 <script>
 import Editor from '@tinymce/tinymce-vue'
 import {API_KEY} from '../../../config'
+import UpdateButton from '../updateButton/updateButton.vue'
     export default {
       name:"CmsAbout",
       props:['PageData'],
       components:{
             'editor': Editor,
+             'update-button':UpdateButton,
         },
       data: ()=>( {
         api_key:API_KEY.TINY_MCE.Key,
       }),
       created() {
           this.page = this.PageData
-      },      
+      },  
+      methods:{
+        update:function(){
+          this.$emit('update')
+        }
+      },    
     }
 </script>

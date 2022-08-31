@@ -25,25 +25,12 @@
         class="d-flex"
         cols="12"
       >
-        <cms-about v-if="page_ids.ABOUT_PAGE_ID == selected_page_id" :PageData="page"/>
-        <cms-home v-else-if="page_ids.LANDING_PAGE_ID == selected_page_id" :PageData="page"/>
-        <cms-card v-else-if="page_ids.CARD_PAGE_ID == selected_page_id" :PageData="page"/>
-        <cms-news v-else-if="page_ids.NEWS_PAGE_ID == selected_page_id" :PageData="page"/>
+        <cms-about v-if="page_ids.ABOUT_PAGE_ID == selected_page_id" :PageData="page" v-on:update="update()"/>
+        <cms-home v-else-if="page_ids.LANDING_PAGE_ID == selected_page_id" :PageData="page"  v-on:update="update()"/>
+        <cms-card v-else-if="page_ids.CARD_PAGE_ID == selected_page_id" :PageData="page" v-on:update="update()"/>
+        <cms-news v-else-if="page_ids.NEWS_PAGE_ID == selected_page_id" :PageData="page" v-on:update="update()"/>
         <!-- <cms-LegalEnvironment v-else-if="page_ids. == selected_page_id" :PageData="page"/> -->
         <!-- <cms-LegalEnvironment v-else-if="page_ids. == selected_page_id" :PageData="page"/> -->
-      </v-col>
-      <v-col
-        
-        cols="12"
-      >
-      <v-btn
-      depressed
-      color="primary"
-      @click="update"
-      class="d-flex justify-right"
-    >
-      Update
-    </v-btn>
       </v-col>
     </v-row>
   </v-container>
@@ -108,10 +95,12 @@ import CmsEUInvestments from "../../components/cms/cmsEUInvestments.vue";
         async initialize () {
             const pages  = await this.pagesApi.getPages(APP_SETTINGS.API_PATH.PAGES.ALL_PAGES)
             this.pages=pages.data
+            console.log(this.pages)
       },
         async update () {
             // const index =  this.pages.findIndex(item => item.id === this.page.id);
             // console.log("in parent",data.page_data,data.path)
+            console.log(this.page.content)
             const res  = await this.pagesApi.updatePageData(APP_SETTINGS.API_PATH.PAGES.ALL_PAGES,this.page)
             if (res.status == 200) {
                 this.$toast.success(NOTIFCATIONS.PAGES.UPDATE)

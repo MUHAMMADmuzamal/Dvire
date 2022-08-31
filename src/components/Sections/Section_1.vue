@@ -1,29 +1,4 @@
 <template>
-  <!-- <v-container fluid :style="{ 'background-color': card_color }">
-  
-    <v-row>
-      <v-col md="6" class="pa-16">
-        <div class="pa-5">
-          <slot>
-            <h1>Važiuokime <span>kitaip </span><br> nei iki šiol.</h1>
-            <v-spacer></v-spacer>
-            <p>Degalai iš perdirbamų atliekų, saulės ir vėjo – toks<br> turėtų būti mūsų pasirinkimas.</p>
-            <v-spacer></v-spacer>
-            <v-btn
-              depressed
-              color="primary"
-            >
-              Nuolaidų kortelė
-            </v-btn>
-          </slot>
-        </div>
-      </v-col>
-      <v-col md="6">
-        <v-img :src="og_image"/>
-      </v-col>
-    </v-row>
-     <div class="vl"></div>   
-  </v-container> -->
   <v-container fluid :style="{ 'background-color': card_color }">
     <v-container>
       <v-row  >
@@ -81,17 +56,13 @@
 <script>
 import {COLORS, IMAGES } from "../../../config";
 export default {
-  name: "Section_2",
-  // props: {
-  //   text:{
-  //       text: String,
-  //       default: "",
-  //   },
-  //   subText:{
-  //       text: String,
-  //       default: "",
-  //   },
-  // },
+  name: "Section_1",
+  props: {
+    data:{
+        text: String,
+        default: "",
+    },
+  },
   data: ()=>({
       sticky: false,
       card_color: COLORS.MAIN_COLOR_1,

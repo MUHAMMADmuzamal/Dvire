@@ -12,6 +12,7 @@ import LINKEDIN_ICON from "./src/assets/images/fb_icon.svg";
 import FB_ICON from "./src/assets/images/linkedin_icon.svg";
 
 let IMAGES = {
+  BASE_ADDRESS:"./src/assets/images/",
   COMPANY_LOGO: CompanyLogoSVG,
   COMPANY_LOGO_WHITE: CompanyLogoWhiteSVG,
   OG_IMAGE: OGIMAGE,
