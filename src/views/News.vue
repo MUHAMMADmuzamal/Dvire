@@ -13,15 +13,15 @@
 
         <v-col md="6">
           <h1 class="pt-6" >
-            Biometaną planuojama išgauti ir Lietuvoje – aplinkai draugiško kuro jėgainė kils prie Panevėžio
+            {{section1.heading_1}}
           </h1>
           <p class="py-6">
-            Kol kas visas Lietuvoje naudojamas biometanas yra importuojamas iš užsienio šalių tarptautinių sertifikatų keliu ir Lietuvoje negaminamas. Vis dėlto artimiausia
+            {{section1.paragraph_1}}
           </p>
 
           <!-- <button class="btn1 col-sm-6" >Skaityti</button> -->
           <div class="col-sm-6">
-            <generic-button text="Skaityti"/>
+            <generic-button :text="section1.buttonText1"/>
           </div>
 
         </v-col>
@@ -121,14 +121,16 @@
     <v-row>
       <v-col class="d-flex justify-center py-16">
         <!-- <button class="btn1" >Rodyti daugiau</button> -->
-        <generic-button text="Rodyti daugiau"/>
+        <generic-button :text="section1.buttonText2"/>
       </v-col>
     </v-row>
   </v-container>
 </div>
 </template>
 <script>
-import { PAGES_NAMES} from "../../config";
+import { PAGES_NAMES,COLORS,APP_SETTINGS,PAGES_IDS} from "../../config";
+import PagesApiService from '../mixins/services/pages-api-service'
+import {json_parse} from '../mixins/helperFunction'
 import GenericButton from '../components/GenericButton/GenericButton.vue'
 export default {
     name: PAGES_NAMES.NEWS_PAGE,
@@ -136,8 +138,28 @@ export default {
     'generic-button':GenericButton,
   },
   data: () => ({
-    //
+    pagesApi: new PagesApiService($cookies.get('user').auth.token),
+    title:"",
+    section1:"",
   }),
+  created () {
+        this.initialize()
+    },
+  methods: {
+        async initialize () {
+            const pages  = await this.pagesApi.getPages(APP_SETTINGS.API_PATH.PAGES.ALL_PAGES+'/'+PAGES_IDS.NEWS_PAGE_ID)
+            this.title= pages.data.title
+            const content = json_parse(pages.data.content)
+            
+            if (content != null) {
+              if ('section1' in content) {
+                  this.section1= content.section1
+              }  
+            }
+            console.log(content)
+      },
+
+     },
 };
 </script>
 <style scoped>

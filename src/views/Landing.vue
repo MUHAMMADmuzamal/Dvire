@@ -1,10 +1,10 @@
 <template>
   <div>
-    <section-1 />
-    <section-2 />
-    <section-3 />
-    <section-4 />
-    <section-5 />
+    <section-1 :data="pageContent.section1"/>
+    <section-2 :data="pageContent.section2"/>
+    <section-3 :data="pageContent.section3"/>
+    <section-4 :data="pageContent.section4"/>
+    <section-5 :data="pageContent.section5"/>
 
   </div>
 </template>
@@ -32,12 +32,8 @@ export default {
     logo: IMAGES.COMPANY_LOGO,
     card_color: COLORS.MAIN_COLOR_1,
     pagesApi: new PagesApiService($cookies.get('user').auth.token),
-    section1:"",
-    section2:"",
-    section3:"",
-    section4:"",
-    section5:"",
     title:"",
+    pageContent:{},
   }),
   created () {
         this.initialize()
@@ -45,15 +41,12 @@ export default {
   methods: {
         async initialize () {
             const pages  = await this.pagesApi.getPages(APP_SETTINGS.API_PATH.PAGES.ALL_PAGES+'/'+PAGES_IDS.LANDING_PAGE_ID)
-            this.content=json_parse(pages.data.content)
             this.title= pages.data.title
-            if (this.page.content != null) {
-              if ('section1' in this.page.content) {
-                this.section1= this.page.content.section1      
-                this.section2= this.page.content.section2     
-                this.section3= this.page.content.section3      
-                this.section4= this.page.content.section4      
-                this.section5= this.page.content.section5  
+            const content = json_parse(pages.data.content)
+            console.log(content)
+            if (content != null) {
+              if ('section1' in content) {
+                  this.pageContent= content
               }  
             }
       },

@@ -1,27 +1,7 @@
 <template>
-      <!-- <v-container>
-        <h1 class="pt-5">Prisijunk prie šios garbingos grupės</h1>
-        <v-row class="pt-5">
-          <v-col md="6">
-            <p>
-              Įmonės, kurios metė iššūkį teršiems degalams ir kurios prisideda prie CO2 emisijos sumažinimo:
-            </p>
-            <v-carousel hide-delimiters>
-            <v-carousel-item
-              v-for="(item,i) in items"
-              :key="i"
-              :src="item.src"
-            ></v-carousel-item>
-          </v-carousel>
-          </v-col>
-          <v-col md="6">
-            <v-img class="pt-5" :src="gas_station_image"/>
-          </v-col>
-        </v-row>
-      </v-container> -->
       <v-container fluid style="padding-left:10%;">
-    <h1 class="pt-6">Prisijunk prie šios garbingos grupės</h1>
-    <p class="pt-10">Įmonės, kurios metė iššūkį teršiems degalams ir kurios prisideda prie CO2 emisijos sumažinimo:</p>
+    <h1 class="pt-6">{{data.heading_1}}</h1>
+    <p class="pt-10">{{data.paragraph_1}}</p>
 
     <v-row>
       <v-col md="6">
@@ -49,6 +29,12 @@
 import {COLORS, IMAGES } from "../../../config";
 export default {
   name: "Section_4",
+  props: {
+    data:{
+        text: String,
+        default: "",
+    },
+  },
   data: ()=>({
       sticky: false,
       card_color: COLORS.MAIN_COLOR_1,
@@ -59,20 +45,7 @@ export default {
       backgourd_image_url: IMAGES.CLOUD,
       gas_station_icon_image: IMAGES.GAS_STATION_ICON_IMAGE,
       gas_station_image: IMAGES.GAS_STATION_IMAGE,
-      items: [
-          {
-            src: '../../../assets/images/iveco.svg',
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
-          },
-        ],
+      items: IMAGES.SLIDER_IMAGES,
       
   }),
 };

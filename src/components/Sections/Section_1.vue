@@ -5,9 +5,9 @@
         <v-col md="6" class=" d-flex  align-center">
           <div class="">
             <slot>
-              <h1>Važiuokime <span style="color:#16ACAC;">kitaip </span><br> nei iki šiol.</h1>
+              <h1>{{data.heading_1}} <span style="color:#16ACAC;">{{data.heading_1_text_inside_span_tag}} </span><br>{{data.heading_1_after_span_tag}}</h1>
               <v-spacer></v-spacer>
-              <p>Degalai iš perdirbamų atliekų, saulės ir vėjo – toks<br> turėtų būti mūsų pasirinkimas.</p>
+              <p>{{data.paragraph_1}}</p>
               
               
             </slot>
@@ -28,7 +28,7 @@
                 style="color:white "
                 color="#25ACAB"
               >
-                Nuolaidų kortelė
+                {{data.buttonText}}
               </v-btn>
           </v-col>
         </v-row>

@@ -11,12 +11,17 @@
                   <v-text-field
                     v-model="section1.heading_1"
                     counter
-                    label="Heading 1"
+                    label="Heading 1 Part 1"
                   ></v-text-field>
                   <v-text-field
                     v-model="section1.heading_1_text_inside_span_tag"
                     counter
                     label="Heading 1 Text with Different Color"
+                  ></v-text-field>
+                  <v-text-field
+                    v-model="section1.heading_1_after_span_tag"
+                    counter
+                    label="Heading 1 Part 2"
                   ></v-text-field>
                   <v-textarea
                     label="Paragraph 1"
@@ -83,6 +88,18 @@
                     counter
                     label="Heading 3"
                   ></v-text-field>
+                  <v-textarea
+                    v-model="section3.paragraph_2"
+                    counter
+                    label="Paragraph 2"
+                    hint=""
+                  ></v-textarea>
+                  <v-textarea
+                    v-model="section3.paragraph_3"
+                    counter
+                    label="Paragraph 3"
+                    hint=""
+                  ></v-textarea>
                   <v-text-field
                     v-model="section3.image"
                     counter
@@ -123,7 +140,7 @@
                     label="Heading 3"
                   ></v-text-field>
                   <v-textarea
-                    v-model="section3.paragraph_3"
+                    v-model="section4.paragraph_3"
                     counter
                     label="Paragraph 3"
                     hint=""
@@ -189,7 +206,6 @@
 </template>
 
 <script>
-import { json_parse } from '@/mixins/helperFunction'
 import UpdateButton from '../updateButton/updateButton.vue'
     export default {
       name:"CmsLanding",
@@ -199,7 +215,8 @@ import UpdateButton from '../updateButton/updateButton.vue'
         },
       data: ()=>( {
         section1:{
-          heading_1:"Važiuokime  nei iki šiol.",
+          heading_1:"Važiuokime",
+          heading_1_after_span_tag:"nei iki šiol.",
           heading_1_text_inside_span_tag: "kitaip",
           paragraph_1:"Degalai iš perdirbamų atliekų, saulės ir vėjo – toksturėtų būti mūsų pasirinkimas.",
           buttonText: "Nuolaidų kortelė",
@@ -218,6 +235,7 @@ import UpdateButton from '../updateButton/updateButton.vue'
           paragraph_1:"Pagreitinti alternatyvių atsinaujinančių degalų panaudojimą transporte.",
           heading_3:"Tikslai",
           paragraph_2:"Pagreitinti alternatyvių atsinaujinančių degalų - biometano, vandenilio, naudojamų kartu su elektra - naudojimą transporte.Padėti degalų vartotojams ir degalų tiekėjams smarkiai sumažinti CO2 emisiją.",
+          paragraph_3:"Padėti degalų vartotojams ir degalų tiekėjams smarkiai sumažinti CO2 emisiją.",
           image:"gas_station_icon_image.svg"
         },
         section4:{

@@ -2,7 +2,7 @@
   <div>
     <v-container fluid class="" style="background-color: #F8F4EF;">
     <v-container>
-      <h1 class="d-flex justify-center pt-16">ES Investicijos</h1>
+      <h1 class="d-flex justify-center pt-16">{{section1.heading_1}}</h1>
       <v-row class="d-flex justify-center px-md-16">
         <v-col class="col-md-10 col-xs-12 mb-n6" >
               
@@ -23,20 +23,19 @@
         <v-row class="d-flex justify-center px-md-16">
           <v-col class="col-md-10 col-xs-12 ">
             <p class="font-weight-normal" style="color:#ABABAB;">
-              Finansuojama iš Europos regioninės plėtros fondo, kaip Europos Sąjungos atsako į COVID-19 pandemiją priemonė
+              {{section2.paragraph_1}}
             </p>
             <h1 class="d-flex justify-center py-6">
-              Įgyvendiname projektą „UAB Dvire“ elektroninės platformos kūrimas“
+              {{section2.heading_1}}
             </h1>
             <p class="pt-6">
-              2022 m. sausio 28 d. LR ekonomikos ir inovacijų ministro įsakymu Nr. 4-160 projektui <b> „UAB „Dvire“ elektroninės platformos kūrimas“ </b> skirtas 50 000,00 Eur finansavimas pagal priemonę „E-komercijos modelis COVID-19“. Uždarosios akcinės bendrovės „Dvire“ platinama DVIRE kortelė suteikia galimybę palankiausiomis rinkoje sąlygomis naudotis DVIRE iniciatyvos partnerių suslėgto metano (SGD) viešojo pildymo stočių tinklu didžiuosiuose Lietuvos miestuose – Vilniuje, Kaune, Klaipėdoje, Šiauliuose ir Panevėžyje. Bendrovės siekia kartu su metanu Lietuvos keliuose pradėti naudoti biometaną, vandenilį ir elektrą, išgaunamus iš saulės, vėjo ir perdirbtų atliekų, reikšmingai sumažinti CO2 emisijas.
-              Projekto tikslas – informacinių technologijų verslo sandoriams valdyti elektroniniu būdu diegimas, siekiant padidinti pajamų augimą.
+              {{section2.paragraph_2_p1}}<b>{{section2.paragraph_2_p2}}</b> {{section2.paragraph_2_p3}}
               <br><br> <br>
-              Siekiant numatytų tikslų UAB „Dvire“ planuoja įgyvendinti projektą, kurio metu bus sukurta elektroninė platforma bendrovės produktų pardavimui. Tokiu būdu klientai savarankiškai be kontakto su UAB „Dvire“ ir UAB „Dvire“ partnerių darbuotojais, galės naudotis paslaugomis, kurios šiuo metu nepasiekiamos internetinėje parduotuvėje. Įgyvendinus projektą tikimasi pritraukti naujų vartotojų, kas leis padidinti įmonės pardavimus ir pelningumą.
+              {{section2.paragraph_2_p4}}
               <br> <br> <br>
-              Projektas Nr. 13.1.1-LVPA-K-860-01-0575 „UAB „Dvire“ elektroninės platformos kūrimas“ finansuojamas iš Europos regioninės plėtros fondo, kaip Europos Sąjungos atsako į COVID-19 pandemiją priemonė.
+              {{section2.paragraph_2_p5}}
               <br> <br> <br>
-              <b>Projekto įgyvendinimo trukmė: iki 2023 m. vasario 08 d.</b>
+              <b>{{section2.paragraph_2_p6}}</b>
             </p>
           </v-col>
         </v-row>
@@ -46,12 +45,45 @@
   </div>
 </template>
 <script>
-import {PAGES_NAMES} from '../../config'
+import { PAGES_NAMES,APP_SETTINGS,PAGES_IDS} from "../../config";
+import PagesApiService from '../mixins/services/pages-api-service'
+import {json_parse} from '../mixins/helperFunction'
 export default {
     name:PAGES_NAMES.LEGAL_ENVIRONMENT_WITHOUT_SPACE_PAGE,
 
   data: () => ({
+    pagesApi: new PagesApiService($cookies.get('user').auth.token),
+    title:"",
+    section1:"",
+    section2:"",
+    section3:"",
+    section4:"",
+    section5:"",
+    section6:"",
   }),
+  created () {
+        this.initialize()
+    },
+  methods: {
+        async initialize () {
+            const pages  = await this.pagesApi.getPages(APP_SETTINGS.API_PATH.PAGES.ALL_PAGES+'/'+PAGES_IDS.EU_INVESTMENTS_PAGE_ID)
+            this.title= pages.data.title
+            const content = json_parse(pages.data.content)
+            
+            if (content != null) {
+              if ('section1' in content) {
+                  this.section1= content.section1
+                  this.section2= content.section2
+                  this.section3= content.section3
+                  this.section4= content.section4
+                  this.section5= content.section5
+                  this.section6= content.section6
+              }  
+            }
+            console.log(content)
+      },
+
+     },
 };
 </script>
 <style>

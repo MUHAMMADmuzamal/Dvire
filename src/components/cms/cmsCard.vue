@@ -25,11 +25,6 @@
             hint=""
           ></v-textarea>
           <v-text-field
-            v-model="section1.buttonText"
-            counter
-            label="Button Text"
-          ></v-text-field>
-          <v-text-field
             v-model="section1.image"
             counter
             label="Image full name with extension"
@@ -94,43 +89,12 @@
           ></v-text-field>
 
     <h1>Section: 4</h1>
-          <v-text-field
+       <v-text-field
             v-model="section4.heading_1"
             counter
             label="Heading 1"
-          ></v-text-field>
-          <h4>Form Fields</h4>
-          <v-text-field
-            v-model="section4.form_field_1"
-            counter
-            label="Form Field 1"
-          ></v-text-field>
-          <v-text-field
-            v-model="section4.form_field_2"
-            counter
-            label="Form Field 2"
-          ></v-text-field>
-          <v-text-field
-            v-model="section4.form_field_3"
-            counter
-            label="Form Field 3"
-          ></v-text-field>
-          <v-text-field
-            v-model="section4.form_field_4"
-            counter
-            label="Form Field 4"
-          ></v-text-field>
-          <v-text-field
-            v-model="section4.checkbox"
-            counter
-            label="Checkbox text"
-          ></v-text-field>
-          <v-text-field
-            v-model="section4.buttonText"
-            counter
-            label="Button text"
-          ></v-text-field>
-          <v-text-field
+        ></v-text-field>
+         <v-text-field
             v-model="section4.image"
             counter
             label="Image full name with extension"
@@ -141,14 +105,54 @@
             counter
             label="Heading 1"
           ></v-text-field>
+          <h4>Form Fields</h4>
+          <v-text-field
+            v-model="section5.form_field_1"
+            counter
+            label="Form Field 1"
+          ></v-text-field>
+          <v-text-field
+            v-model="section5.form_field_2"
+            counter
+            label="Form Field 2"
+          ></v-text-field>
+          <v-text-field
+            v-model="section5.form_field_3"
+            counter
+            label="Form Field 3"
+          ></v-text-field>
+          <v-text-field
+            v-model="section5.form_field_4"
+            counter
+            label="Form Field 4"
+          ></v-text-field>
+          <v-text-field
+            v-model="section5.checkbox"
+            counter
+            label="Checkbox text"
+          ></v-text-field>
+          <v-text-field
+            v-model="section5.buttonText"
+            counter
+            label="Button text"
+          ></v-text-field>
+          <v-text-field
+            v-model="section5.image"
+            counter
+            label="Image full name with extension"
+          ></v-text-field>
+    <h1>Section: 6</h1>
+          <v-text-field
+            v-model="section6.heading_1"
+            counter
+            label="Heading 1"
+          ></v-text-field>
   </div>
   <update-button v-on:update="update()"/>
 </v-container> 
 </template>
 
 <script>
-import {API_KEY} from '../../../config'
-import { json_parse } from '@/mixins/helperFunction'
 import UpdateButton from '../updateButton/updateButton.vue'
     export default {
       name:"CmsLanding",
@@ -157,12 +161,10 @@ import UpdateButton from '../updateButton/updateButton.vue'
             'update-button':UpdateButton,
         },
       data: ()=>( {
-        api_key:API_KEY.TINY_MCE.Key,
         section1:{
           heading_1:"Degalų pildymo",
           heading_1_text_after_br_tag: "kortelė",
           paragraph_1:"DVIRE siekia kartu su metanu Lietuvos keliuose pradėti naudoti biometaną, vandenilį ir elektrą, išgaunamus iš saulės, vėjo ir perdirbtų atliekų, reikšmingai sumažinti CO2 emisijas.",
-          buttonText: "Nuolaidų kortelė",
           Image: "dvire_card.svg"
         },
         section2:{
@@ -177,9 +179,13 @@ import UpdateButton from '../updateButton/updateButton.vue'
           paragraph_1:"DVIRE kortele galima atsiskaityti už degalus visuose „SG dujos“ savitarnos terminaluose ir „Panevėžio autobusų parko“ (nuo 2021 m. pradžios) metano pildymo stotyje.",
           paragraph_2:"Mokėjimo kortelės atsiskaitymo limitą, kitas kortelės papildymo sąlygas bendru sutarimu nustato UAB „Dvire“ ir kortelės gavėjas.",
           paragraph_3:"Detali naudojimosi kortele ir metano dujų pildymo instrukcija skelbiama kiekvienos pildymo stoties savitarnos terminale.",
-          image:"map.svg"
         },
         section4:{
+          heading_1:"Metano pildymo stotys",
+          image:"map.svg"
+          },
+
+        section5:{
           heading_1:"Kreiptis dėl kortelės",
           form_field_1:"Vardas",
           form_field_2:"Pavardė",
@@ -189,7 +195,7 @@ import UpdateButton from '../updateButton/updateButton.vue'
           buttonText:"Siųsti",
           image:"single_card.svg"
         },
-        section5:{
+        section6:{
           heading_1:"Naujienos",
         },
       }),
@@ -203,6 +209,7 @@ import UpdateButton from '../updateButton/updateButton.vue'
               this.section3= this.page.content.section3   
               this.section4= this.page.content.section4   
               this.section5= this.page.content.section5   
+              this.section6= this.page.content.section6   
             }
           }
 
@@ -215,6 +222,7 @@ import UpdateButton from '../updateButton/updateButton.vue'
                     section3:this.section3,
                     section4:this.section4,
                     section5:this.section5,
+                    section6:this.section6,
           })
           this.$emit('update')
         },

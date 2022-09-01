@@ -13,7 +13,7 @@
           v-model="name"
           counter
           :error-messages="errors"
-          label="Name"
+          :label="section1.name"
           required
         ></v-text-field>
       </validation-provider>
@@ -26,7 +26,7 @@
           v-model="surname"
           counter
           :error-messages="errors"
-          label="SurName"
+          :label="section1.surname"
           required
         ></v-text-field>
       </validation-provider>
@@ -39,7 +39,7 @@
           v-model="address"
           counter
           :error-messages="errors"
-          label="Address"
+          :label="section1.address"
           required
         ></v-text-field>
       </validation-provider>
@@ -54,7 +54,7 @@
           v-model="company_code"
           counter
           :error-messages="errors"
-          label="Company Code"
+          :label="section1.company_code"
           required
         ></v-text-field>
       </validation-provider>
@@ -68,7 +68,7 @@
           v-model="vat_code"
           counter
           :error-messages="errors"
-          label="Vat Code"
+          :label="section1.vat_code"
         ></v-text-field>
       </validation-provider>
       <v-date-picker v-model="date"></v-date-picker>
@@ -84,7 +84,7 @@
           v-model="phoneNumber"
           :counter="11"
           :error-messages="errors"
-          label="Phone Number"
+          :label="section1.phoneNumber"
           required
         ></v-text-field>
       </validation-provider>
@@ -98,7 +98,7 @@
           v-model="gas_available_for_transport"
           counter
           :error-messages="errors"
-          label="Gas Available for Transport"
+          :label="section1.gas_available_for_transport"
         ></v-text-field>
       </validation-provider>
       <validation-provider
@@ -111,7 +111,7 @@
           v-model="gas_planned_to_have_vehicles"
           counter
           :error-messages="errors"
-          label="Gas Planned to have Vehicles"
+          :label="section1.gas_planned_to_have_vehicles"
         ></v-text-field>
       </validation-provider>
       <validation-provider
@@ -122,7 +122,7 @@
         <v-text-field
           v-model="email"
           :error-messages="errors"
-          label="E-mail"
+          :label="section1.email"
           counter
           required
         ></v-text-field>
@@ -131,7 +131,7 @@
         <v-text-field
             v-model="password"
             name="input-10-1"
-            label="Password"
+            :label="section1.password"
             hint="At least 8 characters"
             counter
             :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
@@ -148,7 +148,7 @@
           v-model="receive_news_and_notices"
           :error-messages="errors"
           :value="receive_news_and_notices"
-          label="Receive News and Notices"
+          :label="section1.receive_news_and_notices"
           type="checkbox"
         ></v-checkbox>
       </validation-provider>
@@ -158,7 +158,7 @@
         type="submit"
         :disabled="invalid"
       >
-        submit
+        {{section1.submit_button}}
       </v-btn>
       <v-btn @click="clear">
         clear
@@ -167,8 +167,10 @@
   </validation-observer>
 </template>
 <script>
-  import {NOTIFCATIONS, PAGES_NAMES } from "../../../config";
   import Account from '../../mixins/services/account.service'
+  import { NOTIFCATIONS,PAGES_NAMES,APP_SETTINGS,PAGES_IDS} from "../../../config";
+  import PagesApiService from '../../mixins/services/pages-api-service'
+  import {json_parse} from '../../mixins/helperFunction'
   import { required,  email, min,max, regex, digits } from 'vee-validate/dist/rules'
   import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
   const account =  Account;
@@ -212,6 +214,7 @@
       ValidationObserver,
     },
     data: () => ({
+      pagesApi: new PagesApiService($cookies.get('user').auth.token),
       name:'',
       address:'',
       surname:'',
@@ -225,6 +228,8 @@
       email: '',
       password:'',
       show: false,
+      title:"",
+      section1:"",
     }),
 
     methods: {
@@ -273,10 +278,23 @@
                 }else{
                   this.$toast.success(NOTIFCATIONS.ERROR)
                 }
-                // console.log(res)
-                
-                
+                // console.log(res)               
         },
+        async initialize () {
+            const pages  = await this.pagesApi.getPages(APP_SETTINGS.API_PATH.PAGES.ALL_PAGES+'/'+PAGES_IDS.SIGNUP_PAGE_ID)
+            this.title= pages.data.title
+            const content = json_parse(pages.data.content)
+            
+            if (content != null) {
+              if ('section1' in content) {
+                  this.section1= content.section1
+              }  
+            }
+            console.log(content)
+      },
+    },
+    created () {
+        this.initialize()
     },
   }
 </script>

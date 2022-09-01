@@ -17,34 +17,34 @@
 
               <v-row class="pa-5">
                 <v-col>
-                  <h1>Kodėl mes?</h1>
+                  <h1>{{data.heading_1}}</h1>
                 </v-col>
               </v-row>
               
               <v-row class="pl-5">
                 <v-col>
-                  <h4 style="color:#9CCB3B;">Misija</h4>
+                  <h4 style="color:#9CCB3B;">{{data.heading_2}}</h4>
                 <p>
-                  Pagreitinti alternatyvių atsinaujinančių degalų panaudojimą transporte.
+                  {{data.paragraph_1}}
                 </p>
                 </v-col>
               </v-row>
 
               <v-row class="pl-5">
                 <v-col>
-                  <h4 style="color:#9CCB3B;">Tikslai</h4>
+                  <h4 style="color:#9CCB3B;">{{data.heading_3}}</h4>
                 </v-col>
               </v-row>
               
               <v-row class="pl-5 d-none d-md-flex">
                 <v-col md="6" >
                   <p>
-                    Pagreitinti alternatyvių atsinaujinančių degalų - biometano, vandenilio, naudojamų kartu su elektra - naudojimą transporte.
+                    {{data.paragraph_2}}
                   </p>
                 </v-col>
                 <v-col md="6" >
                   <p>
-                    Padėti degalų vartotojams ir degalų tiekėjams smarkiai sumažinti CO2 emisiją.
+                    {{data.paragraph_3}}
                   </p>
                 </v-col>
               </v-row>
@@ -53,11 +53,11 @@
               <v-row class="pl-5 d-md-none">
                 <v-col >
                   <p>
-                    Pagreitinti alternatyvių atsinaujinančių degalų - biometano, vandenilio, naudojamų kartu su elektra - naudojimą transporte.
+                    {{data.paragraph_2}}
                   </p>
                 
                   <p>
-                    Padėti degalų vartotojams ir degalų tiekėjams smarkiai sumažinti CO2 emisiją.
+                    {{data.paragraph_3}}
                   </p>
                 </v-col>
               </v-row>
@@ -85,6 +85,12 @@
 <script>
 import {COLORS, IMAGES } from "../../../config";
 export default {
+    props: {
+    data:{
+        text: String,
+        default: "",
+    },
+  },
   name: "Section_3",
   data: ()=>({
       sticky: false,

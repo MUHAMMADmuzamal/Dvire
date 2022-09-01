@@ -1,9 +1,9 @@
 <template>
   <v-container fluid class=" pa-5 mb-5 mt-5 ">
-    <h1 class="text-center">Degalai</h1>
+    <h1 class="text-center">{{data.heading_1}}</h1>
     <v-container class=" mt-4" :style="{ 'background-color': card_color }">
         <p class="text-center" style="width:80%; margin:auto;">
-            Degalai iš perdirbamų atliekų, saulės ir vėjo – toks turėtų būti mūsų pasirinkimas, kad sumažintume  CO2 emisijas ir sukurtume klimatui neutralią ekonomiką.
+            {{data.paragraph_1}}
         </p>     
         <v-row class="d-none d-md-flex text-center" style="width:80%; margin:auto;">
           <v-col md="4" class="mb-n13">
@@ -39,16 +39,12 @@
 import {COLORS, IMAGES } from "../../../config";
 export default {
   name: "Section_2",
-  // props: {
-  //   text:{
-  //       text: String,
-  //       default: "",
-  //   },
-  //   subText:{
-  //       text: String,
-  //       default: "",
-  //   },
-  // },
+  props: {
+    data:{
+        text: String,
+        default: "",
+    },
+  },
   data: ()=>({
       sticky: false,
       card_color: COLORS.MAIN_COLOR_1,

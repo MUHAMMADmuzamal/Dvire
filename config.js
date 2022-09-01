@@ -10,6 +10,7 @@ import GAS_STATION_ICON_IMAGE from "./src/assets/images/gas_station_icon_image.s
 import GAS_STATION_IMAGE from "./src/assets/images/gas_station.svg";
 import LINKEDIN_ICON from "./src/assets/images/fb_icon.svg";
 import FB_ICON from "./src/assets/images/linkedin_icon.svg";
+import SLIDER_IMAGE from "./src/assets/images/slider_images.svg";
 
 let IMAGES = {
   BASE_ADDRESS:"./src/assets/images/",
@@ -24,6 +25,7 @@ let IMAGES = {
   GAS_STATION_IMAGE: GAS_STATION_IMAGE,
   FB_ICON: FB_ICON,
   LINKEDIN_ICON: LINKEDIN_ICON,
+  SLIDER_IMAGES: [{src:SLIDER_IMAGE}],
 };
 
 const PAGES_NAMES = {
@@ -69,7 +71,13 @@ const PAGES_IDS = {
     SELF_SERVICE_PAGE_ID : 8,
     PAYMENT_CARD_PAGE_ID : 9,
     CONSULTATION_ORDER_PAGE_ID : 10,
-    LEGAL_ENVIRONMENT_PAGE_ID : 0,
+    EU_INVESTMENTS_PAGE_ID : 14,
+    LEGAL_ENVIRONMENT_PAGE_ID : 13,
+    SIGNUP_PAGE_ID : 15,
+    LOGIN_PAGE_ID : 16,
+    FORGET_PASSWORD_PAGE_ID : 17,
+    HEADER_PAGE_ID : 18,
+    FOOTER_PAGE_ID : 19,
 };
 
 let BRAND_NAME = "Dvire";
@@ -120,9 +128,9 @@ const DASHBOARD = {
     }
 };
 
-const baseUrl = "http://localhost:8000";
+// const baseUrl = "http://localhost:8000";
 // const baseUrl = "http://localhost:3000";
-// const baseUrl = "https://testing.fostermarketing.pk";
+const baseUrl = "https://testing.fostermarketing.pk";
 
 const APP_SETTINGS = {
   API_PATH: {

@@ -1,19 +1,12 @@
 <template>
 <div>
-<!-- ----------------------------------------------------------------------------- -->
-
   <v-container fluid class="" style="background-color: #F8F4EF;">
     <v-container>
       <v-row  >
         <v-col md="6" class=" d-flex  align-center">
-          <div class="">
-            <slot>
-              <h1>Degalų pildymo <br> kortelė</h1>
-              <!-- <v-spacer></v-spacer> -->
-              <p class="pt-4">DVIRE siekia kartu su metanu Lietuvos keliuose pradėti naudoti biometaną, vandenilį ir elektrą, išgaunamus iš saulės, vėjo ir perdirbtų atliekų, reikšmingai sumažinti CO2 emisijas.</p>
-              
-              
-            </slot>
+          <div class="col-sm-8 col-md-9">
+              <h1>{{section1.heading_1}} <br> {{section1.heading_1_text_after_br_tag}}</h1>
+              <p class="pt-4">{{section1.paragraph_1}}</p>
           </div>
         </v-col>
         <v-col md="6" class=" mb-n16">
@@ -24,15 +17,6 @@
 
      </v-container>
   </v-container>
-
-  <!-- ------------------------------------------------------------------------- -->
-   
-
-
-        
- 
-
-  <!-- ----------------------------------------------------------------------------------------- -->
 <v-container fluid  style="background-color: #0F4C81 ;">
 
       <!-- <v-container style="position:relative"> -->
@@ -41,7 +25,7 @@
 
               <v-row class="py-5">
                 <v-col>
-                  <h1>Dvire kortelė</h1>
+                  <h1>{{section2.heading_1}}</h1>
                 </v-col>
               </v-row>
               
@@ -49,11 +33,11 @@
                 <v-col>
                   
                 <p>
-                    Degalų pildymo kortelė išduodama įmonėms, įsigijusioms metano dujomis varomus automobilius iš gamintojų, dalyvaujančių alternatyviųjų degalų Lietuvoje skatinimo iniciatyvoje DVIRE.
+                    {{section2.paragraph_1}}
                     <br><br><br>
-                    DVIRE kortelė suteikia galimybę palankiausiomis rinkoje sąlygomis naudotis DVIRE iniciatyvos partnerių suslėgto metano (SGD) viešojo pildymo stočių tinklu didžiuosiuose Lietuvos miestuose - Vilniuje, Kaune, Klaipėdoje, Šiauliuose ir Panevėžyje.
+                    {{section2.paragraph_2}}
                     <br><br><br>
-                    DVIRE kortelę išduoda ir administruoja iniciatyvą koordinuojantis startuolis UAB „Dvire“.
+                    {{section2.paragraph_3}}
                 </p>
                 </v-col>
               </v-row>
@@ -77,25 +61,26 @@
 </v-container>
 
 <!-- ----------------------------------------------------------------------------------------- -->
-<v-container fluid >
 
-      <!-- <v-container style="position:relative"> -->
+<v-container fluid >
           <v-row >
             
-            <v-col md="8" class="py-16 px-md-16" style="background-color: #F8F4EF; color:#000000;">
+            <v-col md="7" class="py-16 px-md-16" style="background-color: #F8F4EF; color:#000000;">
 
-              <v-container>
+              <v-container class="pe-md-16 pe-sm-16">
                 
-                  <h1>Kaip naudotis kortele?</h1>
+                  <h1>{{section3.heading_1}}</h1>
                 
                   
-                <p>
-                    DVIRE kortele galima atsiskaityti už degalus visuose „SG dujos“ savitarnos terminaluose ir „Panevėžio autobusų parko“ (nuo 2021 m. pradžios) metano pildymo stotyje.
+             <p>
+                    {{section3.paragraph_1}}
                     <br><br><br>
-                    Mokėjimo kortelės atsiskaitymo limitą, kitas kortelės papildymo sąlygas bendru sutarimu nustato UAB „Dvire“ ir kortelės gavėjas.
+                    {{section3.paragraph_2}}
                     <br><br><br>
-                    Detali naudojimosi kortele ir metano dujų pildymo instrukcija skelbiama kiekvienos pildymo stoties savitarnos terminale.
+                    {{section3.paragraph_3}}
                 </p>
+
+                <h3 class="d-flex d-md-none justify-center ">{{section4.heading_1}}</h3>
                 
               </v-container>
 
@@ -104,42 +89,129 @@
 
             </v-col>
 
-            <v-col md="4" class="d-flex align-center" style="margin-left:" >
-              <v-row>
-                <v-col height="100">
-                  <v-img
-                  
-                    width="300px"
-                    style=""
-                    src="../assets/images/map.svg"
-                    ></v-img>
-                </v-col>
+            <div class="col-md-5 d-flex align-sm-center ms-md-n16  mt-n16 mt-lg-16" style="" >
               
+              <div class="map ms-md-n16  mt-xs-n16 ">
               
+                <v-img
+                src="../assets/images/map_background.svg"
+                style="display:block; height:auto;"
+                ></v-img>
               
-                <v-col >
-                  <h3 class="text-center">Metano pildymo stotys</h3>
-                </v-col>
-              </v-row>
-            </v-col>
+              <div class="map_points" style="">
+                    
+              <v-tooltip bottom color="white">
+                <template v-slot:activator="{ on, attrs }">
+                    
+                    <div class="map_point" v-bind="attrs" v-on="on" style="left: calc(3.5656% - 15px); top: calc(28.9079% - 15px)">
+                    
+                    <div class="point" style=""></div>
+                    
+                    <div class="point-brand" style="">
+                      <v-img src="../assets/images/logo_on_map.svg" style="width: 100%; height: auto;"></v-img>
+                    </div>
+                    
+                    <div class="city" style="">
+                      Klaipėda
+                    </div>
+                  </div>
+                </template>
+                    <span style="font-weight: 600; color: black;">Degalinė,</span>
+                    <span style="color:black;"> Garažų g. 2</span>
+              </v-tooltip>
+
+              <v-tooltip bottom color="white">
+                <template v-slot:activator="{ on, attrs }">
+                    
+                    <div class="map_point logo_right" v-bind="attrs" v-on="on" style="left: calc(70.5024% - 15px); top: calc(70.6638% - 15px)">
+                    
+                    <div class="point"></div>
+                   
+                    <div class="point-brand">
+                      <v-img src="../assets/images/logo_on_map.svg" style="width: 100%; height: auto;"></v-img>
+                    </div>
+                    
+                    <div class="city">
+                      Vilnius
+                    </div>
+                  </div>
+                </template>
+                    <span style="font-weight: 600; color: black;">Degalinė,</span>
+                    <span style="color:black;"> Panerių g. 42</span>
+              </v-tooltip>
+
+
+              <v-tooltip bottom color="white">
+                <template v-slot:activator="{ on, attrs }">
+                    
+                    <div class="map_point" v-bind="attrs" v-on="on" style="left: calc(57.2581% - 15px); top: calc(32.0000% - 15px)">
+                    
+                    <div class="point"></div>
+                    
+                    <div class="point-brand">
+                      <v-img src="../assets/images/logo_on_map.svg" style="width: 100%; height: auto;"></v-img>
+                    </div>
+                    
+                    <div class="city">
+                      Panevėžys
+                    </div>
+                  </div>
+                </template>
+                    <span style="font-weight: 600; color: black;">Degalinė,</span>
+                    <span style="color:black;"> J.Basanavičiaus g. 67</span>
+              </v-tooltip>
+
+
+              <v-tooltip bottom color="white">
+                <template v-slot:activator="{ on, attrs }">
+                    
+                    <div class="map_point" v-bind="attrs" v-on="on" style="left: calc(36.0887% - 15px); top: calc(18.4000% - 15px)">
+                    
+                    <div class="point"></div>
+                    
+                    <div class="point-brand">
+                      <v-img src="../assets/images/logo_on_map.svg" style="width: 100%; height: auto;"></v-img>
+                    </div>
+                    
+                    <div class="city">
+                      Šiauliai
+                    </div>
+                  </div>
+                </template>
+                    <span style="font-weight: 600; color: black;">Degalinė,</span>
+                    <span style="color:black;"> Vaidoto g. 42B</span>
+              </v-tooltip>
+
+
+              <v-tooltip bottom color="white">
+                <template v-slot:activator="{ on, attrs }">
+                    
+                    <div class="map_point logo_right" v-bind="attrs" v-on="on" style="left: calc(52.8226% - 15px); top: calc(59.2000% - 15px)">
+                    
+                    <div class="point"></div>
+                    
+                    <div class="point-brand">
+                      <v-img src="../assets/images/logo_on_map.svg" style="width: 100%; height: auto;"></v-img>
+                    </div>
+                    
+                    <div class="city">
+                      Kaunas
+                    </div>
+                  </div>
+                </template>
+                    <span style="font-weight: 600; color: black;">Degalinė,</span>
+                    <span style="color:black;"> Ašigalio g. 6P</span>
+              </v-tooltip>
+
+              
+
+              </div>
+                <h2 class="d-none d-md-flex justify-center ">Metano pildymo stotys</h2>
+              </div>
+            </div>
             
           </v-row>
-
-          <v-row>
-            <v-col>
-               
-            </v-col>
-          </v-row>
-          
-      <!-- </v-container> -->
 </v-container>
-
-<!-- ---------------------------------------------------------------------- -->
-
-    
-
-  <!-- ----------------------------------------------------------------------------------------- -->
-
   <v-container fluid >
     
 
@@ -147,29 +219,29 @@
       <v-col md="6" class="px-md-16">
         
        <form class="px-md-16">
-        <h1 class="py-6">Kreiptis dėl kortelės</h1>
+        <h1 class="py-6">{{section5.heading_1}}</h1>
     <v-text-field
       :counter="10"
-      label="Vardas"
+      :label="section5.form_field_1"
       required
     ></v-text-field>
     <v-text-field
       :counter="10"
-      label="Pavardė"
+      :label="section5.form_field_2"
       required
     ></v-text-field>
     <v-text-field
       :counter="10"
-      label="Įmonė"
+      :label="section5.form_field_3"
       required
     ></v-text-field>
     <v-text-field
-      label="El. paštas"
+      :label="section5.form_field_4"
       required
     ></v-text-field>
     
     <v-checkbox
-      label="Pažymėdamas patvirtinu, kad perskaičiau ir sutinku su Privatumo politika"
+      :label="section5.checkbox"
       required
     ></v-checkbox>
 
@@ -182,7 +254,7 @@
       style="color:white "
       color="#25ACAB"
     >
-      Siųsti
+      {{section5.buttonText}}
     </v-btn>
     
   </form>
@@ -201,7 +273,7 @@
 
   <!-- ----------------------------------------------------- -->
   <v-container>
-    <h1 class="d-flex justify-center mt-n16">Naujienos</h1>
+    <h1 class="d-flex justify-center mt-n16">{{section6.heading_1}}</h1>
     <v-row class="d-flex justify-space-around py-16">
       <v-col class="pa-4" > 
         <div elevation class="pa-4" style="border:2px solid #25ACAB;">
@@ -243,15 +315,67 @@
 </div>
 </template>
 <script>
-import { PAGES_NAMES} from "../../config";
+import { PAGES_NAMES,APP_SETTINGS,PAGES_IDS} from "../../config";
+import PagesApiService from '../mixins/services/pages-api-service'
+import {json_parse} from '../mixins/helperFunction'
 export default {
     name: PAGES_NAMES.CARD_PAGE,
 
   data: () => ({
-    //
+    pagesApi: new PagesApiService($cookies.get('user').auth.token),
+    title:"",
+    section1:"",
+    section2:"",
+    section3:"",
+    section4:"",
+    section5:"",
+    section6:"",
   }),
+    created () {
+        this.initialize()
+    },
+  methods: {
+        async initialize () {
+            const pages  = await this.pagesApi.getPages(APP_SETTINGS.API_PATH.PAGES.ALL_PAGES+'/'+PAGES_IDS.CARD_PAGE_ID)
+            this.title= pages.data.title
+            const content = json_parse(pages.data.content)
+            
+            if (content != null) {
+              if ('section1' in content) {
+                  this.section1= content.section1
+                  this.section2= content.section2
+                  this.section3= content.section3
+                  this.section4= content.section4
+                  this.section5= content.section5
+                  this.section6= content.section6
+              }  
+            }
+            console.log(content)
+      },
+
+     },
 };
 </script>
-<style>
-
+<style scoped>
+.map{
+  width:100%; position:relative;
+}
+.map_points{
+  position: absolute; left: 0; top: 0; width: 100%; height: 100%;
+}
+.map_point{
+  position: absolute; display: flex; align-items: center; cursor: pointer;
+}
+.point{
+  height: 15px; width: 15px; border-radius: 50%; background-color: #ffffff;
+}
+.point-brand{
+  position: absolute; left: -4px; top: 0px; transform: translate(0, -100%); width: 30px;
+}
+.city{
+  color: #ffffff; font-size: 15px; font-weight: 500; position: absolute; left: 15px; padding-right: 0; padding-left: 5px;
+}
+.map_point.logo_right .city{
+  padding-right: 5px; right: 15px; left: auto;
+}
 </style>

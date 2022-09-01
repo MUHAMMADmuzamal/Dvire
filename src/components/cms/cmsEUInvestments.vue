@@ -1,72 +1,118 @@
 <template>
 <v-container>
-
-          <v-text-field
-          v-model="page.title"
-            label="Title"
-          ></v-text-field>
-          <div>
-            <h1>Section: 1</h1>
-                 <editor
-               :api-key="api_key"
-                    :init="editor_setting"
-                    v-model="section1"
-                    />
-              </div>
-
-        </v-container>
+  <v-text-field
+  v-model="page.title"
+    label="Title"
+    counter
+  ></v-text-field>
+  <div>
+    <h1>Section: 1</h1>
+      <v-text-field
+        v-model="section1.heading_1"
+        counter
+        label="Heading 1"
+      ></v-text-field>
+      <v-text-field
+        v-model="section1.image"
+        counter
+        label="Image full name with extension"
+      ></v-text-field>
+    <h1>Section: 2</h1>
+      <v-text-field
+        v-model="section2.heading_1"
+        counter
+        label="Heading 1"
+      ></v-text-field>
+      <v-textarea
+        v-model="section2.paragraph_1"
+        counter
+        label="Paragraph 1"
+        hint=""
+      ></v-textarea>
+      <v-textarea
+        v-model="section2.paragraph_2_p1"
+        counter
+        label="Paragraph 2 part 1"
+        hint=""
+      ></v-textarea>
+      <v-textarea
+        v-model="section2.paragraph_2_p2"
+        counter
+        label="Paragraph 2 part 2"
+        hint=""
+      ></v-textarea>
+      <v-textarea
+        v-model="section2.paragraph_2_p3"
+        counter
+        label="Paragraph 2 part 3"
+        hint=""
+      ></v-textarea>
+      <v-textarea
+        v-model="section2.paragraph_2_p4"
+        counter
+        label="Paragraph 2 part 4"
+        hint=""
+      ></v-textarea>
+      <v-textarea
+        v-model="section2.paragraph_2_p5"
+        counter
+        label="Paragraph 2 part 5"
+        hint=""
+      ></v-textarea>
+      <v-textarea
+        v-model="section2.paragraph_2_p6"
+        counter
+        label="Paragraph 2 part 6"
+        hint=""
+      ></v-textarea>
+  </div>
+  <update-button v-on:update="update()"/>
+</v-container>
 </template>
 
 <script>
-import Editor from '@tinymce/tinymce-vue'
-import {API_KEY} from '../../../config'
+import UpdateButton from '../updateButton/updateButton.vue'
     export default {
-      name:"CmsLanding",
+      name:"CmsEUinvestments",
       props:['PageData'],
       components:{
-            'editor': Editor,
+            'update-button':UpdateButton,
         },
       data: ()=>( {
-        api_key:API_KEY.TINY_MCE.Key,
-        section1:"",
-        editor_setting:{
-                        height: 500,
-                        menubar: false,                        
-                          plugins: [
-                                    'advlist', 'autolink', 'link', 'image', 'lists', 'charmap', 'preview', 'anchor', 'pagebreak',
-                                    'searchreplace', 'wordcount', 'visualblocks', 'code', 'fullscreen', 'insertdatetime', 'media',
-                                    'table', 'emoticons', 'template', 'help'
-                                ],
-                                toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | ' +
-                                    'bullist numlist outdent indent | link image | print preview media fullscreen | ' +
-                                    'forecolor backcolor emoticons | help',
-                                menu: {
-                                    favs: { title: 'My Favorites', items: 'code visualaid | searchreplace | emoticons' }
-                                },
-                                menubar: 'favs file edit view insert format tools table help',
-                                content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
-                    }
-      }),
-      watch: {
-        section1: function (val) {
-          this.page.content = JSON.stringify(this.full_page)
+          section1:{
+          heading_1:"ES Investicijos",
+          Image: "flag.jpg"
         },
-      },
+        section2:{
+          heading_1:"Įgyvendiname projektą „UAB Dvire“ elektroninės platformos kūrimas“",
+          paragraph_1:"Finansuojama iš Europos regioninės plėtros fondo, kaip Europos Sąjungos atsako į COVID-19 pandemiją priemonė",
+          paragraph_2_p1:"2022 m. sausio 28 d. LR ekonomikos ir inovacijų ministro įsakymu Nr. 4-160 projektui",
+          paragraph_2_p2:"„UAB „Dvire“ elektroninės platformos kūrimas“",
+          paragraph_2_p3:"skirtas 50 000,00 Eur finansavimas pagal priemonę „E-komercijos modelis COVID-19“. Uždarosios akcinės bendrovės „Dvire“ platinama DVIRE kortelė suteikia galimybę palankiausiomis rinkoje sąlygomis naudotis DVIRE iniciatyvos partnerių suslėgto metano (SGD) viešojo pildymo stočių tinklu didžiuosiuose Lietuvos miestuose – Vilniuje, Kaune, Klaipėdoje, Šiauliuose ir Panevėžyje. Bendrovės siekia kartu su metanu Lietuvos keliuose pradėti naudoti biometaną, vandenilį ir elektrą, išgaunamus iš saulės, vėjo ir perdirbtų atliekų, reikšmingai sumažinti CO2 emisijas.Projekto tikslas – informacinių technologijų verslo sandoriams valdyti elektroniniu būdu diegimas, siekiant padidinti pajamų augimą.",
+          paragraph_2_p4:"Siekiant numatytų tikslų UAB „Dvire“ planuoja įgyvendinti projektą, kurio metu bus sukurta elektroninė platforma bendrovės produktų pardavimui. Tokiu būdu klientai savarankiškai be kontakto su UAB „Dvire“ ir UAB „Dvire“ partnerių darbuotojais, galės naudotis paslaugomis, kurios šiuo metu nepasiekiamos internetinėje parduotuvėje. Įgyvendinus projektą tikimasi pritraukti naujų vartotojų, kas leis padidinti įmonės pardavimus ir pelningumą.",
+          paragraph_2_p5:"Projektas Nr. 13.1.1-LVPA-K-860-01-0575 „UAB „Dvire“ elektroninės platformos kūrimas“ finansuojamas iš Europos regioninės plėtros fondo, kaip Europos Sąjungos atsako į COVID-19 pandemiją priemonė.",
+          paragraph_2_p6:"Projekto įgyvendinimo trukmė: iki 2023 m. vasario 08 d.",
+        },
+      }),
       created() {
           this.page = this.PageData
-          if ("section1" in this.page.content) {
-            this.section1= this.page.content.section1      
-          }else{
-            this.section1= ""      
-          }      
-      },
-      computed:{
-        full_page:function(){
-          return {
-                    section1:this.section1,
+          console.log(this.page)
+          if (this.page.content != null) {
+            if ("section1" in this.page.content) {
+              this.section1= this.page.content.section1      
+              this.section2= this.page.content.section2      
+            }
           }
-        }
-      }
+      },
+      methods:{
+        update:function(){
+          this.page.content = JSON.stringify({
+                    section1:this.section1,
+                    section2:this.section2,
+          })
+          this.$emit('update')
+        },
+      },
       
     }
 </script>

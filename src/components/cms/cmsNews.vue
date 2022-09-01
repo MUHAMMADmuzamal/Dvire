@@ -20,9 +20,14 @@
                     hint=""
                   ></v-textarea>
                   <v-text-field
-                    v-model="section1.buttonText"
+                    v-model="section1.buttonText1"
                     counter
-                    label="Button Text"
+                    label="Button 1 Text"
+                  ></v-text-field>
+                  <v-text-field
+                    v-model="section1.buttonText2"
+                    counter
+                    label="Button 2 Text"
                   ></v-text-field>
                   <v-text-field
                     v-model="section1.Image"
@@ -35,10 +40,9 @@
 </template>
 
 <script>
-import { json_parse } from '@/mixins/helperFunction'
 import UpdateButton from '../updateButton/updateButton.vue'
     export default {
-      name:"CmsLanding",
+      name:"CmsNews",
       props:['PageData'],
       components:{
             'update-button':UpdateButton,
@@ -47,7 +51,8 @@ import UpdateButton from '../updateButton/updateButton.vue'
           section1:{
             heading_1:"Biometaną planuojama išgauti ir Lietuvoje – aplinkai draugiško kuro jėgainė kils prie Panevėžio",
             paragraph_1:"Kol kas visas Lietuvoje naudojamas biometanas yra importuojamas iš užsienio šalių tarptautinių sertifikatų keliu ir Lietuvoje negaminamas. Vis dėlto artimiausia",
-            buttonText: "Skaityti",
+            buttonText1: "Skaityti",
+            buttonText2: "Rodyti daugiau",
             Image: "factory.jpg"
         },
       }),

@@ -29,8 +29,12 @@
         <cms-home v-else-if="page_ids.LANDING_PAGE_ID == selected_page_id" :PageData="page"  v-on:update="update()"/>
         <cms-card v-else-if="page_ids.CARD_PAGE_ID == selected_page_id" :PageData="page" v-on:update="update()"/>
         <cms-news v-else-if="page_ids.NEWS_PAGE_ID == selected_page_id" :PageData="page" v-on:update="update()"/>
-        <!-- <cms-LegalEnvironment v-else-if="page_ids. == selected_page_id" :PageData="page"/> -->
-        <!-- <cms-LegalEnvironment v-else-if="page_ids. == selected_page_id" :PageData="page"/> -->
+        <cms-LegalEnvironment v-else-if="page_ids.LEGAL_ENVIRONMENT_PAGE_ID == selected_page_id" :PageData="page" v-on:update="update()"/>
+        <cms-EUInvestments v-else-if="page_ids.EU_INVESTMENTS_PAGE_ID == selected_page_id" :PageData="page" v-on:update="update()"/>
+        <cms-Signup v-else-if="page_ids.SIGNUP_PAGE_ID == selected_page_id" :PageData="page" v-on:update="update()"/>
+        <cms-Login v-else-if="page_ids.LOGIN_PAGE_ID == selected_page_id" :PageData="page" v-on:update="update()"/>
+        <cms-ForgetPassword v-else-if="page_ids.FORGET_PASSWORD_PAGE_ID == selected_page_id" :PageData="page" v-on:update="update()"/>
+        <cms-Footer v-else-if="page_ids.FOOTER_PAGE_ID == selected_page_id" :PageData="page" v-on:update="update()"/>
       </v-col>
     </v-row>
   </v-container>
@@ -49,6 +53,10 @@ import CmsCard from "../../components/cms/cmsCard.vue";
 import CmsNews from "../../components/cms/cmsNews.vue";
 import CmsLegalEnvironment from "../../components/cms/cmsLegalEnvironment.vue";
 import CmsEUInvestments from "../../components/cms/cmsEUInvestments.vue";
+import CmsSignup from "../../components/cms/cmsSignup.vue";
+import CmsLogin from "../../components/cms/cmsLogin.vue";
+import CmsForgetPassword from "../../components/cms/cmsForgetPassword.vue";
+import cmsFooter from "../../components/cms/cmsFooter.vue";
     export default {
         name:DASHBOARD.PAGES_NAMES.D_ABOUT_PAGE,
         components:{
@@ -60,6 +68,10 @@ import CmsEUInvestments from "../../components/cms/cmsEUInvestments.vue";
     "cms-news": CmsNews,
     "cms-LegalEnvironment": CmsLegalEnvironment,
     "cms-EUInvestments": CmsEUInvestments,
+    "cms-Signup": CmsSignup,
+    "cms-Login": CmsLogin,
+    "cms-ForgetPassword": CmsForgetPassword,
+    "cms-Footer": cmsFooter,
 },
       data: ()=>( {
         pages:[],

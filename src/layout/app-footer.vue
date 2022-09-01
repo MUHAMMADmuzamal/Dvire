@@ -1,39 +1,4 @@
 <template>
-  <!-- <v-footer
-    dark
-    padless
-  >
-  <v-container fluid :style="{ 'background-color': card_color , 'color':'white'}">
-    <v-container class="d-flex justify-center">
-      <v-row class="pt-5 pb-5 mb-5">
-        <v-col class="pb-5 pt-4">
-          <v-img :src="logo"/>
-          <br>
-          <a href="" style="color:white;">Privatumo politika</a>
-          <br>
-          <a href="" style="color:white;">Kita teisinė informacija</a>
-        </v-col>
-        <v-col class="pb-5 pt-4">
-          <h3 class="pb-5">Kontaktai</h3>
-          El. paštas: <a href="" style="color:white;">info@dvire.lt</a>
-          <br>
-          Tel. nr.: <a href="" style="color:white;">+370 (699) 01960</a>
-        </v-col>
-        <v-col class="pb-5 pt-4">
-          <h3 class="pb-5">Sekite mus</h3>
-          <br>
-          <a href="" class="mx-2"><img :src="fb_icon" alt="" srcset=""></a>
-          <a href="" class="mx-2"><img :src="linkedin_icon" alt="" srcset=""></a>
-        </v-col>
-      </v-row>
-    </v-container>
-      
-      <v-container  class="pb-4">
-        <hr>
-        <center>© Visos teisės saugomos UAB „Dvire”</center>
-      </v-container>
-  </v-container>
-  </v-footer> -->
   <v-footer
     dark
     padless
@@ -48,27 +13,27 @@
           class="mb-md-7"
           ></v-img>
           <br>
-          <a class="d-none d-md-flex" href="" style="color:white;">Privatumo politika</a>
+          <a class="d-none d-md-flex" href="" style="color:white;">{{section1.anchor_tag_1}}</a>
           <br>
-          <a class="d-none d-md-flex" href="" style="color:white;">Kita teisinė informacija</a>
+          <a class="d-none d-md-flex" href="" style="color:white;">{{section1.anchor_tag_2}}</a>
         </v-col>
         <v-col class=" pa-7">
-          <h1 class="mb-md-10">Kontaktai</h1>
-          El. paštas: <a href="" style="color:white;">info@dvire.lt</a>
+          <h1 class="mb-md-10">{{section1.heading_1}}</h1>
+          {{section1.before_anchor_tag_1}} <a href="" style="color:white;">{{section1.inside_anchor_tag_1}}</a>
           <br> 
-          Tel. nr.: <a href="" style="color:white;">+370 (699) 01960</a>
+          {{section1.before_anchor_tag_2}} <a href="" style="color:white;">{{section1.inside_anchor_tag_2}}</a>
         </v-col>
         <v-col class=" pa-7">
-          <h1 class="mb-md-5">Sekite mus</h1>
+          <h1 class="mb-md-5">{{section1.heading_2}}</h1>
           <br>
           <a href="" class="mx-2"><img :src="linkedin_icon" alt="" srcset=""></a>
           <a href="" class="mx-2"><img :src="fb_icon" alt="" srcset=""></a>
   <!-- -----------mobile view-------------------------------------------------------------- -->
                 <v-row class="d-md-none">
                   <v-col class="py-12">
-                    <a class="" href="" style="color:white;">Privatumo politika</a>
+                    <a class="" href="" style="color:white;">{{section1.anchor_tag_1}}</a>
                     <br>
-                    <a class="" href="" style="color:white;">Kita teisinė informacija</a>
+                    <a class="" href="" style="color:white;">{{section1.anchor_tag_2}}</a>
                   
                   </v-col>
                 </v-row>
@@ -85,13 +50,15 @@
       
       <v-container >
         <hr> 
-        <center  class="pt-6">© Visos teisės saugomos UAB „Dvire”</center>
+        <center  class="pt-6">{{section1.copy_write}}</center>
       </v-container>
   </v-container>
   </v-footer>
 </template>
 <script>
-import {COLORS, IMAGES } from "../../config";
+import { APP_SETTINGS,PAGES_IDS,COLORS, IMAGES} from "../../config";
+import PagesApiService from '../mixins/services/pages-api-service'
+import {json_parse} from '../mixins/helperFunction'
 export default {
     name:'Footer',
 
@@ -105,7 +72,27 @@ export default {
       card_color: COLORS.SECTION_3_COLOR,
       logo: IMAGES.COMPANY_LOGO_WHITE,
       fb_icon: IMAGES.FB_ICON,
-      linkedin_icon: IMAGES.LINKEDIN_ICON
+      linkedin_icon: IMAGES.LINKEDIN_ICON,
+      title:"",
+      section1:"",
+      pagesApi: new PagesApiService($cookies.get('user').auth.token),
   }),
+  created () {
+        this.initialize()
+    },
+  methods:{
+        async initialize () {
+            const pages  = await this.pagesApi.getPages(APP_SETTINGS.API_PATH.PAGES.ALL_PAGES+'/'+PAGES_IDS.FOOTER_PAGE_ID)
+            this.title= pages.data.title
+            const content = json_parse(pages.data.content)
+            
+            if (content != null) {
+              if ('section1' in content) {
+                  this.section1= content.section1
+              }  
+            }
+            console.log(content)
+      },
+  }
 };
 </script>
