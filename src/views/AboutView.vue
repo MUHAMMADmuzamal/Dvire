@@ -18,7 +18,7 @@ export default {
             title:'',
             content:''
         },
-    aboutApi:  new  PagesApiService($cookies.get('user').auth.token),
+    aboutApi:  new  PagesApiService(),
   }),
     created () {
       this.initialize()

@@ -322,7 +322,7 @@ export default {
     name: PAGES_NAMES.CARD_PAGE,
 
   data: () => ({
-    pagesApi: new PagesApiService($cookies.get('user').auth.token),
+    pagesApi: new PagesApiService(),
     title:"",
     section1:"",
     section2:"",

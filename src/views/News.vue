@@ -138,7 +138,7 @@ export default {
     'generic-button':GenericButton,
   },
   data: () => ({
-    pagesApi: new PagesApiService($cookies.get('user').auth.token),
+    pagesApi: new PagesApiService(),
     title:"",
     section1:"",
   }),

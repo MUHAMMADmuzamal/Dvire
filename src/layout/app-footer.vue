@@ -75,7 +75,7 @@ export default {
       linkedin_icon: IMAGES.LINKEDIN_ICON,
       title:"",
       section1:"",
-      pagesApi: new PagesApiService($cookies.get('user').auth.token),
+      pagesApi: new PagesApiService(),
   }),
   created () {
         this.initialize()

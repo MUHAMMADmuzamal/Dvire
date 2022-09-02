@@ -52,7 +52,7 @@ export default {
     name:PAGES_NAMES.LEGAL_ENVIRONMENT_WITHOUT_SPACE_PAGE,
 
   data: () => ({
-    pagesApi: new PagesApiService($cookies.get('user').auth.token),
+    pagesApi: new PagesApiService(),
     title:"",
     section1:"",
     section2:"",

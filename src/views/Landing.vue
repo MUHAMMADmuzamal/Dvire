@@ -31,7 +31,7 @@ export default {
   data: () => ({
     logo: IMAGES.COMPANY_LOGO,
     card_color: COLORS.MAIN_COLOR_1,
-    pagesApi: new PagesApiService($cookies.get('user').auth.token),
+    pagesApi: new PagesApiService(),
     title:"",
     pageContent:{},
   }),

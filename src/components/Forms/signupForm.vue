@@ -214,7 +214,7 @@
       ValidationObserver,
     },
     data: () => ({
-      pagesApi: new PagesApiService($cookies.get('user').auth.token),
+      pagesApi: new PagesApiService(),
       name:'',
       address:'',
       surname:'',

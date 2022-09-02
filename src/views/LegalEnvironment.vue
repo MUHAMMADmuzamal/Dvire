@@ -169,7 +169,7 @@ export default {
     name:PAGES_NAMES.LEGAL_ENVIRONMENT_WITHOUT_SPACE_PAGE,
 
   data: () => ({
-    pagesApi: new PagesApiService($cookies.get('user').auth.token),
+    pagesApi: new PagesApiService(),
     title:"",
     section1:"",
     section2:"",
@@ -183,7 +183,7 @@ export default {
     },
   methods: {
         async initialize () {
-            const pages  = await this.pagesApi.getPages(APP_SETTINGS.API_PATH.PAGES.ALL_PAGES+'/'+PAGES_IDS.EU_INVESTMENTS_PAGE_ID)
+            const pages  = await this.pagesApi.getPages(APP_SETTINGS.API_PATH.PAGES.ALL_PAGES+'/'+PAGES_IDS.LEGAL_ENVIRONMENT_PAGE_ID)
             this.title= pages.data.title
             const content = json_parse(pages.data.content)
             
