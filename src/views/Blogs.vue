@@ -18,7 +18,7 @@ export default {
 
   data: () => ({
       posts:[],
-    postApi :  new  PostsApiService(),
+    postApi :  new  PostsApiService(),//$cookies.get('user').auth.token
   }),
     created () {
       this.initialize()

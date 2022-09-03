@@ -8,9 +8,9 @@
 <script>
 import PagesApiService from '../mixins/services/pages-api-service'
 import {PAGES_NAMES,APP_SETTINGS} from '../../config'
-const PATH = APP_SETTINGS.API_PATH.LAWS
+const PATH = APP_SETTINGS.API_PATH.CONSULTATION
 export default {
-    name:PAGES_NAMES.LAWS_PAGE,
+    name:PAGES_NAMES.CONSULTATION_ORDER_WITHOUT_SPACE_PAGE,
 
   data: () => ({
       pageData:{
@@ -25,7 +25,7 @@ export default {
     },
      methods: {
       async initialize () {
-         const res  = await this.pagesApi.getPages(PATH.Laws)
+         const res  = await this.pagesApi.getPages(PATH.Consultation_order)
         this.pageData=res.data
       },
      },

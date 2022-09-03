@@ -35,6 +35,17 @@
         <cms-Login v-else-if="page_ids.LOGIN_PAGE_ID == selected_page_id" :PageData="page" v-on:update="update()"/>
         <cms-ForgetPassword v-else-if="page_ids.FORGET_PASSWORD_PAGE_ID == selected_page_id" :PageData="page" v-on:update="update()"/>
         <cms-Footer v-else-if="page_ids.FOOTER_PAGE_ID == selected_page_id" :PageData="page" v-on:update="update()"/>
+        <cms-Blogs v-else-if="page_ids.BLOG_PAGE_ID == selected_page_id" :PageData="page" v-on:update="update()"/>
+        <cms-ConsultationDescriptionPage v-else-if="page_ids.CONSULTATION_DESCRIPTION_PAGE_ID == selected_page_id" :PageData="page" v-on:update="update()"/>
+        <cms-ConsultingOrders v-else-if="page_ids.CONSULTATION_ORDER_PAGE_ID == selected_page_id" :PageData="page" v-on:update="update()"/>
+        <cms-Contacts v-else-if="page_ids.CONTACTS_PAGE_ID == selected_page_id" :PageData="page" v-on:update="update()"/>
+        <cms-Dictionary v-else-if="page_ids.DICTIONARY_PAGE_ID == selected_page_id" :PageData="page" v-on:update="update()"/>
+        <cms-GasStationNetworkMap v-else-if="page_ids.GAS_STATION_NETWORK_MAP_PAGE_ID == selected_page_id" :PageData="page" v-on:update="update()"/>
+        <cms-Laws v-else-if="page_ids.LAWS_PAGE_ID == selected_page_id" :PageData="page" v-on:update="update()"/>
+        <cms-Props v-else-if="page_ids.PROPS_PAGE_ID == selected_page_id" :PageData="page" v-on:update="update()"/>
+        <cms-PurchaseOfFuelCard v-else-if="page_ids.PAYMENT_CARD_PAGE_ID == selected_page_id" :PageData="page" v-on:update="update()"/>
+        <cms-RequestForm v-else-if="page_ids.REQUEST_FORM_PAGE_ID == selected_page_id" :PageData="page" v-on:update="update()"/>
+        <cms-SelfService v-else-if="page_ids.SELF_SERVICE_PAGE_ID == selected_page_id" :PageData="page" v-on:update="update()"/>
       </v-col>
     </v-row>
   </v-container>
@@ -57,6 +68,17 @@ import CmsSignup from "../../components/cms/cmsSignup.vue";
 import CmsLogin from "../../components/cms/cmsLogin.vue";
 import CmsForgetPassword from "../../components/cms/cmsForgetPassword.vue";
 import cmsFooter from "../../components/cms/cmsFooter.vue";
+import cmsBlogs from "../../components/cms/cmsBlogs.vue";
+import cmsConsultationDescriptionPage from "../../components/cms/cmsConsultationDescriptionPage.vue";
+import cmsConsultingOrders from "../../components/cms/cmsConsultingOrders.vue";
+import cmsContacts from "../../components/cms/cmsContacts.vue";
+import cmsDictionary from "../../components/cms/cmsDictionary.vue";
+import cmsGasStationNetworkMap from "../../components/cms/cmsGasStationNetworkMap.vue";
+import cmsLaws from "../../components/cms/cmsLaws.vue";
+import cmsProps from "../../components/cms/cmsProps.vue";
+import cmsPurchaseOfFuelCard from "../../components/cms/cmsPurchaseOfFuelCard.vue";
+import cmsRequestForm from "../../components/cms/cmsRequestForm.vue";
+import cmsSelfService from "../../components/cms/cmsSelfService.vue";
     export default {
         name:DASHBOARD.PAGES_NAMES.D_ABOUT_PAGE,
         components:{
@@ -72,6 +94,17 @@ import cmsFooter from "../../components/cms/cmsFooter.vue";
     "cms-Login": CmsLogin,
     "cms-ForgetPassword": CmsForgetPassword,
     "cms-Footer": cmsFooter,
+    "cms-Blogs": cmsBlogs,
+    "cms-ConsultationDescriptionPage": cmsConsultationDescriptionPage,
+    "cms-ConsultingOrders": cmsConsultingOrders,
+    "cms-Contacts": cmsContacts,
+    "cms-Dictionary": cmsDictionary,
+    "cms-GasStationNetworkMap": cmsGasStationNetworkMap,
+    "cms-Laws": cmsLaws,
+    "cms-Props": cmsProps,
+    "cms-PurchaseOfFuelCard": cmsPurchaseOfFuelCard,
+    "cms-RequestForm": cmsRequestForm,
+    "cms-SelfService": cmsSelfService,
 },
       data: ()=>( {
         pages:[],

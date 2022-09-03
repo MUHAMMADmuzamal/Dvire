@@ -41,7 +41,21 @@
   <!-- ------------------------------------------------------------------------- -->
   <v-container>
     <v-row class=" mt-n16 ">
-      <div class="col-sm-6 col-md-4">
+      <div 
+      class="col-sm-6 col-md-4"
+      v-for="ns in news"
+      >
+        <div elevation class="pa-4 box_shadow">
+          <v-img 
+          height=""
+          aspect-ratio="1.5"
+          contain
+          src="../assets/images/DNR.jpg"></v-img>
+          <h2>{{ns.title}}</h2>
+          <p>{{ns.short_description}}</p>
+        </div>
+      </div>
+      <!-- <div class="col-sm-6 col-md-4">
         <div elevation class="pa-4 box_shadow">
           <v-img 
           height=""
@@ -78,7 +92,6 @@
     </v-row>
   </v-container>
 
-  <!-- ----------------------------------------------------- -->
   <v-container>
     <v-row class=" ">
       <div class="col-sm-6 col-md-4"> 
@@ -115,7 +128,7 @@
           <h2>Biometano ir vandenilio gamintojus</h2>
           <p>Konsultuojame, kaip lengvai prisitaikyti prie naujų aplinkosaugos reikalavimų. Konsultuojame, kaip lengvai prisitaikyti prie naujų aplinkosaugos …</p>
         </div>
-      </div>
+      </div> -->
     </v-row>
 
     <v-row>
@@ -128,8 +141,9 @@
 </div>
 </template>
 <script>
-import { PAGES_NAMES,COLORS,APP_SETTINGS,PAGES_IDS} from "../../config";
+import { PAGES_NAMES,APP_SETTINGS,PAGES_IDS} from "../../config";
 import PagesApiService from '../mixins/services/pages-api-service'
+import NewsApiService from '../mixins/services/news-api-service'
 import {json_parse} from '../mixins/helperFunction'
 import GenericButton from '../components/GenericButton/GenericButton.vue'
 export default {
@@ -139,6 +153,8 @@ export default {
   },
   data: () => ({
     pagesApi: new PagesApiService(),
+    newsAPi: new NewsApiService(),//$cookies.get('user').auth.token
+    news:[],
     title:"",
     section1:"",
   }),
@@ -156,7 +172,9 @@ export default {
                   this.section1= content.section1
               }  
             }
-            console.log(content)
+            const res_news  = await this.newsAPi.getAllNews(APP_SETTINGS.API_PATH.NEWS.News)
+            this.news = res_news.data
+            console.log(this.news)
       },
 
      },

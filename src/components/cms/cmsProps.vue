@@ -35,7 +35,7 @@ import Editor from '@tinymce/tinymce-vue'
 import {API_KEY} from '../../../config'
 import UpdateButton from '../updateButton/updateButton.vue'
     export default {
-      name:"CmsAbout",
+      name:"CmsProps",
       props:['PageData'],
       components:{
             'editor': Editor,
