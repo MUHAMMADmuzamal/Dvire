@@ -238,7 +238,7 @@ const NOTIFCATIONS={
   LOGIN:{
     SUCCESS:"Login Successfully."
   },
-  LOGIN:{
+  LOGIN_OUT:{
     SUCCESS:"Logout Successfully."
   },
   PAGES:{
