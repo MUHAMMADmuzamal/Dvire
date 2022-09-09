@@ -12,11 +12,12 @@
         counter
         label="Heading 1"
       ></v-text-field>
-      <v-text-field
+      <!-- <v-text-field
         v-model="section1.image"
         counter
         label="Image full name with extension"
-      ></v-text-field>
+      ></v-text-field> -->
+      <upload-button v-on:uploaded="uploaded($event)" :saved_images="section1.Image" :select_multiple_images="select_multiple_images" update_to="s1.1" />
     <h1>Section: 2</h1>
       <v-text-field
         v-model="section2.heading_1"
@@ -72,16 +73,19 @@
 
 <script>
 import UpdateButton from '../updateButton/updateButton.vue'
+import UploadImages from '../uploadImages/uploadimages.vue'
     export default {
       name:"CmsEUinvestments",
       props:['PageData'],
       components:{
             'update-button':UpdateButton,
+            'upload-button':UploadImages,
         },
       data: ()=>( {
+          select_multiple_images:false,
           section1:{
           heading_1:"ES Investicijos",
-          Image: "flag.jpg"
+          Image: []
         },
         section2:{
           heading_1:"Įgyvendiname projektą „UAB Dvire“ elektroninės platformos kūrimas“",
@@ -106,12 +110,28 @@ import UpdateButton from '../updateButton/updateButton.vue'
       },
       methods:{
         update:function(){
-          this.page.content = JSON.stringify({
+          this.stringify()
+          this.$emit('update')
+        },
+             uploaded:function (param) {
+          const update_to = param.update_to
+          let params = param.urls
+          switch (update_to) {
+            case 's1.1':
+              this.section1.Image = params
+              break;
+          
+            default:
+              break;
+          }
+          this.stringify()
+        },
+        stringify(){
+                    this.page.content = JSON.stringify({
                     section1:this.section1,
                     section2:this.section2,
           })
-          this.$emit('update')
-        },
+        }
       },
       
     }

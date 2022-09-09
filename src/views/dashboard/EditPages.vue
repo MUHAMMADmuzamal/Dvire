@@ -112,6 +112,7 @@ import cmsSelfService from "../../components/cms/cmsSelfService.vue";
             id:'',
             content:'',
             title:'',
+            // images:[],
         },
         page_ids :PAGES_IDS,
         selected_page_id:0,
@@ -130,6 +131,7 @@ import cmsSelfService from "../../components/cms/cmsSelfService.vue";
             const pg = this.get_page_from_array(value)
             this.page.title = pg[0].title
             this.page.content =  json_parse(pg[0].content);
+            // this.page.images =  json_parse(pg[0].images);
             this.page.id = pg[0].id
             this.selected_page_id = pg[0].id
 
@@ -145,7 +147,7 @@ import cmsSelfService from "../../components/cms/cmsSelfService.vue";
         async update () {
             // const index =  this.pages.findIndex(item => item.id === this.page.id);
             // console.log("in parent",data.page_data,data.path)
-            console.log(this.page.content)
+            console.log(this.page)
             const res  = await this.pagesApi.updatePageData(APP_SETTINGS.API_PATH.PAGES.ALL_PAGES,this.page)
             if (res.status == 200) {
                 this.$toast.success(NOTIFCATIONS.PAGES.UPDATE)
@@ -161,8 +163,10 @@ import cmsSelfService from "../../components/cms/cmsSelfService.vue";
                         if(a.id==value)
                         {return a}
                         });
-      },
-
-     },
+                      },
+                  },
+      uploaded:function (params) {
+          this.page.images = params;
+        }
     }
 </script>

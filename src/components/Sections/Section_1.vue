@@ -1,5 +1,6 @@
 <template>
   <v-container fluid :style="{ 'background-color': card_color }">
+  <!-- {{data.Image[0].image_url}} -->
     <v-container>
       <v-row  >
         <v-col md="6" class=" d-flex  align-center">
@@ -20,7 +21,7 @@
       
         <v-row class="d-flex align-start mt-lg-n16">
           <v-col>
-            <v-btn
+            <!-- <v-btn
                 elevation="0"
                 x-large                
                 tile
@@ -29,7 +30,8 @@
                 color="#25ACAB"
               >
                 {{data.buttonText}}
-              </v-btn>
+              </v-btn> -->
+              <generic-button :text="data.buttonText" cls="btn1 col-md-4 col-lg-4"/>
           </v-col>
         </v-row>
 
@@ -55,8 +57,12 @@
 </template>
 <script>
 import {COLORS, IMAGES } from "../../../config";
+import GenericButton from '../GenericButton/GenericButton.vue'
 export default {
   name: "Section_1",
+    components:{
+    'generic-button':GenericButton,
+  },
   props: {
     data:{
         text: String,
@@ -69,6 +75,10 @@ export default {
       og_image: IMAGES.OG_IMAGE,
       
   }),
+  updated(){
+      this.og_image = this.data.Image[0].image_url
+
+  }
 };
 </script>
 

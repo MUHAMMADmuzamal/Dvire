@@ -5,6 +5,7 @@ import Card from "../views/Card.vue";
 import Dictionary from "../views/Dictionary";
 import Laws from "../views/Laws";
 import News from "../views/News";
+import NewsDetail from "../views/NewsDetail";
 import Blogs from "../views/Blogs";
 import About from "../views/AboutView.vue";
 import Login from "../views/Login.vue";
@@ -49,6 +50,12 @@ const routes = [
     path: PATH.NEWS_PAGE,
     name: PAGES_NAMES.NEWS_PAGE,
     component: News,
+    meta: { authorize: [] }, 
+  },
+  {
+    path: PATH.NEWS_DETAIL_PAGE,
+    name: PAGES_NAMES.NEWS_DETAIL_PAGE,
+    component: NewsDetail,
     meta: { authorize: [] }, 
   },
   {

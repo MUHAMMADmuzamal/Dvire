@@ -24,11 +24,12 @@
             counter
             hint=""
           ></v-textarea>
-          <v-text-field
+          <!-- <v-text-field
             v-model="section1.image"
             counter
             label="Image full name with extension"
-          ></v-text-field>
+          ></v-text-field> -->
+          <upload-button v-on:uploaded="uploaded($event)" :saved_images="section1.Image" :select_multiple_images="select_multiple_images" update_to="s1.1" />
     <h1>Section: 2</h1>
           <v-text-field
             v-model="section2.heading_1"
@@ -53,11 +54,12 @@
             label="Paragraph 3"
             hint=""
           ></v-textarea>
-          <v-text-field
+          <!-- <v-text-field
             v-model="section2.icon_1"
             counter
             label="Image  full name with extension"
-          ></v-text-field>
+          ></v-text-field> -->
+          <upload-button v-on:uploaded="uploaded($event)" :saved_images="section2.image_1" :select_multiple_images="select_multiple_images" update_to="s2.1" />
     <h1>Section: 3</h1>
           <v-text-field
             v-model="section3.heading_1"
@@ -82,23 +84,24 @@
             label="Paragraph 3"
             hint=""
           ></v-textarea>
-          <v-text-field
+          <!-- <v-text-field
             v-model="section3.image"
             counter
             label="Image full name with extension"
-          ></v-text-field>
-
+          ></v-text-field> -->
     <h1>Section: 4</h1>
        <v-text-field
             v-model="section4.heading_1"
             counter
             label="Heading 1"
         ></v-text-field>
-         <v-text-field
+         <!-- <v-text-field
             v-model="section4.image"
             counter
             label="Image full name with extension"
-          ></v-text-field>
+          ></v-text-field> -->
+        <!-- <upload-button v-on:uploaded="uploaded($event)" :saved_images="section4.image" :select_multiple_images="select_multiple_images" update_to="s4.1" /> -->
+
     <h1>Section: 5</h1>
           <v-text-field
             v-model="section5.heading_1"
@@ -136,11 +139,12 @@
             counter
             label="Button text"
           ></v-text-field>
-          <v-text-field
+          <!-- <v-text-field
             v-model="section5.image"
             counter
             label="Image full name with extension"
-          ></v-text-field>
+          ></v-text-field> -->
+          <upload-button v-on:uploaded="uploaded($event)" :saved_images="section5.image" :select_multiple_images="select_multiple_images" update_to="s5.1" />
     <h1>Section: 6</h1>
           <v-text-field
             v-model="section6.heading_1"
@@ -154,25 +158,28 @@
 
 <script>
 import UpdateButton from '../updateButton/updateButton.vue'
+import UploadImages from '../uploadImages/uploadimages.vue'
     export default {
       name:"CmsLanding",
       props:['PageData'],
       components:{
             'update-button':UpdateButton,
+            'upload-button':UploadImages,
         },
       data: ()=>( {
+        select_multiple_images:false,
         section1:{
           heading_1:"Degalų pildymo",
           heading_1_text_after_br_tag: "kortelė",
           paragraph_1:"DVIRE siekia kartu su metanu Lietuvos keliuose pradėti naudoti biometaną, vandenilį ir elektrą, išgaunamus iš saulės, vėjo ir perdirbtų atliekų, reikšmingai sumažinti CO2 emisijas.",
-          Image: "dvire_card.svg"
+          Image: []
         },
         section2:{
           heading_1:"Dvire kortelė",
           paragraph_1:"Degalų pildymo kortelė išduodama įmonėms, įsigijusioms metano dujomis varomus automobilius iš gamintojų, dalyvaujančių alternatyviųjų degalų Lietuvoje skatinimo iniciatyvoje DVIRE.",
           paragraph_2:"DVIRE kortelė suteikia galimybę palankiausiomis rinkoje sąlygomis naudotis DVIRE iniciatyvos partnerių suslėgto metano (SGD) viešojo pildymo stočių tinklu didžiuosiuose Lietuvos miestuose - Vilniuje, Kaune, Klaipėdoje, Šiauliuose ir Panevėžyje.",
           paragraph_3:"DVIRE kortelę išduoda ir administruoja iniciatyvą koordinuojantis startuolis UAB „Dvire“.",
-          image_1:"truck.svg",
+          image_1:[],
         },
         section3:{
           heading_1:"Kaip naudotis kortele?",
@@ -182,7 +189,7 @@ import UpdateButton from '../updateButton/updateButton.vue'
         },
         section4:{
           heading_1:"Metano pildymo stotys",
-          image:"map.svg"
+          // image:[]
           },
 
         section5:{
@@ -193,7 +200,7 @@ import UpdateButton from '../updateButton/updateButton.vue'
           form_field_4:"El. paštas",
           checkbox:"Pažymėdamas patvirtinu, kad perskaičiau ir sutinku su Privatumo politika",
           buttonText:"Siųsti",
-          image:"single_card.svg"
+          image:[]
         },
         section6:{
           heading_1:"Naujienos",
@@ -216,7 +223,33 @@ import UpdateButton from '../updateButton/updateButton.vue'
       },
       methods:{
         update:function(){
-          this.page.content = JSON.stringify({
+          this.stringify()
+          this.$emit('update')
+        },
+        uploaded:function (param) {
+          const update_to = param.update_to
+          let params = param.urls
+          switch (update_to) {
+            case 's1.1':
+              this.section1.Image = params
+              break;
+            case 's2.1':
+              this.section2.image_1 = params
+              break;
+            // case 's4.1':
+            //   this.section4.image = params
+            //   break;
+            case 's5.1':
+              this.section5.image = params
+              break;
+          
+            default:
+              break;
+          }
+          this.stringify()
+        },
+        stringify(){
+                    this.page.content = JSON.stringify({
                     section1:this.section1,
                     section2:this.section2,
                     section3:this.section3,
@@ -224,8 +257,7 @@ import UpdateButton from '../updateButton/updateButton.vue'
                     section5:this.section5,
                     section6:this.section6,
           })
-          this.$emit('update')
-        },
+        }
       },
     }
 </script>

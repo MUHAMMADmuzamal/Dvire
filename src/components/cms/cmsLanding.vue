@@ -34,11 +34,12 @@
                     counter
                     label="Button Text"
                   ></v-text-field>
-                  <v-text-field
+                  <!-- <v-text-field
                     v-model="section1.image"
                     counter
                     label="Image full name with extension"
-                  ></v-text-field>
+                  ></v-text-field> -->
+                  <upload-button v-on:uploaded="uploaded($event)" :saved_images="section1.Image" :select_multiple_images="select_multiple_images" update_to="s1.1" />
             <h1>Section: 2</h1>
                   <v-text-field
                     v-model="section2.heading_1"
@@ -51,7 +52,10 @@
                     label="Paragraph 1"
                     hint=""
                   ></v-textarea>
-                  <v-text-field
+                  <upload-button v-on:uploaded="uploaded($event)" :saved_images="section2.icon_1" :select_multiple_images="select_multiple_images" update_to="s2.1" />
+                  <upload-button v-on:uploaded="uploaded($event)" :saved_images="section2.icon_2" :select_multiple_images="select_multiple_images" update_to="s2.2" />
+                  <upload-button v-on:uploaded="uploaded($event)" :saved_images="section2.icon_3" :select_multiple_images="select_multiple_images" update_to="s2.3" />
+                  <!-- <v-text-field
                     v-model="section2.icon_1"
                     counter
                     label="Icon full name with extension"
@@ -65,7 +69,7 @@
                     v-model="section2.icon_3"
                     counter
                     label="Icon full name with extension"
-                  ></v-text-field>
+                  ></v-text-field> -->
             <h1>Section: 3</h1>
                   <v-text-field
                     v-model="section3.heading_1"
@@ -100,11 +104,12 @@
                     label="Paragraph 3"
                     hint=""
                   ></v-textarea>
-                  <v-text-field
+                  <upload-button v-on:uploaded="uploaded($event)" :saved_images="section3.image" :select_multiple_images="select_multiple_images" update_to="s3.1" />
+                  <!-- <v-text-field
                     v-model="section3.image"
                     counter
                     label="Image full name with extension"
-                  ></v-text-field>
+                  ></v-text-field> -->
 
             <h1>Section: 4</h1>
                  <v-text-field
@@ -190,7 +195,9 @@
                     label="Paragraph 1"
                     hint=""
                   ></v-textarea>
-                  <v-text-field
+                  <upload-button v-on:uploaded="uploaded($event)" :saved_images="section5.image_1" :select_multiple_images="select_multiple_images" update_to="s5.1" />
+                  <upload-button v-on:uploaded="uploaded($event)" :saved_images="section5.slider_images"  update_to="s5.2" />
+                  <!-- <v-text-field
                     v-model="section5.slider_images"
                     counter
                     label="Image full name with extension and all images are coma separated"
@@ -199,7 +206,7 @@
                     v-model="section5.image_1"
                     counter
                     label="Image full name with extension"
-                  ></v-text-field>
+                  ></v-text-field> -->
           </div>
           <update-button v-on:update="update()"/>
         </v-container> 
@@ -207,27 +214,30 @@
 
 <script>
 import UpdateButton from '../updateButton/updateButton.vue'
+import UploadImages from '../uploadImages/uploadimages.vue'
     export default {
       name:"CmsLanding",
       props:['PageData'],
       components:{
             'update-button':UpdateButton,
+            'upload-button':UploadImages,
         },
       data: ()=>( {
+        select_multiple_images:false,
         section1:{
           heading_1:"Važiuokime",
           heading_1_after_span_tag:"nei iki šiol.",
           heading_1_text_inside_span_tag: "kitaip",
           paragraph_1:"Degalai iš perdirbamų atliekų, saulės ir vėjo – toksturėtų būti mūsų pasirinkimas.",
           buttonText: "Nuolaidų kortelė",
-          Image: "og_image.svg"
+          Image: []
         },
         section2:{
           heading_1:"Degalai",
           paragraph_1:"Degalai iš perdirbamų atliekų, saulės ir vėjo – toks turėtų būti mūsų pasirinkimas, kad sumažintume CO2 emisijas ir sukurtume klimatui neutralią ekonomiką.",
-          icon_1:"leaf.svg",
-          icon_2:"gas.svg",
-          icon_3:"flash.svg",
+          icon_1:[],
+          icon_2:[],
+          icon_3:[],
         },
         section3:{
           heading_1:"Kodėl mes?",
@@ -236,7 +246,7 @@ import UpdateButton from '../updateButton/updateButton.vue'
           heading_3:"Tikslai",
           paragraph_2:"Pagreitinti alternatyvių atsinaujinančių degalų - biometano, vandenilio, naudojamų kartu su elektra - naudojimą transporte.Padėti degalų vartotojams ir degalų tiekėjams smarkiai sumažinti CO2 emisiją.",
           paragraph_3:"Padėti degalų vartotojams ir degalų tiekėjams smarkiai sumažinti CO2 emisiją.",
-          image:"gas_station_icon_image.svg"
+          image:[],
         },
         section4:{
           mainHeading:"Konsultuojame",
@@ -256,8 +266,8 @@ import UpdateButton from '../updateButton/updateButton.vue'
         section5:{
           heading_1:"Prisijunk prie šios garbingos grupės",
           paragraph_1:"Įmonės, kurios metė iššūkį teršiems degalams ir kurios prisideda prie CO2 emisijos sumažinimo:",
-          slider_images:['slider_images.svg'],
-          image_1:"gas_station.svg",
+          slider_images:[],
+          image_1:[],
         },
       }),
       created() {
@@ -274,16 +284,52 @@ import UpdateButton from '../updateButton/updateButton.vue'
       },
       methods:{
         update:function(){
-          this.page.content = JSON.stringify({
+          this.stringify()
+          this.$emit('update')
+        },
+        uploaded:function (param) {
+          const update_to = param.update_to
+          let params = param.urls
+          switch (update_to) {
+            case 's1.1':
+              this.section1.Image = params
+              break;
+            case 's2.1':
+              this.section2.icon_1 = params
+              break;
+            case 's2.2':
+              this.section2.icon_2 = params
+              break;
+            case 's2.3':
+              this.section2.icon_3 = params
+              break;
+            case 's3.1':
+              this.section3.image = params
+              break;
+            case 's5.1':
+              this.section5.image_1 = params
+              break;
+            case 's5.2':
+
+              this.section5.slider_images = params
+              break;
+          
+            default:
+              break;
+          }
+        this.stringify()
+          // console.log("in landing page",this.page.content)
+        },
+                stringify(){
+                    this.page.content = JSON.stringify({
                     section1:this.section1,
                     section2:this.section2,
                     section3:this.section3,
                     section4:this.section4,
                     section5:this.section5,
           })
-          this.$emit('update')
         }
-      }
-      
+      },  
+           
     }
 </script>

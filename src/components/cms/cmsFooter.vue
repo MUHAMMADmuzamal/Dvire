@@ -52,11 +52,12 @@
         counter
         label="Copy Write"
       ></v-text-field>
-      <v-text-field
+      <!-- <v-text-field
         v-model="section1.logo"
         counter
         label="Logo"
-      ></v-text-field>
+      ></v-text-field> -->
+      <upload-button v-on:uploaded="uploaded($event)" :saved_images="section1.logo" :select_multiple_images="select_multiple_images" update_to="s1.1" />
       <v-text-field
         v-model="section1.icon_1"
         counter
@@ -74,13 +75,16 @@
 
 <script>
 import UpdateButton from '../updateButton/updateButton.vue'
+import UploadImages from '../uploadImages/uploadimages.vue'
     export default {
       name:"CmsSignup",
       props:['PageData'],
       components:{
             'update-button':UpdateButton,
+            'upload-button':UploadImages,
         },
       data: ()=>( {
+          select_multiple_images:false,
           section1:{
               anchor_tag_1:'Privatumo politika',
               anchor_tag_2:'Kita teisinė informacija',
@@ -90,7 +94,7 @@ import UpdateButton from '../updateButton/updateButton.vue'
               before_anchor_tag_2:'Tel. nr.:',
               inside_anchor_tag_2:'+370 (699) 01960',
               heading_2:'Sekite mus',
-              logo:'logo_white.svg',
+              logo:[],
               icon_1:'mdi-facebook',
               icon_2:'mdi-linkedin',
               copy_write:'© Visos teisės saugomos UAB „Dvire”',
@@ -107,11 +111,28 @@ import UpdateButton from '../updateButton/updateButton.vue'
       },
       methods:{
         update:function(){
+          this.stringify()
+          this.$emit('update')
+        },
+        uploaded:function (param) {
+          
+          const update_to = param.update_to
+          let params = param.urls
+          switch (update_to) {
+            case 's1.1':
+              this.section1.logo = params
+              break;
+          
+            default:
+              break;
+          }
+          this.stringify()
+        },
+        stringify(){
           this.page.content = JSON.stringify({
                     section1:this.section1,
           })
-          this.$emit('update')
-        },
+        }
       },
       
     }

@@ -99,6 +99,10 @@ export default {
       gas_station_icon_image: IMAGES.GAS_STATION_ICON_IMAGE,
       
   }),
+      updated(){
+      this.gas_station_icon_image = this.data.image[0].image_url
+
+  }
 };
 </script>
 

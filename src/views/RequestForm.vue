@@ -8,6 +8,7 @@
 <script>
 import PagesApiService from '../mixins/services/pages-api-service'
 import {PAGES_NAMES,APP_SETTINGS} from '../../config'
+import { json_parse } from '@/mixins/helperFunction';
 const PATH = APP_SETTINGS.API_PATH.REQUEST_FORM
 export default {
     name:PAGES_NAMES.REQUEST_FORM_WITHOUT_SPACE_PAGE,
@@ -26,7 +27,9 @@ export default {
      methods: {
       async initialize () {
          const res  = await this.pagesApi.getPages(PATH.Request_form)
-        this.pageData=res.data
+        this.pageData.id=res.data.id
+        this.pageData.title=res.data.title
+        this.pageData.content=json_parse(res.data.content).section1
       },
      },
 };

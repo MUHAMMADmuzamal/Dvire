@@ -54,6 +54,12 @@ export default {
       leaf_image: IMAGES.LEAF,
       
   }),
+    updated(){
+      this.gas_image = this.data.icon_2[0].image_url
+      this.flash_image = this.data.icon_3[0].image_url
+      this.leaf_image = this.data.icon_1[0].image_url
+
+  }
 };
 </script>
 

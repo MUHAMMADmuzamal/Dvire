@@ -10,7 +10,8 @@
           </div>
         </v-col>
         <v-col md="6" class=" mb-n16">
-          <v-img  style="" src="../assets/images/dvire_card.svg"/>
+          <!-- <v-img  style="" src="../assets/images/dvire_card.svg"/> -->
+          <v-img  style="" :src="dvire_card"/>
         </v-col>
       </v-row>
       
@@ -52,7 +53,7 @@
               <v-img
               
               style="transform: translateX(12px);"
-              src="../assets/images/truck.svg"
+              :src="truck"
               ></v-img>
             </v-col>
           </v-row>
@@ -263,7 +264,7 @@
       <v-col md="6" class="py-16" >
         <v-img
         style="transform: translateX(28px);"
-        src="../assets/images/single_card.svg"
+        :src="single_card"
         
         ></v-img>
       </v-col>
@@ -318,6 +319,10 @@
 import { PAGES_NAMES,APP_SETTINGS,PAGES_IDS} from "../../config";
 import PagesApiService from '../mixins/services/pages-api-service'
 import {json_parse} from '../mixins/helperFunction'
+
+import turck from '../assets/images/truck.svg'
+import dvire_card from '../assets/images/dvire_card.svg'
+import single_card from '../assets/images/single_card.svg'
 export default {
     name: PAGES_NAMES.CARD_PAGE,
 
@@ -330,6 +335,9 @@ export default {
     section4:"",
     section5:"",
     section6:"",
+    dvire_card:dvire_card,
+    truck:turck,
+    single_card:single_card,
   }),
     created () {
         this.initialize()
@@ -348,12 +356,16 @@ export default {
                   this.section4= content.section4
                   this.section5= content.section5
                   this.section6= content.section6
+                  this.dvire_card = this.section1.Image[0].image_url
+                  this.truck = this.section2.image_1[0].image_url
+                  this.single_card = this.section5.image[0].image_url
               }  
             }
             console.log(content)
       },
 
      },
+
 };
 </script>
 <style scoped>

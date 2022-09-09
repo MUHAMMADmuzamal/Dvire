@@ -29,7 +29,7 @@
         <v-col md="6" class="d-none d-md-flex align-start">
           <v-img
           aspect-ratio="1.5"
-          src="../assets/images/factory.jpg"
+          :src="factory"
           ></v-img>
         </v-col>
       </v-row>
@@ -50,85 +50,11 @@
           height=""
           aspect-ratio="1.5"
           contain
-          src="../assets/images/DNR.jpg"></v-img>
+          :src="ns.thumbnail"></v-img>
           <h2>{{ns.title}}</h2>
           <p>{{ns.short_description}}</p>
         </div>
       </div>
-      <!-- <div class="col-sm-6 col-md-4">
-        <div elevation class="pa-4 box_shadow">
-          <v-img 
-          height=""
-          aspect-ratio="1.5"
-          contain
-          src="../assets/images/DNR.jpg"></v-img>
-          <h2>Biometano ir vandenilio gamintojus</h2>
-          <p>Konsultuojame, kaip lengvai prisitaikyti prie naujų aplinkosaugos reikalavimų. Konsultuojame, kaip lengvai prisitaikyti prie naujų aplinkosaugos …</p>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-4"> 
-        <div class="pa-4 box_shadow">
-          <v-img 
-          height=""
-          aspect-ratio="1.5"
-          contain
-          src="../assets/images/LRS.png"></v-img>
-          <h2>Biometano ir vandenilio gamintojus</h2>
-          <p>Konsultuojame, kaip lengvai prisitaikyti prie naujų aplinkosaugos reikalavimų. Konsultuojame, kaip lengvai prisitaikyti prie naujų aplinkosaugos …</p>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-4"> 
-        <div class="pa-4 box_shadow">
-          <v-img 
-          height=""
-          aspect-ratio="1.5"
-          contain
-          class=""
-          width=""  src="../assets/images/road_truck.jpg"></v-img>
-          <h2>Biometano ir vandenilio gamintojus</h2>
-          <p>Konsultuojame, kaip lengvai prisitaikyti prie naujų aplinkosaugos reikalavimų. Konsultuojame, kaip lengvai prisitaikyti prie naujų aplinkosaugos …</p>
-        </div>
-      </div>
-    </v-row>
-  </v-container>
-
-  <v-container>
-    <v-row class=" ">
-      <div class="col-sm-6 col-md-4"> 
-        <div elevation class="pa-4 box_shadow">
-          <v-img 
-          height=""
-          aspect-ratio="1.5"
-          contain
-          style="position: relative;"
-          src="../assets/images/dvire_tablet.png"></v-img>
-          <h2>Biometano ir vandenilio gamintojus</h2>
-          <p>Konsultuojame, kaip lengvai prisitaikyti prie naujų aplinkosaugos reikalavimų. Konsultuojame, kaip lengvai prisitaikyti prie naujų aplinkosaugos …</p>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-4">
-        <div class="pa-4 box_shadow">
-          <v-img 
-          height=""
-          aspect-ratio="1.5"
-          contain
-          src="../assets/images/jungle_truck.png"></v-img>
-          <h2>Biometano ir vandenilio gamintojus</h2>
-          <p>Konsultuojame, kaip lengvai prisitaikyti prie naujų aplinkosaugos reikalavimų. Konsultuojame, kaip lengvai prisitaikyti prie naujų aplinkosaugos …</p>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-4"> 
-        <div class="pa-4 box_shadow">
-          <v-img 
-          height=""
-          aspect-ratio="1.5"
-          contain
-          class=""
-          width=""  src="../assets/images/road_van.png"></v-img>
-          <h2>Biometano ir vandenilio gamintojus</h2>
-          <p>Konsultuojame, kaip lengvai prisitaikyti prie naujų aplinkosaugos reikalavimų. Konsultuojame, kaip lengvai prisitaikyti prie naujų aplinkosaugos …</p>
-        </div>
-      </div> -->
     </v-row>
 
     <v-row>
@@ -146,6 +72,7 @@ import PagesApiService from '../mixins/services/pages-api-service'
 import NewsApiService from '../mixins/services/news-api-service'
 import {json_parse} from '../mixins/helperFunction'
 import GenericButton from '../components/GenericButton/GenericButton.vue'
+import factory from '../assets/images/factory.jpg'
 export default {
     name: PAGES_NAMES.NEWS_PAGE,
   components:{
@@ -153,10 +80,11 @@ export default {
   },
   data: () => ({
     pagesApi: new PagesApiService(),
-    newsAPi: new NewsApiService(),//$cookies.get('user').auth.token
+    newsAPi: new NewsApiService($cookies.get('user').auth.token),//$cookies.get('user').auth.token
     news:[],
     title:"",
     section1:"",
+    factory:factory,
   }),
   created () {
         this.initialize()
@@ -170,11 +98,27 @@ export default {
             if (content != null) {
               if ('section1' in content) {
                   this.section1= content.section1
+                  this.factory = this.section1.Image[0].image_url
               }  
             }
             const res_news  = await this.newsAPi.getAllNews(APP_SETTINGS.API_PATH.NEWS.News)
-            this.news = res_news.data
-            console.log(this.news)
+            let n_arr=[]
+            res_news.data.forEach(element => {
+              let sh = json_parse(element.short_description)
+              let url = ''
+              try {
+                url = sh.thumbnail[0].image_url
+              } catch (error) {
+                url = ''
+              }
+              n_arr.push({
+                short_description:sh.short_description,
+                title:element.title,
+                thumbnail:url
+              })
+            });
+            console.log(res_news.data)
+            this.news = n_arr
       },
 
      },

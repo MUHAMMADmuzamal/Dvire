@@ -7,7 +7,7 @@
         <v-col class="col-md-10 col-xs-12 mb-n6" >
               
               <br>
-              <v-img style="" src="../assets/images/flag.jpg"></v-img>
+              <v-img style="" :src="flag_image"></v-img>
 
         </v-col>
       </v-row>
@@ -48,6 +48,7 @@
 import { PAGES_NAMES,APP_SETTINGS,PAGES_IDS} from "../../config";
 import PagesApiService from '../mixins/services/pages-api-service'
 import {json_parse} from '../mixins/helperFunction'
+import flag_image from '../assets/images/flag.jpg'
 export default {
     name:PAGES_NAMES.LEGAL_ENVIRONMENT_WITHOUT_SPACE_PAGE,
 
@@ -56,10 +57,7 @@ export default {
     title:"",
     section1:"",
     section2:"",
-    section3:"",
-    section4:"",
-    section5:"",
-    section6:"",
+    flag_image: flag_image,
   }),
   created () {
         this.initialize()
@@ -74,10 +72,7 @@ export default {
               if ('section1' in content) {
                   this.section1= content.section1
                   this.section2= content.section2
-                  this.section3= content.section3
-                  this.section4= content.section4
-                  this.section5= content.section5
-                  this.section6= content.section6
+                  this.flag_image = this.section1.Image[0].image_url
               }  
             }
             console.log(content)

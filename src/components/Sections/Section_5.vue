@@ -26,6 +26,7 @@
   </v-container>
 </template>
 <script>
+import { image } from "vee-validate/dist/rules";
 import {COLORS, IMAGES } from "../../../config";
 export default {
   name: "Section_4",
@@ -43,11 +44,25 @@ export default {
       flash_image: IMAGES.FLASH,
       leaf_image: IMAGES.LEAF,
       backgourd_image_url: IMAGES.CLOUD,
-      gas_station_icon_image: IMAGES.GAS_STATION_ICON_IMAGE,
       gas_station_image: IMAGES.GAS_STATION_IMAGE,
       items: IMAGES.SLIDER_IMAGES,
+      run:true
       
   }),
+    updated(){
+      if(this.run){
+      const arr = []
+      // this.items = this.data.slider_images
+      console.log(this.data.slider_images)
+      for (let index = 0; index < this.data.slider_images.length; index++) {
+        arr.push({src:this.data.slider_images[index].image_url})
+        
+      }
+      this.items = arr
+      this.gas_station_image = this.data.image_1[0].image_url
+      }
+    this.run=false
+  }
 };
 </script>
 

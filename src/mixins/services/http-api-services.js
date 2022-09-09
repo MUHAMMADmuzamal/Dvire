@@ -18,9 +18,11 @@ class HttpApiService {
 		if (this.isEmpty(this._token)) {
 			headers = {
 				Accept: 'application/json',
+				'Access-Control-Allow-Origin' : '*',
 			};
 		} else {
 			headers = {
+				'Access-Control-Allow-Origin' : '*',
 				Accept: 'application/json',
 				Authorization: `Bearer ${this._token}`,
 			};

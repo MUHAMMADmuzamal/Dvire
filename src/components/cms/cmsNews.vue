@@ -29,11 +29,12 @@
                     counter
                     label="Button 2 Text"
                   ></v-text-field>
-                  <v-text-field
+                  <!-- <v-text-field
                     v-model="section1.Image"
                     counter
                     label="Image full name with extension"
-                  ></v-text-field>
+                  ></v-text-field> -->
+                  <upload-button v-on:uploaded="uploaded($event)" :saved_images="section1.Image" :select_multiple_images="select_multiple_images" update_to="s1.1" />
           </div>
           <update-button v-on:update="update()"/>
         </v-container>
@@ -41,19 +42,22 @@
 
 <script>
 import UpdateButton from '../updateButton/updateButton.vue'
+import UploadImages from '../uploadImages/uploadimages.vue'
     export default {
       name:"CmsNews",
       props:['PageData'],
       components:{
             'update-button':UpdateButton,
+            'upload-button':UploadImages,
         },
       data: ()=>( {
+          select_multiple_images:false,
           section1:{
             heading_1:"Biometaną planuojama išgauti ir Lietuvoje – aplinkai draugiško kuro jėgainė kils prie Panevėžio",
             paragraph_1:"Kol kas visas Lietuvoje naudojamas biometanas yra importuojamas iš užsienio šalių tarptautinių sertifikatų keliu ir Lietuvoje negaminamas. Vis dėlto artimiausia",
             buttonText1: "Skaityti",
             buttonText2: "Rodyti daugiau",
-            Image: "factory.jpg"
+            Image: []
         },
       }),
       created() {
@@ -66,10 +70,26 @@ import UpdateButton from '../updateButton/updateButton.vue'
       },
       methods:{
         update:function(){
+          this.stringify()
+          this.$emit('update')
+        },
+         uploaded:function (param) {
+          const update_to = param.update_to
+          let params = param.urls
+          switch (update_to) {
+            case 's1.1':
+              this.section1.Image = params
+              break;
+          
+            default:
+              break;
+          }
+          this.stringify()
+        },
+        stringify(){
           this.page.content = JSON.stringify({
                     section1:this.section1,
           })
-          this.$emit('update')
         }
       },
       

@@ -35,6 +35,7 @@ const PAGES_NAMES = {
     DICTIONARY_PAGE: "Dictionary",
     LAWS_PAGE: "Laws",
     NEWS_PAGE: "News",
+    NEWS_DETAIL_PAGE: "NewsDetail",
     BLOG_PAGE: "Blogs",
     LANG_PAGE : "LT | EN",
     LOGIN_PAGE : "Login",
@@ -96,6 +97,7 @@ const PATH = {
   DICTIONARY_PAGE: "/dictionary",
   LAWS_PAGE: "/laws",
   NEWS_PAGE: "/news",
+  NEWS_DETAIL_PAGE: "/news/:id",
   BLOG_PAGE: "/blogs",
   LANG_PAGE : "/lang",
   LOGIN_PAGE : "/login",
@@ -138,9 +140,9 @@ const DASHBOARD = {
     }
 };
 
-const baseUrl = "http://localhost:8000";
+// const baseUrl = "http://localhost:8000";
 // const baseUrl = "http://localhost:3000";
-// const baseUrl = "https://testing.fostermarketing.pk";
+const baseUrl = "https://testing.fostermarketing.pk";
 
 const APP_SETTINGS = {
   API_PATH: {
@@ -193,6 +195,9 @@ const APP_SETTINGS = {
     },
     NEWS:{
       News: baseUrl + '/api/news',
+    },
+    IMAGES:{
+      Images: baseUrl + '/api/image',
     }
   },
 };
@@ -238,6 +243,11 @@ const NOTIFCATIONS={
   },
   PAGES:{
     UPDATE:"Update Successfully."
+  },
+  IMAGES:{
+    UPDATE:"Images Update Successfully.",
+    DELETE:"Images Delete Successfully.",
+    ADD:"Images Added Successfully.",
   },
 }
 

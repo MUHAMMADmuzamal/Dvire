@@ -8,6 +8,7 @@
 <script>
 import PagesApiService from '../mixins/services/pages-api-service'
 import {PAGES_NAMES,APP_SETTINGS} from '../../config'
+import { json_parse } from '@/mixins/helperFunction';
 const PATH = APP_SETTINGS.API_PATH.ABOUT
 export default {
     name:PAGES_NAMES.ABOUT_PAGE,
@@ -26,7 +27,9 @@ export default {
      methods: {
       async initialize () {
          const res  = await this.aboutApi.getPages(PATH.About)
-        this.about=res.data
+        this.about.id=res.data.id
+        this.about.title=res.data.title
+        this.about.content=json_parse(res.data.content).section1
       },
      },
 };

@@ -1,11 +1,18 @@
 <template>
-    <button class="btn1" >{{text}}</button>
+    <button :class="cls" >{{text}}</button>
 </template>
 
 <script>
     export default {
       name:"GenericButton",
-      props:['text'],
+      props:{
+        text:{
+            default:"",
+        },
+        cls:{
+            default: 'btn1'
+        }
+      },
       data: ()=>( {
        
       }),
