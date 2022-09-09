@@ -146,7 +146,6 @@
                   this.section1= content.section1
               }  
             }
-            c
       },
     },
     created () {
