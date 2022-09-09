@@ -117,7 +117,7 @@
                   "password":this.password
                 }
                 const res = await account.userLogin(user);
-                // console.log(res)
+                console.log(res)
                 const cooke={
                   auth:{
                     token:res.data[0]
@@ -146,7 +146,7 @@
                   this.section1= content.section1
               }  
             }
-            console.log(content)
+            c
       },
     },
     created () {
