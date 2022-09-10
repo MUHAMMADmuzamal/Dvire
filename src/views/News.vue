@@ -80,7 +80,7 @@ export default {
   },
   data: () => ({
     pagesApi: new PagesApiService(),
-    newsAPi: new NewsApiService($cookies.get('user').auth.token),//$cookies.get('user').auth.token
+    newsAPi: new NewsApiService(),//$cookies.get('user').auth.token
     news:[],
     title:"",
     section1:"",

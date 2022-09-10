@@ -10,7 +10,10 @@ import GAS_STATION_ICON_IMAGE from "./src/assets/images/gas_station_icon_image.s
 import GAS_STATION_IMAGE from "./src/assets/images/gas_station.svg";
 import LINKEDIN_ICON from "./src/assets/images/fb_icon.svg";
 import FB_ICON from "./src/assets/images/linkedin_icon.svg";
-import SLIDER_IMAGE from "./src/assets/images/slider_images.svg";
+import ivco from "./src/assets/images/iveco.svg";
+import sgdujos from "./src/assets/images/sgdujos.svg";
+import scania from "./src/assets/images/scania.svg";
+import cng from "./src/assets/images/cng.svg";
 
 let IMAGES = {
   BASE_ADDRESS:"./src/assets/images/",
@@ -25,7 +28,12 @@ let IMAGES = {
   GAS_STATION_IMAGE: GAS_STATION_IMAGE,
   FB_ICON: FB_ICON,
   LINKEDIN_ICON: LINKEDIN_ICON,
-  SLIDER_IMAGES: [{src:SLIDER_IMAGE}],
+  SLIDER_IMAGES: [
+    {src:ivco},
+    {src:sgdujos},
+    {src:cng},
+    {src:scania},
+  ],
 };
 
 const PAGES_NAMES = {

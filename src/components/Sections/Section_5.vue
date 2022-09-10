@@ -6,12 +6,14 @@
     <v-row>
       <v-col md="6">
         
-        <v-carousel hide-delimiters>
+        <v-carousel hide-delimiters height="30vh" class="my-16">
           <v-carousel-item
             v-for="(item,i) in items"
             :key="i"
-            :src="item.src"
-          ></v-carousel-item>
+            class="text-center"
+          >
+          <img :src="item.src" width="60%" height="100vh" class="my-10 my-sm-0 my-md-14 my-lg-16" alt="" srcset="">
+        </v-carousel-item>
         </v-carousel>
       
       </v-col>
@@ -39,11 +41,6 @@ export default {
   data: ()=>({
       sticky: false,
       card_color: COLORS.MAIN_COLOR_1,
-      og_image: IMAGES.OG_IMAGE,
-      gas_image: IMAGES.GAS,
-      flash_image: IMAGES.FLASH,
-      leaf_image: IMAGES.LEAF,
-      backgourd_image_url: IMAGES.CLOUD,
       gas_station_image: IMAGES.GAS_STATION_IMAGE,
       items: IMAGES.SLIDER_IMAGES,
       run:true
@@ -58,6 +55,7 @@ export default {
         arr.push({src:this.data.slider_images[index].image_url})
         
       }
+      console.log(arr)
       this.items = arr
       this.gas_station_image = this.data.image_1[0].image_url
       }

@@ -108,6 +108,13 @@
                     sm="6"
                     md="4"
                   >
+                    <upload-button v-on:uploaded="uploaded($event)" :saved_images="editedItem.thumbnail" :select_multiple_images="select_multiple_images" update_to="s1.1" />
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                  >
                     <editor
                     :api-key="api_key"
                           :init="{
@@ -129,6 +136,14 @@
                           }"
                           v-model="editedItem.description"
                     />
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                  >
+                  <h5>Upload Multiple images</h5>
+                    <upload-button v-on:uploaded="uploaded($event)" :saved_images="editedItem.images" :select_multiple_images="!select_multiple_images" update_to="s1.2" />
                   </v-col>
                 </v-row>
               </v-container>
@@ -199,14 +214,18 @@ import Dashboard from './Dashboard.vue';
 import PostsApiService from '../../mixins/services/post-api-service';
 import {API_KEY, DASHBOARD,NOTIFCATIONS} from '../../../config'
 import Editor from '@tinymce/tinymce-vue'
+import UploadImages from '../../components/uploadImages/uploadimages.vue'
+import { json_parse } from '@/mixins/helperFunction';
  export default {
   name:DASHBOARD.PAGES_NAMES.D_POSTS_PAGE,
   components:{
             'dash-board':Dashboard,
             'editor': Editor,
+            'upload-button':UploadImages,
         },
     data: () => ({
       postApi :  new  PostsApiService($cookies.get('user').auth.token),
+      select_multiple_images:false,
       api_key:API_KEY.TINY_MCE.Key,
       post_page: DASHBOARD.PATH.D_BLOG_ADD_PAGE,
       search: '',
@@ -232,8 +251,10 @@ import Editor from '@tinymce/tinymce-vue'
         type_id: '',
         author:'',
         short_description: '',
-        description: '',
-        type:''
+        description: 'hello',
+        type:'',
+        thumbnail: [],
+        images:[],
       },
       defaultItem: {
         title: '',
@@ -241,7 +262,9 @@ import Editor from '@tinymce/tinymce-vue'
         author:'',
         description: '',
         short_description: '',
-        type:''
+        type:'',
+        thumbnail: [],
+        images:[],
       },
     }),
 
@@ -268,7 +291,25 @@ import Editor from '@tinymce/tinymce-vue'
       async initialize () {
          const post  = await this.postApi.getAllPosts()
          const type  = await this.postApi.getAllTypes()
-        this.posts=post.data
+         let post_arr = []
+         post.data.forEach(element => {
+          let sd = json_parse(element.short_description)
+          post_arr.push({     
+                    id:element.id,       
+                    title: element.title,
+                    author: element.author,
+                    description: element.description,
+                    short_description: sd.short_description,
+                    thumbnail: sd.thumbnail,
+                    content: element.content,
+                    type: element.type,
+                    type_id: element.type_id,
+                    images: sd.images,
+          })
+         });
+         console.log(post_arr)
+        this.posts=post_arr
+        // this.posts=post.data
         this.types=type.data
       },
       editItem (item) {
@@ -317,14 +358,15 @@ import Editor from '@tinymce/tinymce-vue'
       async save () {
         let res ='';
         if (this.editedIndex > -1) {
-          // let x = this.types.filter((a)=>{
-          //   if(a.name==this.editedItem.type.name)
-          //   {return a}
-          //   });
-          // this.editedItem.type.id = x[0].id;
-          // this.editedItem.type_id = x[0].id;
           Object.assign(this.posts[this.editedIndex], this.editedItem)
-           res = await this.postApi.updatePost(this.posts[this.editedIndex])
+          const send_obj = this.posts[this.editedIndex]
+          send_obj.short_description = JSON.stringify({
+                    short_description:this.news[this.editedIndex].short_description,
+                    thumbnail:this.news[this.editedIndex].thumbnail,
+                    images:this.editedItem.images,
+          })
+          console.log("in update",send_obj)
+           res = await this.postApi.updatePost(send_obj)
           if (res.status == 200) {
             this.$toast.success(NOTIFCATIONS.POST.UPDATE);
           }else{
@@ -332,7 +374,14 @@ import Editor from '@tinymce/tinymce-vue'
           }
         } else {
           this.posts.push(this.editedItem)
-          res = await this.postApi.addPost(this.editedItem)
+          const send_obj = this.editedItem
+          send_obj.short_description = JSON.stringify({
+                    short_description:this.editedItem.short_description,
+                    thumbnail:this.editedItem.thumbnail,
+                    images:this.editedItem.images,
+          })
+          console.log("in new",send_obj)
+          res = await this.postApi.addPost(send_obj)
           if (res.status == 200) {
             this.$toast.success(NOTIFCATIONS.POST.ADD);
           }else{
@@ -344,6 +393,23 @@ import Editor from '@tinymce/tinymce-vue'
         this.initialize()
         this.close()
       },
+      uploaded:function (param) {
+          const update_to = param.update_to
+          let params = param.urls
+          const obj = this.editedItem
+          switch (update_to) {
+            case 's1.1':
+              obj.thumbnail  = params
+              break;
+            case 's1.2':
+              obj.images  = params
+              break;
+          
+            default:
+              break;
+          }
+          Object.assign(this.editedItem, obj)
+        },
     },
   }
 </script>

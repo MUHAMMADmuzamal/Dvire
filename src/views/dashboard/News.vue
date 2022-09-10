@@ -315,35 +315,35 @@ import { json_parse } from '@/mixins/helperFunction';
       async save () {
         let res ='';
         if (this.editedIndex > -1) {
-                                        Object.assign(this.news[this.editedIndex], this.editedItem)
-                                        const send_obj = this.news[this.editedIndex]
-                                        send_obj.short_description = JSON.stringify({
-                                                  short_description:this.news[this.editedIndex].short_description,
-                                                  thumbnail:this.news[this.editedIndex].thumbnail,
-                                                  images:this.editedItem.images,
-                                        })
-                                        console.log("in update",send_obj)
-                                        res = await this.newsApi.updateNews(send_obj)
-                                        if (res.status == 200) {
-                                          this.$toast.success(NOTIFCATIONS.NEWS.UPDATE);
-                                        }else{
-                                          this.$toast.error(NOTIFCATIONS.ERROR);
-                                        }
+          Object.assign(this.news[this.editedIndex], this.editedItem)
+          const send_obj = this.news[this.editedIndex]
+          send_obj.short_description = JSON.stringify({
+                    short_description:this.news[this.editedIndex].short_description,
+                    thumbnail:this.news[this.editedIndex].thumbnail,
+                    images:this.editedItem.images,
+          })
+          console.log("in update",send_obj)
+          res = await this.newsApi.updateNews(send_obj)
+          if (res.status == 200) {
+            this.$toast.success(NOTIFCATIONS.NEWS.UPDATE);
+          }else{
+            this.$toast.error(NOTIFCATIONS.ERROR);
+          }
         } else {
-                              this.news.push(this.editedItem)
-                              const send_obj = this.editedItem
-                              send_obj.short_description = JSON.stringify({
-                                        short_description:this.editedItem.short_description,
-                                        thumbnail:this.editedItem.thumbnail,
-                                        images:this.editedItem.images,
-                              })
-                              console.log("in new",send_obj)
-                              res = await this.newsApi.addNews(send_obj)
-                              if (res.status == 200) {
-                                this.$toast.success(NOTIFCATIONS.NEWS.ADD);
-                              }else{
-                                this.$toast.error(NOTIFCATIONS.ERROR);
-                              }
+          this.news.push(this.editedItem)
+          const send_obj = this.editedItem
+          send_obj.short_description = JSON.stringify({
+                    short_description:this.editedItem.short_description,
+                    thumbnail:this.editedItem.thumbnail,
+                    images:this.editedItem.images,
+          })
+          console.log("in new",send_obj)
+          res = await this.newsApi.addNews(send_obj)
+          if (res.status == 200) {
+            this.$toast.success(NOTIFCATIONS.NEWS.ADD);
+          }else{
+            this.$toast.error(NOTIFCATIONS.ERROR);
+          }
         }
         // console.log(res)
         
