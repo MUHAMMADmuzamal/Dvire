@@ -1,5 +1,6 @@
 <template>
 <v-app class="pa-4">
+  <v-google-translate :languages="languages"  @select="languageSelectedHandler"/>
 <div class="pa-4">
       <app-header/>
     <v-main >
@@ -21,8 +22,30 @@ export default {
   },
 
   data: () => ({
-    //
+    languages:[
+    {
+    code: "en",
+    name: "English",
+    cname: "英语",
+    ename: "English",
+  },  {
+    code: "lt",
+    name: "lietuvių kalba",
+    cname: "立陶宛语",
+    ename: "Lithuanian",
+  },  {
+    code: "ru",
+    name: "Русский",
+    cname: "俄语",
+    ename: "Russian",
+  },
+    ]
   }),
+  methods: {
+    languageSelectedHandler(info) {
+      console.log(info);
+    },
+  },
 };
 </script>
 <style>

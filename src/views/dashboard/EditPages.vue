@@ -1,11 +1,11 @@
 <template>
     <dash-board>
-  <v-container fluid>
-    <v-row align="center">
+  <v-container elevation-8 rounded class="my-6">
+    <v-row class="d-flex justify-center py-16" >
       <v-col
-        class="d-flex"
         cols="12"
-        sm="6"
+        sm="8"
+        md="6"
       >
         <v-select
           :items="pages"
@@ -15,12 +15,15 @@
           label="Select Page to Edit"
         ></v-select>
       </v-col>
+    </v-row>
+    <v-row class="d-flex justify-center">
       <v-col
-        class="d-flex"
         cols="12"
       >
-      <h1>{{page.title}}</h1>
+      <h1 class="text-center" style="color:#16ACAC">{{page.title}}</h1>
       </v-col>
+    </v-row>
+    <v-row>
       <v-col
         class="d-flex"
         cols="12"

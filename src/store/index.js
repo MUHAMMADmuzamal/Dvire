@@ -3,6 +3,9 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 import { PAGES_NAMES, PATH, DASHBOARD, ROLES } from "../../config";
+import en from '../lang/en'
+import lt from '../lang/lt'
+import ru from '../lang/ru'
 export default new Vuex.Store({
   strict:true,
   state: {
@@ -25,7 +28,7 @@ export default new Vuex.Store({
         { title: PAGES_NAMES.PAYMENT_CARD_PAGE, path: PATH.PAYMENT_CARD_PAGE,requiredLogin:false, showFor:ROLES.USER },
         { title: PAGES_NAMES.REQUEST_FORM_PAGE, path: PATH.REQUEST_FORM_PAGE,requiredLogin:false, showFor:ROLES.USER },
         { title: PAGES_NAMES.SELF_SERVICE_PAGE, path: PATH.SELF_SERVICE_PAGE,requiredLogin:false, showFor:ROLES.USER },
-        { title: PAGES_NAMES.LANG_PAGE, path: PATH.LANG_PAGE,requiredLogin:false, showFor:ROLES.USER },
+        // { title: PAGES_NAMES.LANG_PAGE, path: PATH.LANG_PAGE,requiredLogin:false, showFor:ROLES.USER },
         { title: PAGES_NAMES.BLOG_PAGE, path: PATH.BLOG_PAGE,requiredLogin:false, showFor:ROLES.USER },
         { title: PAGES_NAMES.SIGNUP_PAGE, path: PATH.SIGNUP_PAGE,requiredLogin:false, showFor:ROLES.USER},
         { title: PAGES_NAMES.LOGIN_PAGE, path: PATH.LOGIN_PAGE,requiredLogin:false, showFor:ROLES.USER},       
@@ -43,9 +46,18 @@ export default new Vuex.Store({
   ],
   dashboard: false,
     },
+    activeLocale: 'en',
+    language:{
+      en:en,
+      lt:lt,
+      ru:ru,
+    },
   },
   getters: {
     //use when need some calculations on data.
+    localised: (state) =>(key) => {
+      return state.language[state.activeLocale][key];
+    },
   },
   mutations: {
     showHideSideBarDrawer:(state,value)=>{
@@ -54,6 +66,10 @@ export default new Vuex.Store({
     setDashboard:(state,value=false)=>{
       state.app_header_states.dashboard = value;
     },
+    changeLanguage(state,key){
+      state.activeLocale=key;
+    }
+
   },
   actions: {},
   modules: {},
