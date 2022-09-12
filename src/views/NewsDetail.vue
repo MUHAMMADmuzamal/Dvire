@@ -15,7 +15,7 @@ export default {
     'generic-button':GenericButton,
   },
   data: () => ({
-    newsAPi: new NewsApiService($cookies.get('user').auth.token),//$cookies.get('user').auth.token
+    newsAPi: new NewsApiService(),//$cookies.get('user').auth.token
     content:'',
     title:'',
   }),
