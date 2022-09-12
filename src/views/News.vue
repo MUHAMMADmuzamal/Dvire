@@ -45,7 +45,7 @@
       class="col-sm-6 col-md-4"
       v-for="ns in news"
       >
-        <div elevation class="pa-4 box_shadow">
+        <div elevation class="pa-4 box_shadow" @click="openNews(ns.id)">
           <v-img 
           height=""
           aspect-ratio="1.5"
@@ -67,7 +67,7 @@
 </div>
 </template>
 <script>
-import { PAGES_NAMES,APP_SETTINGS,PAGES_IDS} from "../../config";
+import { PAGES_NAMES,APP_SETTINGS,PAGES_IDS,PATH} from "../../config";
 import PagesApiService from '../mixins/services/pages-api-service'
 import NewsApiService from '../mixins/services/news-api-service'
 import {json_parse} from '../mixins/helperFunction'
@@ -111,15 +111,23 @@ export default {
               } catch (error) {
                 url = ''
               }
+              let shh = json_parse(sh.short_description)
               n_arr.push({
-                short_description:sh.short_description,
+                short_description:shh.short_description,
                 title:element.title,
-                thumbnail:url
+                thumbnail:url,
+                id:element.id
               })
             });
-            console.log(res_news.data)
+            console.log(res_news.data,n_arr)
             this.news = n_arr
       },
+      openNews(id){
+        console.log('in function',PATH.NEWS_PAGE+`/${id}`)
+       this.$router.push( PATH.NEWS_PAGE+`/${id}`)
+        // next({ path: PATH.NEWS_PAGE+`/${id}`})
+        // this.$router.resolve({ path: PATH.NEWS_DETAIL_PAGE+ `/${id}` })
+      }
 
      },
 };

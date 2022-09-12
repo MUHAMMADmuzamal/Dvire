@@ -1,60 +1,151 @@
 <template>
 <v-container>
+  <v-row class="d-flex">
+            <v-col
+             sm="6"
+             md="4"
+             >
+              <v-text-field
+                v-model="page.title"
+                label="Title"
+                counter
+              ></v-text-field>
+            </v-col>
+          </v-row>
 
-          <v-text-field
-          v-model="page.title"
-            label="Title"
-            counter
-          ></v-text-field>
-          <div>
-            <h1>Section: 1</h1>
+           <section>
+             <h1>Section 1</h1>
+
+              <v-row>
+                <v-col
+                cols="12"
+                sm="6"
+                md="4"
+                >
                   <v-text-field
                     v-model="section1.heading_1"
                     counter
                     label="Heading 1 Part 1"
                   ></v-text-field>
+                </v-col>
+                <v-col
+                cols="12"
+                sm="6"
+                md="4"
+                >
                   <v-text-field
                     v-model="section1.heading_1_text_inside_span_tag"
                     counter
                     label="Heading 1 Text with Different Color"
                   ></v-text-field>
+                </v-col>
+                <v-col
+                cols="12"
+                sm="6"
+                md="4"
+                >
                   <v-text-field
                     v-model="section1.heading_1_after_span_tag"
                     counter
                     label="Heading 1 Part 2"
                   ></v-text-field>
-                  <v-textarea
+                </v-col>
+              </v-row>
+
+              <v-row>
+                <v-col
+                cols="12"
+                sm="6"
+                md="6"
+                >
+                  <v-text-field
                     label="Paragraph 1"
                     v-model="section1.paragraph_1"
                     counter
                     hint=""
-                  ></v-textarea>
+                  ></v-text-field>
+                </v-col>
+                <v-col
+                cols="12"
+                sm="6"
+                md="6"
+                >
                   <v-text-field
                     v-model="section1.buttonText"
                     counter
                     label="Button Text"
                   ></v-text-field>
+                </v-col>
+              </v-row>
+
+              <v-row>
+                <v-col
+                  cols="12"
+                  sm=""
+                  md=""
+                  >
+                  <upload-button v-on:uploaded="uploaded($event)" :saved_images="section1.Image" :select_multiple_images="select_multiple_images" update_to="s1.1" />
+                </v-col>
+              </v-row>
+           </section>
+                  
+                  
+                  
+                  
+          <section class="pt-16">
                   <!-- <v-text-field
                     v-model="section1.image"
                     counter
                     label="Image full name with extension"
                   ></v-text-field> -->
-                  <upload-button v-on:uploaded="uploaded($event)" :saved_images="section1.Image" :select_multiple_images="select_multiple_images" update_to="s1.1" />
-            <h1>Section: 2</h1>
-                  <v-text-field
+            <h1>Section 2</h1>
+
+            <v-row>
+              <v-col
+                cols="12"
+                sm="6"
+                md="6"
+              >
+                <v-text-field
                     v-model="section2.heading_1"
                     counter
                     label="Heading 1"
-                  ></v-text-field>
-                  <v-textarea
+                ></v-text-field>
+              </v-col>
+              <v-col
+                cols="12"
+                sm="6"
+                md="6"
+              >
+                <v-text-field
                     v-model="section2.paragraph_1"
                     counter
                     label="Paragraph 1"
                     hint=""
-                  ></v-textarea>
-                  <upload-button v-on:uploaded="uploaded($event)" :saved_images="section2.icon_1" :select_multiple_images="select_multiple_images" update_to="s2.1" />
-                  <upload-button v-on:uploaded="uploaded($event)" :saved_images="section2.icon_2" :select_multiple_images="select_multiple_images" update_to="s2.2" />
-                  <upload-button v-on:uploaded="uploaded($event)" :saved_images="section2.icon_3" :select_multiple_images="select_multiple_images" update_to="s2.3" />
+                ></v-text-field>
+              </v-col>
+            </v-row>
+                  
+            <v-row>
+              <v-col>
+                <strong>Icon 1</strong>
+                <upload-button v-on:uploaded="uploaded($event)" :saved_images="section2.icon_1" :select_multiple_images="select_multiple_images" update_to="s2.1" />
+              </v-col>
+            </v-row>
+
+            <v-row>
+              <v-col>
+                <strong>Icon 2</strong>
+                <upload-button v-on:uploaded="uploaded($event)" :saved_images="section2.icon_2" :select_multiple_images="select_multiple_images" update_to="s2.2" />
+              </v-col>
+            </v-row>
+
+            <v-row>
+              <v-col>
+                <strong>Icon 3</strong>
+                <upload-button v-on:uploaded="uploaded($event)" :saved_images="section2.icon_3" :select_multiple_images="select_multiple_images" update_to="s2.3" />
+              </v-col>
+            </v-row>
                   <!-- <v-text-field
                     v-model="section2.icon_1"
                     counter
@@ -70,133 +161,306 @@
                     counter
                     label="Icon full name with extension"
                   ></v-text-field> -->
-            <h1>Section: 3</h1>
+            </section>
+
+            <section class="pt-16">
+              <h1>Section 3</h1>
+
+              <v-row>
+                <v-col
+                  cols="12"
+                  sm="6"
+                  md="4"
+                >
                   <v-text-field
                     v-model="section3.heading_1"
                     counter
                     label="Heading 1"
                   ></v-text-field>
+                </v-col>
+                <v-col
+                  cols="12"
+                  sm="6"
+                  md="4"
+                >
                   <v-text-field
                     v-model="section3.heading_2"
                     counter
                     label="Heading 2"
                   ></v-text-field>
-                   <v-textarea
+                </v-col>
+                <v-col
+                  cols="12"
+                  sm="6"
+                  md="4"
+                >
+                  <v-text-field
                     v-model="section3.paragraph_1"
                     counter
                     label="Paragraph 1"
                     hint=""
-                  ></v-textarea>
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+
+              <v-row>
+                <v-col
+                  cols="12"
+                  sm="6"
+                  md="4"
+                >
                   <v-text-field
                     v-model="section3.heading_3"
                     counter
                     label="Heading 3"
                   ></v-text-field>
-                  <v-textarea
+                </v-col>
+                <v-col
+                  cols="12"
+                  sm="6"
+                  md="4"
+                >
+                  <v-text-field
                     v-model="section3.paragraph_2"
                     counter
                     label="Paragraph 2"
                     hint=""
-                  ></v-textarea>
-                  <v-textarea
+                  ></v-text-field>
+                </v-col>
+                <v-col
+                  cols="12"
+                  sm="6"
+                  md="4"
+                >
+                 <v-text-field
                     v-model="section3.paragraph_3"
                     counter
                     label="Paragraph 3"
                     hint=""
-                  ></v-textarea>
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+
+              <v-row>
+                <v-col>
                   <upload-button v-on:uploaded="uploaded($event)" :saved_images="section3.image" :select_multiple_images="select_multiple_images" update_to="s3.1" />
+                </v-col>
+              </v-row>
                   <!-- <v-text-field
                     v-model="section3.image"
                     counter
                     label="Image full name with extension"
                   ></v-text-field> -->
+            </section>
 
-            <h1>Section: 4</h1>
-                 <v-text-field
-                    v-model="section4.mainHeading"
-                    counter
-                    label="Heading 1"
-                  ></v-text-field>
-                 <v-text-field
-                    v-model="section4.heading_1"
-                    counter
-                    label="Heading 1"
-                  ></v-text-field>
-                  <v-textarea
-                    v-model="section4.paragraph_1"
-                    counter
-                    label="Paragraph 1"
-                    hint=""
-                  ></v-textarea>
-                 <v-text-field
-                    v-model="section4.heading_2"
-                    counter
-                    label="Heading 2"
-                  ></v-text-field>
-                  <v-textarea
-                    v-model="section4.paragraph_2"
-                    counter
-                    label="Paragraph 2"
-                    hint=""
-                  ></v-textarea>
-                 <v-text-field
-                    v-model="section4.heading_3"
-                    counter
-                    label="Heading 3"
-                  ></v-text-field>
-                  <v-textarea
-                    v-model="section4.paragraph_3"
-                    counter
-                    label="Paragraph 3"
-                    hint=""
-                  ></v-textarea>
-                 <v-text-field
-                    v-model="section4.heading_4"
-                    counter
-                    label="Heading 4"
-                  ></v-text-field>
-                  <v-textarea
-                    v-model="section4.paragraph_4"
-                    counter
-                    label="Paragraph 4"
-                    hint=""
-                  ></v-textarea>
-                 <v-text-field
-                    v-model="section4.heading_5"
-                    counter
-                    label="Heading 5"
-                  ></v-text-field>
-                  <v-textarea
-                    v-model="section4.paragraph_5"
-                    counter
-                    label="Paragraph 5"
-                    hint=""
-                  ></v-textarea>
-                 <v-text-field
-                    v-model="section4.heading_6"
-                    counter
-                    label="Heading 6"
-                  ></v-text-field>
-                  <v-textarea
-                    v-model="section4.paragraph_6"
-                    counter
-                    label="Paragraph 6"
-                    hint=""
-                  ></v-textarea>
-            <h1>Section: 5</h1>
-                  <v-text-field
-                    v-model="section5.heading_1"
-                    counter
-                    label="Heading 1"
-                  ></v-text-field>
-                   <v-textarea
-                    v-model="section5.paragraph_1"
-                    counter
-                    label="Paragraph 1"
-                    hint=""
-                  ></v-textarea>
-                  <upload-button v-on:uploaded="uploaded($event)" :saved_images="section5.image_1" :select_multiple_images="select_multiple_images" update_to="s5.1" />
-                  <upload-button v-on:uploaded="uploaded($event)" :saved_images="section5.slider_images"  update_to="s5.2" />
+            <section class="pt-16">
+              <h1>Section 4</h1>
+
+                <v-row>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                  >
+                    <v-text-field
+                      v-model="section4.mainHeading"
+                      counter
+                      label="Heading 1"
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+
+                <v-row>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="3"
+                  >
+                    <v-text-field
+                      v-model="section4.heading_1"
+                      counter
+                      label="Heading 1"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="3"
+                  >
+                    <v-text-field
+                      v-model="section4.paragraph_1"
+                      counter
+                      label="Paragraph 1"
+                      hint=""
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="3"
+                  >
+                    <v-text-field
+                      v-model="section4.heading_2"
+                      counter
+                      label="Heading 2"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="3"
+                  >
+                    <v-text-field
+                      v-model="section4.paragraph_2"
+                      counter
+                      label="Paragraph 2"
+                      hint=""
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+
+                <v-row>
+                  <v-col
+                  cols="12"
+                  sm="6"
+                  md="3"
+                  >
+                    <v-text-field
+                      v-model="section4.heading_3"
+                      counter
+                      label="Heading 3"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                  cols="12"
+                  sm="6"
+                  md="3"
+                  >
+                    <v-text-field
+                      v-model="section4.paragraph_3"
+                      counter
+                      label="Paragraph 3"
+                      hint=""
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                  cols="12"
+                  sm="6"
+                  md="3"
+                  >
+                    <v-text-field
+                      v-model="section4.heading_4"
+                      counter
+                      label="Heading 4"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                  cols="12"
+                  sm="6"
+                  md="3"
+                  >
+                    <v-text-field
+                      v-model="section4.paragraph_4"
+                      counter
+                      label="Paragraph 4"
+                      hint=""
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+
+                <v-row>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="3"
+                  >
+                    <v-text-field
+                      v-model="section4.heading_5"
+                      counter
+                      label="Heading 5"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="3"
+                  >
+                    <v-text-field
+                      v-model="section4.paragraph_5"
+                      counter
+                      label="Paragraph 5"
+                      hint=""
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="3"
+                  >
+                    <v-text-field
+                      v-model="section4.heading_6"
+                      counter
+                      label="Heading 6"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="3"
+                  >
+                    <v-text-field
+                      v-model="section4.paragraph_6"
+                      counter
+                      label="Paragraph 6"
+                      hint=""
+                    ></v-text-field>
+                  </v-col>
+                </v-row>     
+              </section>
+
+              <section class="pt-16">
+                <h1>Section 5</h1>
+
+                  <v-row>
+                    <v-col 
+                      cols="12"
+                      sm="6"
+                      md="6"
+                    >
+                      <v-text-field
+                      v-model="section5.heading_1"
+                      counter
+                      label="Heading 1"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col 
+                      cols="12"
+                      sm="6"
+                      md="6"
+                    >
+                      <v-text-field
+                      v-model="section5.paragraph_1"
+                      counter
+                      label="Paragraph 1"
+                      hint=""
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
+
+                  <v-row>
+                    <v-col>
+                      <upload-button v-on:uploaded="uploaded($event)" :saved_images="section5.image_1" :select_multiple_images="select_multiple_images" update_to="s5.1" />
+                    </v-col>
+                  </v-row>
+
+                  <v-row>
+                    <v-col>
+                      <strong>Slider images</strong>
+                      <upload-button v-on:uploaded="uploaded($event)" :saved_images="section5.slider_images"  update_to="s5.2" />
+                    </v-col>
+                  </v-row>
+                  
+                   
                   <!-- <v-text-field
                     v-model="section5.slider_images"
                     counter
@@ -207,9 +471,10 @@
                     counter
                     label="Image full name with extension"
                   ></v-text-field> -->
-          </div>
+          <!-- </div> -->
+              </section>
           <update-button v-on:update="update()"/>
-        </v-container> 
+</v-container> 
 </template>
 
 <script>

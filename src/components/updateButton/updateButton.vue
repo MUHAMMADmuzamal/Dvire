@@ -1,12 +1,18 @@
 <template>
-    <v-btn
-      depressed
-      color="primary"
-      @click="update"
-      class="d-flex justify-right"
-    >
-      Update
-    </v-btn>
+<v-row class="d-flex justify-center pt-16">
+      <v-col cols="12" sm="6" md="6" >
+        <v-btn
+          depressed
+          color="success"
+          large
+          block
+          @click="update"
+          
+        >
+          Update
+        </v-btn>
+      </v-col>
+    </v-row>
 </template>
 
 <script>

@@ -1,63 +1,78 @@
 <template>
 <v-container>
-
-    <v-file-input
-        counter
-        :multiple="select_multiple_images"
-        show-size
-        truncate-length="15"
-        v-model="images"
-        @change=""
-    ></v-file-input>
-    <v-btn
-      depressed
-      color="primary"
-      @click="upload"
-      class="d-flex justify-right"
-    >
-      Upload
-    </v-btn>
-    <p style="color:red">
-        After Upload Images kindly press update to save data.
-    </p>
-    <div v-show="show_images_table">
-        <v-simple-table height="300px">
-            <template v-slot:default>
-            <thead>
-                <tr>
-                <th class="text-left">
-                    Name
-                </th>
-                <th class="text-left">
-                    Url
-                </th>
-                <th class="text-left">
-                    Delete
-                </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr
-                v-for="item in saved_images"
-                :key="item.name"
-                >
-                <td>{{ item.image }}</td>
-                <td>{{ item.image_url }}</td>
-                <td>
-                    <v-btn
-                    depressed
-                    color="error"
-                    class="d-flex justify-right"
-                    @click="delete_image(item)"
-                    >
-                    Delete
-                    </v-btn>
-                </td>
-                </tr>
-            </tbody>
-            </template>
-        </v-simple-table>
-    </div>
+    <v-row>
+        <v-col cols="12" sm="6" md="4">
+            <v-file-input
+                counter
+                :multiple="select_multiple_images"
+                show-size
+                truncate-length="20"
+                v-model="images"
+                @change=""
+                filled
+                label="Attach image"
+                prepend-icon="mdi-camera"
+            ></v-file-input>
+        </v-col>
+    <!-- </v-row> -->
+        <v-col cols="12" sm="6" md="4" >
+            <v-btn
+            depressed
+            color="primary"
+            @click="upload"
+            class="d-flex  "
+            large
+            block
+            >
+            Upload
+            </v-btn>
+            <p class="text-center" style="color:red; font-size: smaller;">
+                After Upload Image, kindly press update to save data.
+            </p>
+        </v-col>
+        
+        <v-col cols="12" sm="6" md="4">
+            <div v-show="show_images_table">
+                <v-simple-table height="">
+                    <template v-slot:default>
+                    <!-- <thead>
+                        <tr>
+                        <th class="text-left">
+                            Name
+                        </th>
+                        <th class="text-left">
+                            Url
+                        </th>
+                        <th class="text-left">
+                            Delete
+                        </th>
+                        </tr>
+                    </thead> -->
+                    <tbody>
+                        <tr
+                        v-for="item in saved_images"
+                        :key="item.name"
+                        >
+                        <td>{{ item.image }}</td>
+                        <td>{{ item.image_url }}</td>
+                        <td>
+                            <v-btn
+                            depressed
+                            color="error"
+                            large
+                            class="d-flex justify-right"
+                            @click="delete_image(item)"
+                            >
+                            Delete
+                            </v-btn>
+                        </td>
+                        </tr>
+                    </tbody>
+                    </template>
+                </v-simple-table>
+            </div>
+        </v-col>
+    </v-row>
 </v-container>
 </template>
 
