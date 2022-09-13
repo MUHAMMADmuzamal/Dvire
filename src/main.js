@@ -9,9 +9,6 @@ import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-default.css';
 // import 'vue-toast-notification/dist/theme-sugar.css';
 
-import VGoogleTranslate from "v-google-translate";
-
-Vue.use(VGoogleTranslate)
 
 Vue.use(VueToast, {
   position:'top-right',

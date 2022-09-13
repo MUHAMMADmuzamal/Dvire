@@ -1,13 +1,5 @@
 <template>
-<!-- <div > -->
-  <!-- <v-google-translate
-      :defaultLanguageCode="defaultLanguageCode"
-      :defaultPageLanguageCode="defaultPageLanguageCode"
-      :fetchBrowserLanguage="false"
-      @select="languageSelectedHandler"
-    /> -->
     <layout/>
-<!-- </div> -->
 </template>
 
 <script>
