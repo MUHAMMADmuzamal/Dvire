@@ -1,11 +1,22 @@
 <template>
 <v-container>
-          <v-text-field
-          v-model="page.title"
-            label="Title"
-            counter
-          ></v-text-field>
-               <editor
+  <v-row>
+            <v-col
+              cols="12"
+              sm="6"
+              md="4"
+            >
+              <v-text-field
+                v-model="page.title"
+                  label="Title"
+                  counter
+                ></v-text-field>
+            </v-col>
+          </v-row>
+
+          <v-row>
+            <v-col>
+              <editor
                :api-key="api_key"
                     :init="{
                         height: 500,
@@ -26,6 +37,9 @@
                     }"
                     v-model="page.content"
                     />
+            </v-col>
+          </v-row>
+               
                     <update-button v-on:update="update()"/>
         </v-container>
 </template>

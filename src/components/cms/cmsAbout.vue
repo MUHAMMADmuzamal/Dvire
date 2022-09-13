@@ -1,11 +1,18 @@
 <template>
 <v-container>
-          <v-text-field
-          v-model="page.title"
-            label="Title"
-            counter
-          ></v-text-field>
-               <editor
+  <v-row>
+            <v-col cols="12" sm="6" md="4">
+              <v-text-field
+                v-model="page.title"
+                  label="Title"
+                  counter
+                ></v-text-field>
+            </v-col>
+          </v-row>
+
+          <v-row>
+            <v-col>
+              <editor
                :api-key="api_key"
                     :init="{
                         height: 500,
@@ -25,8 +32,17 @@
                                 content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
                     }"
                     v-model="content"
-                    />
-                    <upload-button v-on:uploaded="uploaded($event)" :saved_images="images"  />
+                  />
+            </v-col>
+          </v-row>
+
+          <v-row>
+            <v-col>
+              <upload-button v-on:uploaded="uploaded($event)" :saved_images="images"  />
+            </v-col>
+          </v-row>
+               
+                    
                     <update-button v-on:update="update()"/>
         </v-container>
 </template>

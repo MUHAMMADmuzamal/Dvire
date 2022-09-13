@@ -1,41 +1,79 @@
 <template>
 <v-container>
+  <v-row>
+            <v-col cols="12" sm="6" md="4">
+              <v-text-field
+                v-model="page.title"
+                  label="Title"
+                  counter
+                ></v-text-field>
+            </v-col>
+          </v-row>
 
-          <v-text-field
-          v-model="page.title"
-            label="Title"
-            counter
-          ></v-text-field>
-          <div>
+          <section class="pt-10">
             <h1>Section: 1</h1>
-                  <v-text-field
+                <v-row>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="3"
+                  >
+                    <v-text-field
                     v-model="section1.heading_1"
                     counter
                     label="Heading 1"
-                  ></v-text-field>
-                   <v-textarea
-                    v-model="section1.paragraph_1"
-                    counter
-                    label="Paragraph 1"
-                    hint=""
-                  ></v-textarea>
-                  <v-text-field
-                    v-model="section1.buttonText1"
-                    counter
-                    label="Button 1 Text"
-                  ></v-text-field>
-                  <v-text-field
-                    v-model="section1.buttonText2"
-                    counter
-                    label="Button 2 Text"
-                  ></v-text-field>
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="3"
+                  >
+                    <v-text-field
+                      v-model="section1.paragraph_1"
+                      counter
+                      label="Paragraph 1"
+                      hint=""
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="3"
+                  >
+                    <v-text-field
+                      v-model="section1.buttonText1"
+                      counter
+                      label="Button 1 Text"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="3"
+                  >
+                    <v-text-field
+                      v-model="section1.buttonText2"
+                      counter
+                      label="Button 2 Text"
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+
+                <v-row>
+                  <v-col>
+                    <upload-button v-on:uploaded="uploaded($event)" :saved_images="section1.Image" :select_multiple_images="select_multiple_images" update_to="s1.1" />
+                  </v-col>
+                </v-row>
+                   
+                  
+                  
                   <!-- <v-text-field
                     v-model="section1.Image"
                     counter
                     label="Image full name with extension"
                   ></v-text-field> -->
-                  <upload-button v-on:uploaded="uploaded($event)" :saved_images="section1.Image" :select_multiple_images="select_multiple_images" update_to="s1.1" />
-          </div>
+          </section>
           <update-button v-on:update="update()"/>
         </v-container>
 </template>
