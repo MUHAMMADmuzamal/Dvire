@@ -9,9 +9,9 @@
           <v-col md="6" class=" d-flex  align-center">
             <div class="col-sm-8 col-md-9">
               <!-- <slot> -->
-                <h1>Lorem ipsum dolor sit amet, consectetur edipiscing elit.</h1>
+                <h1>{{section1.heading_1}}</h1>
                 <!-- <v-spacer></v-spacer> -->
-                <p class="pt-4" width="50px">DVIRE siekia kartu su metanu Lietuvos keliuose pradėti naudoti biometaną, vandenilį ir elektrą, išgaunamus iš saulės, vėjo ir perdirbtų atliekų, reikšmingai sumažinti CO2 emisijas.</p>
+                <p class="pt-4" width="50px">{{section1.paragraph_1}}</p>
                 <v-btn
                   elevation="0"
                   x-large                
@@ -21,14 +21,14 @@
                   color="#25ACAB"
                   @click="show_div = !show_div"
                 >
-                  Nuolaidų kortelė
+                  {{section1.buttonText}}
                 </v-btn>
                 
               <!-- </slot> -->
             </div>
           </v-col>
           <v-col md="6" class=" mb-n16">
-            <v-img  style="" src="../assets/images/dvire_card.svg"/>
+            <v-img  style="" :src="dvire_card"/>
           </v-col>
         </v-row>
   
@@ -129,7 +129,7 @@
   
                 <v-row class="py-5">
                   <v-col>
-                    <h1>Dvire kortelė</h1>
+                    <h1>{{section2.heading_1}}</h1>
                   </v-col>
                 </v-row>
                 
@@ -137,11 +137,11 @@
                   <v-col>
                     
                   <p>
-                      Degalų pildymo kortelė išduodama įmonėms, įsigijusioms metano dujomis varomus automobilius iš gamintojų, dalyvaujančių alternatyviųjų degalų Lietuvoje skatinimo iniciatyvoje DVIRE.
+                      {{section2.paragraph_1}}
                       <br><br><br>
-                      DVIRE kortelė suteikia galimybę palankiausiomis rinkoje sąlygomis naudotis DVIRE iniciatyvos partnerių suslėgto metano (SGD) viešojo pildymo stočių tinklu didžiuosiuose Lietuvos miestuose - Vilniuje, Kaune, Klaipėdoje, Šiauliuose ir Panevėžyje.
+                     {{section2.paragraph_2}}
                       <br><br><br>
-                      DVIRE kortelę išduoda ir administruoja iniciatyvą koordinuojantis startuolis UAB „Dvire“.
+                      {{section2.paragraph_3}}
                   </p>
                   </v-col>
                 </v-row>
@@ -156,7 +156,7 @@
                 <v-img
                 
                 style="transform: translateX(12px);"
-                src="../assets/images/truck.svg"
+                :src="truck"
                 ></v-img>
               </v-col>
             </v-row>
@@ -168,17 +168,17 @@
   
    <v-container fluid style="background-color:#F8F4EF; text-align:center;" >
     <v-container fluid class="py-16">
-      <h1>Book your Paid Consultation Now.</h1>
+      <h1>{{section3.heading_1}}</h1>
       <p class="py-6">
-        Please choose your desired paid consultation meeting length. You will be prompted for payment after selecting a day and time.
+        {{section3.paragraph_1}}
       </p>
       <v-row class="d-flex justify-center" align="center">
         <v-col>
-          <v-btn @click="show_date_form_div_func('30')" class="my-2 mx-2 white--text" rounded color="#49475b">30 Minutes-$150</v-btn>
+          <v-btn @click="show_date_form_div_func(section3.minutes_hours_time_1)" class="my-2 mx-2 white--text" rounded color="#49475b">30 Minutes-$150</v-btn>
   
-          <v-btn @click="show_date_form_div_func('1')" class="my-2 mx-2 white--text" rounded color="#49475b">1-hour-$150</v-btn>
+          <v-btn @click="show_date_form_div_func(section3.minutes_hours_time_2)" class="my-2 mx-2 white--text" rounded color="#49475b">1-hour-$150</v-btn>
   
-          <v-btn @click="show_date_form_div_func('2')" class="my-2 mx-2 white--text" rounded color="#49475b">2 Hours-$150</v-btn>
+          <v-btn @click="show_date_form_div_func(section3.minutes_hours_time_3)" class="my-2 mx-2 white--text" rounded color="#49475b">2 Hours-$150</v-btn>
         </v-col>
       </v-row>
   
@@ -186,7 +186,7 @@
         <v-col>
           <a href="" style="text-decoration: none;">
             <strong>
-              * Click here to read our booking policy before you book your consultation!
+              {{section3.notification_href}}
             </strong>
           </a>
         </v-col>
@@ -256,13 +256,13 @@
             <v-row class="pt-6">
               <v-col>
                 <p >
-                  This is a {{show_date_form_div_value.time}} meeting, it's strictly enforced. If you need more time, please see other options.
+                  {{section4.see_other_option_msg_p1}} {{show_date_form_div_value.time}} {{section4.see_other_option_msg_p2}}
                 </p>
                   
                 <p>
-                  Please review our Book Policy online at 
+                  {{section4.see_other_option_msg_p3}}
                   <a href="">
-                    https://lmt.ca/book/#booking-policy
+                    {{section4.see_other_option_href}}
                   </a>
                 </p>
               </v-col>
@@ -273,21 +273,21 @@
               <v-text-field
                 
                 
-                label="Konsultacijos tema"
+                :label="section4.form_field_1"
                 required
               ></v-text-field>
               <v-text-field
            
                 
                 :counter="10"
-                label="Vardas"
+                :label="section4.form_field_2"
                 required
               ></v-text-field>
               <v-text-field
                 
                 
                 :counter="10"
-                label="Pavardė"
+                :label="section4.form_field_3"
                 required
               ></v-text-field>
               
@@ -295,19 +295,19 @@
             
                 
                 :counter="10"
-                label="Įmonė"
+                :label="section4.form_field_4"
                 required
               ></v-text-field>
               <v-text-field
                
                 
-                label="El. paštas"
+              :label="section4.form_field_5"
                 required
               ></v-text-field>
               <v-text-field
                 
                 
-                label="Mobilus tel"
+              :label="section4.form_field_6"
                 required
               ></v-text-field>
               
@@ -322,7 +322,7 @@
                 color="#25ACAB"
                
               >
-                Siųsti
+                {{section4.buttonText}}
               </v-btn>
               
             </form>
@@ -363,6 +363,9 @@
 <script>
 import PagesApiService from '../mixins/services/pages-api-service'
 import {PAGES_NAMES,APP_SETTINGS} from '../../config'
+import {json_parse} from '../mixins/helperFunction'
+import turck from '../assets/images/truck.svg'
+import dvire_card from '../assets/images/dvire_card.svg'
 const PATH = APP_SETTINGS.API_PATH.PAYMENT_CARD
 export default {
     name:PAGES_NAMES.PAYMENT_CARD_WITHOUT_SPACE_PAGE,
@@ -386,31 +389,46 @@ export default {
             content:''
         },
     pagesApi:  new  PagesApiService(),
+    title:"",
+    section1:"",
+    section2:"",
+    section3:"",
+    section4:"",
+    dvire_card:dvire_card,
+    truck:turck,
   }),
     created () {
       this.initialize()
     },
      methods: {
       async initialize () {
-         const res  = await this.pagesApi.getPages(PATH.Payment_Card)
-        this.pageData=res.data
+            const pages  = await this.pagesApi.getPages(PATH.Payment_Card)
+            this.title= pages.data.title
+            const content = json_parse(pages.data.content)
+            
+            if (content != null) {
+              if ('section1' in content) {
+                  this.section1= content.section1
+                  this.section2= content.section2
+                  this.section3= content.section3
+                  this.section4= content.section4
+                  this.dvire_card = this.section1.Image[0].image_url
+                  this.truck = this.section2.image_1[0].image_url
+              }  
+            }
+            console.log(content)
       },
       allowedDates: val => parseInt(val.split('-')[2], 10) % 2 === 0,
       showhide(index){
         
        for(let i=0; i<this.showHideArr.length; i++) {
-        console.log("first",this.showHideArr)
           if (index == i) {
-            console.log(index)
-            console.log("before update",this.showHideArr)
             this.$set(this.showHideArr, i, !this.showHideArr[i])
-            console.log("after update",this.showHideArr)
             
           }else{
             this.$set(this.showHideArr, i, false)
           }
         }
-        console.log("end",this.showHideArr)
       },
       show_date_form_div_func: function(value){
         this.show_date_form_div = !this.show_date_form_div;
