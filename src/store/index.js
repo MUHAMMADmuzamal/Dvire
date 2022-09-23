@@ -3,9 +3,10 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 import { PAGES_NAMES, PATH, DASHBOARD, ROLES } from "../../config";
-import en from '../lang/en'
-import lt from '../lang/lt'
-import ru from '../lang/ru'
+// import en from '../lang/en'
+// import lt from '../lang/lt'
+// import ru from '../lang/ru'
+// const eng = JSON.parse('{"hello":"hello","goodbye":"Goodbye"}');
 export default new Vuex.Store({
   strict:true,
   state: {
@@ -42,21 +43,28 @@ export default new Vuex.Store({
         { title: DASHBOARD.PAGES_NAMES.D_EDIT_PAGES_PAGE, path: DASHBOARD.PATH.D_EDIT_PAGES_PAGE,requiredLogin:true, showFor:ROLES.ADMIN},
         { title: DASHBOARD.PAGES_NAMES.D_TYPES_PAGE, path: DASHBOARD.PATH.D_TYPES_PAGE,requiredLogin:true, showFor:ROLES.ADMIN},
         { title: DASHBOARD.PAGES_NAMES.D_USERS_PAGE, path: DASHBOARD.PATH.D_USERS_PAGE,requiredLogin:true, showFor:ROLES.ADMIN},
+        { title: DASHBOARD.PAGES_NAMES.D_LANGUAGES_PAGE, path: DASHBOARD.PATH.D_LANGUAGES_PAGE,requiredLogin:true, showFor:ROLES.ADMIN},
         { title: DASHBOARD.PAGES_NAMES.D_NEWS_PAGE, path: DASHBOARD.PATH.D_NEWS_PAGE,requiredLogin:true, showFor:ROLES.ADMIN},
   ],
   dashboard: false,
     },
-    activeLocale: 'en',
+    activeLocale: 'lt',
     language:{
-      en:en,
-      lt:lt,
-      ru:ru,
+      en:null,
+      lt:null,
+      ru:null,
     },
   },
   getters: {
     //use when need some calculations on data.
     localised: (state) =>(key) => {
+      const lang  = localStorage.getItem('lang')
+      
+      if (lang != undefined) {
+        state.activeLocale = lang;
+      }
       return state.language[state.activeLocale][key];
+      
     },
   },
   mutations: {
@@ -67,9 +75,18 @@ export default new Vuex.Store({
       state.app_header_states.dashboard = value;
     },
     changeLanguage(state,key){
+      localStorage.setItem('lang', key);
       state.activeLocale=key;
-    }
-
+    },
+    setEn(state,en){
+      state.language.en = en;
+    },
+    setLt(state,lt){
+      state.language.lt = lt;
+    },
+    setRu(state,ru){
+      state.language.ru = ru;
+    },
   },
   actions: {},
   modules: {},

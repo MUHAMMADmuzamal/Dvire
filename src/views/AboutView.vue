@@ -1,12 +1,5 @@
 <template>
   <div>
-    <h2>{{translate('hello')}}</h2>
-    <h2>{{translate('goodbye')}}</h2>
-    <button @click="changeLanguage('en')">En</button> 
-     | 
-    <button @click="changeLanguage('lt')">Lt</button>
-     | 
-    <button @click="changeLanguage('ru')">Ru</button>
     <h1>{{about.title}}</h1>
     <div v-html="about.content">      
     </div>
@@ -42,9 +35,6 @@ export default {
       translate(key){
         return this.$store.getters.localised(key);
       },
-      changeLanguage(key){
-        this.$store.commit('changeLanguage',key);
-      }
      },
 };
 </script>

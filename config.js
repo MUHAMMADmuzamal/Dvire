@@ -122,7 +122,7 @@ const PATH = {
   CONSULTATION_ORDER_PAGE : "/Consultationorder",
   CONSULTATION_DESCRIPTION_PAGE : "/Consultation_Description",
   LEGAL_ENVIRONMENT_PAGE: "/LegalEnvironment",
-  EU_INVESTMENTS_PAGE: "/euinvestments"
+  EU_INVESTMENTS_PAGE: "/euinvestments",
 };
 const baseUrl_dashboard = '/dashboard'
 const DASHBOARD = {
@@ -135,6 +135,7 @@ const DASHBOARD = {
       D_BLOG_ADD_PAGE: baseUrl_dashboard + "/post",
       D_EDIT_PAGES_PAGE: baseUrl_dashboard + "/editpages/",
       D_USERS_PAGE: baseUrl_dashboard + "/users",
+      D_LANGUAGES_PAGE: baseUrl_dashboard + "/languages",
       
     },
     PAGES_NAMES:{
@@ -145,6 +146,7 @@ const DASHBOARD = {
       D_TYPES_PAGE: "Types",
       D_EDIT_PAGES_PAGE: "EditPages",
       D_USERS_PAGE: "Users",
+      D_LANGUAGES_PAGE: "Languages",
     }
 };
 
@@ -206,6 +208,10 @@ const APP_SETTINGS = {
     },
     IMAGES:{
       Images: baseUrl + '/api/image',
+    },
+    LANGUAGES:{
+      Languages: baseUrl + '/api/language',
+      allWords: baseUrl + '/api/allwords',
     }
   },
 };
@@ -229,6 +235,11 @@ const NOTIFCATIONS={
     DELETE:"Post Deleted",
     ADD:"Post Added Successfully.",
     UPDATE:"Post Update Successfully.",
+  },
+  WORD:{
+    DELETE:"Word Deleted",
+    ADD:"Word Added Successfully.",
+    UPDATE:"Word Update Successfully.",
   },
   NEWS:{
     DELETE:"News Deleted",

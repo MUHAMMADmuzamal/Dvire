@@ -13,6 +13,7 @@
 <script>
 import Header from './app-header.vue'
 import Footer from './app-footer.vue'
+import LanguagesApiService from "../mixins/services/language-api-service";
 export default {
     name:'Layout',
    components: {
@@ -21,7 +22,20 @@ export default {
   },
 
   data: () => ({
+    langApi :  new  LanguagesApiService()
   }),
+  methods:{
+    getWordsForTranslation : async  function () {
+     let  lang = await this.langApi.getAllWordsForTranslation();
+      lang= lang.data
+    this.$store.commit("setEn", lang[0]);
+    this.$store.commit("setLt", lang[2]);
+    this.$store.commit("setRu", lang[1]);
+    }
+  },
+  created(){
+    this.getWordsForTranslation()
+  }
 };
 </script>
 <style>

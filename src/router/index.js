@@ -29,6 +29,7 @@ import D_Types from "../views/dashboard/Types.vue";
 import D_Users from "../views/dashboard/Users.vue";
 import D_EditPages from "../views/dashboard/EditPages.vue";
 import D_News from "../views/dashboard/News.vue";
+import D_languages from "../views/dashboard/Languages";
 import {PATH, PAGES_NAMES, DASHBOARD, ROLES} from '../../config'
 import AuthenticationService from '../mixins/services/auth-service'
 Vue.use(VueRouter);
@@ -189,6 +190,12 @@ const routes = [
     path: DASHBOARD.PATH.D_USERS_PAGE,
     name: "D_"+DASHBOARD.PAGES_NAMES.D_USERS_PAGE,
     component: D_Users,
+    meta: { authorize: [ROLES.ADMIN] } 
+  },
+  {
+    path: DASHBOARD.PATH.D_LANGUAGES_PAGE,
+    name: "D_"+DASHBOARD.PAGES_NAMES.D_LANGUAGES_PAGE,
+    component: D_languages,
     meta: { authorize: [ROLES.ADMIN] } 
   },
   {

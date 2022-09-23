@@ -57,16 +57,22 @@
               text
               class="nav_hover"
               v-for="item,index in menuItems"
-              v-if="index<6"
+              v-if="index<5"
               :key="item.title"
               :to="item.path">
-              {{ item.title }}
+              <!-- {{ item.title }} -->
+              {{translate(item.title)}}
             </v-btn>
             <v-menu
         left
         bottom
       >
         <template v-slot:activator="{ on, attrs }">
+          <button @click="changeLanguage('en')">En</button> 
+          | 
+          <button @click="changeLanguage('lt')">Lt</button>
+          | 
+          <button @click="changeLanguage('ru')">Ru</button>
           <v-btn
             icon
             v-bind="attrs"
@@ -79,7 +85,7 @@
         <v-list>
           <v-list-item
             v-for="item,index in menuItems"
-            v-if="index>=6"
+            v-if="index>=5"
             :key="index"
             :to="item.path"
           >
@@ -182,6 +188,12 @@ export default {
     showHideDrawar: function(){
       this.drawer = !this.drawer;
     },
+    translate(key){
+        return this.$store.getters.localised(key);
+      },
+      changeLanguage(key){
+        this.$store.commit('changeLanguage',key);
+      }
   }
 };
 </script>
