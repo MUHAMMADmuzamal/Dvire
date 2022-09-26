@@ -4,7 +4,7 @@
       <v-row class="pt-5">
         <v-col md="4" class="px-8">
           <h4>{{translate(data.heading_1)}}</h4>
-          <p>{{data.paragraph_1}}</p>
+          <p>{{translate(data.paragraph_1)}}</p>
         </v-col>
 
         <v-col  md="4" class="px-8">
