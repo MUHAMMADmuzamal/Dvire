@@ -9,9 +9,9 @@
           <v-col md="6" class=" d-flex  align-center">
             <div class="col-sm-8 col-md-9">
               <!-- <slot> -->
-                <h1>{{section1.heading_1}}</h1>
+                <h1>{{translate(section1.heading_1)}}</h1>
                 <!-- <v-spacer></v-spacer> -->
-                <p class="pt-4" width="50px">{{section1.paragraph_1}}</p>
+                <p class="pt-4" width="50px">{{translate(section1.paragraph_1)}}</p>
                 <v-btn
                   elevation="0"
                   x-large                
@@ -21,7 +21,7 @@
                   color="#25ACAB"
                   @click="show_div = !show_div"
                 >
-                  {{section1.buttonText}}
+                  {{translate(section1.buttonText)}}
                 </v-btn>
                 
               <!-- </slot> -->
@@ -129,7 +129,7 @@
   
                 <v-row class="py-5">
                   <v-col>
-                    <h1>{{section2.heading_1}}</h1>
+                    <h1>{{translate(section2.heading_1)}}</h1>
                   </v-col>
                 </v-row>
                 
@@ -137,11 +137,11 @@
                   <v-col>
                     
                   <p>
-                      {{section2.paragraph_1}}
+                      {{translate(section2.paragraph_1)}}
                       <br><br><br>
-                     {{section2.paragraph_2}}
+                     {{translate(section2.paragraph_2)}}
                       <br><br><br>
-                      {{section2.paragraph_3}}
+                      {{translate(section2.paragraph_3)}}
                   </p>
                   </v-col>
                 </v-row>
@@ -168,17 +168,17 @@
   
    <v-container fluid style="background-color:#F8F4EF; text-align:center;" >
     <v-container fluid class="py-16">
-      <h1>{{section3.heading_1}}</h1>
+      <h1>{{translate(section3.heading_1)}}</h1>
       <p class="py-6">
-        {{section3.paragraph_1}}
+        {{translate(section3.paragraph_1)}}
       </p>
       <v-row class="d-flex justify-center" align="center">
         <v-col>
-          <v-btn @click="show_date_form_div_func(section3.minutes_hours_time_1)" class="my-2 mx-2 white--text" rounded color="#49475b">30 Minutes-$150</v-btn>
+          <v-btn @click="show_date_form_div_func(translate(section3.minutes_hours_time_1))" class="my-2 mx-2 white--text" rounded color="#49475b">{{translate('30 Minutes-$150')}}</v-btn>
   
-          <v-btn @click="show_date_form_div_func(section3.minutes_hours_time_2)" class="my-2 mx-2 white--text" rounded color="#49475b">1-hour-$150</v-btn>
+          <v-btn @click="show_date_form_div_func(translate(section3.minutes_hours_time_2))" class="my-2 mx-2 white--text" rounded color="#49475b">{{translate('1-hour-$150')}}</v-btn>
   
-          <v-btn @click="show_date_form_div_func(section3.minutes_hours_time_3)" class="my-2 mx-2 white--text" rounded color="#49475b">2 Hours-$150</v-btn>
+          <v-btn @click="show_date_form_div_func(translate(section3.minutes_hours_time_3))" class="my-2 mx-2 white--text" rounded color="#49475b">{{translate('2 Hours-$150')}}</v-btn>
         </v-col>
       </v-row>
   
@@ -240,7 +240,7 @@
                 <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                   <path fill="currentColor" d="M17,10.5V7A1,1 0 0,0 16,6H4A1,1 0 0,0 3,7V17A1,1 0 0,0 4,18H16A1,1 0 0,0 17,17V13.5L21,17.5V6.5L17,10.5Z" />
                 </svg>
-                <strong class="ps-1">Web conferencing details provided upon confirmation.</strong>
+                <strong class="ps-1">{{translate('Web conferencing details provided upon confirmation.')}}</strong>
               </v-col>
             </v-row>
   
@@ -256,13 +256,13 @@
             <v-row class="pt-6">
               <v-col>
                 <p >
-                  {{section4.see_other_option_msg_p1}} {{show_date_form_div_value.time}} {{section4.see_other_option_msg_p2}}
+                  {{translate(section4.see_other_option_msg_p1)}} {{show_date_form_div_value.time}} {{translate(section4.see_other_option_msg_p2)}}
                 </p>
                   
                 <p>
-                  {{section4.see_other_option_msg_p3}}
+                  {{translate(section4.see_other_option_msg_p3)}}
                   <a href="">
-                    {{section4.see_other_option_href}}
+                    {{translate(section4.see_other_option_href)}}
                   </a>
                 </p>
               </v-col>
@@ -273,21 +273,21 @@
               <v-text-field
                 
                 
-                :label="section4.form_field_1"
+                :label="translate(section4.form_field_1)"
                 required
               ></v-text-field>
               <v-text-field
            
                 
                 :counter="10"
-                :label="section4.form_field_2"
+                :label="translate(section4.form_field_2)"
                 required
               ></v-text-field>
               <v-text-field
                 
                 
                 :counter="10"
-                :label="section4.form_field_3"
+                :label="translate(section4.form_field_3)"
                 required
               ></v-text-field>
               
@@ -295,19 +295,19 @@
             
                 
                 :counter="10"
-                :label="section4.form_field_4"
+                :label="translate(section4.form_field_4)"
                 required
               ></v-text-field>
               <v-text-field
                
                 
-              :label="section4.form_field_5"
+              :label="translate(section4.form_field_5)"
                 required
               ></v-text-field>
               <v-text-field
                 
                 
-              :label="section4.form_field_6"
+              :label="translate(section4.form_field_6)"
                 required
               ></v-text-field>
               
@@ -322,7 +322,7 @@
                 color="#25ACAB"
                
               >
-                {{section4.buttonText}}
+                {{translate(section4.buttonText)}}
               </v-btn>
               
             </form>
@@ -455,7 +455,10 @@ export default {
           }
         }
         console.log(value,this.show_date_form_div)
-      }
+      },
+      translate(key){
+        return this.$store.getters.localised(key);
+      },
      },
 };
 </script>

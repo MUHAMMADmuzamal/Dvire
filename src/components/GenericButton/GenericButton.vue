@@ -1,5 +1,5 @@
 <template>
-    <button :class="cls" >{{text}}</button>
+    <button :class="cls" >{{translate(text)}}</button>
 </template>
 
 <script>
@@ -16,6 +16,9 @@
       data: ()=>( {
        
       }),
+      translate(key){
+        return this.$store.getters.localised(key);
+      },
     }
 </script>
 <style scoped>

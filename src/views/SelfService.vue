@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{pageData.title}}</h1>
+    <h1>{{translate(pageData.title)}}</h1>
     <div v-html="pageData.content">      
     </div>
   </div>
@@ -27,6 +27,9 @@ export default {
       async initialize () {
          const res  = await this.pagesApi.getPages(PATH.Self_Service)
         this.pageData=res.data
+      },
+      translate(key){
+        return this.$store.getters.localised(key);
       },
      },
 };

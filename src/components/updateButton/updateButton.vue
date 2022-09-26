@@ -9,7 +9,7 @@
           @click="update"
           
         >
-          Update
+          {{translate('Update')}}
         </v-btn>
       </v-col>
     </v-row>
@@ -24,6 +24,9 @@
       methods:{
           update:function () {
             this.$emit('update');
+      },
+      translate(key){
+        return this.$store.getters.localised(key);
       },
       }
     }

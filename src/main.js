@@ -9,6 +9,14 @@ import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-default.css';
 // import 'vue-toast-notification/dist/theme-sugar.css';
 
+import * as VueGoogleMaps from "vue2-google-maps"
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: "Add Your Google Map Key",
+    libraries: "places" // necessary for places input
+  }
+});
 
 Vue.use(VueToast, {
   position:'top-right',

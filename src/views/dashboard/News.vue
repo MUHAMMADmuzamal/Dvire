@@ -258,13 +258,14 @@ import { json_parse } from '@/mixins/helperFunction';
          let news_arr = []
          news.data.forEach(element => {
           let sd = json_parse(element.short_description)
+          let ssd = json_parse(sd.short_description)
           news_arr.push({     
                     id:element.id,       
                     title: element.title,
-                    short_description: sd.short_description,
-                    thumbnail: sd.thumbnail,
+                    short_description: ssd.short_description,
+                    thumbnail: ssd.thumbnail,
                     content: element.content,
-                    images: sd.images,
+                    images: ssd.images,
           })
          });
          console.log(news_arr)

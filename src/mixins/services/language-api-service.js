@@ -9,6 +9,9 @@ class LanguagesApiService extends HttpApiService {
 	async getAllWordsForTranslation() {
 		return this.get(PATH.allWords);
 	}
+	async getAllWordsForTranslationLtToOther() {
+		return this.get(PATH.allWordslit);
+	}
 	async getAllWords() {
 		return this.get(PATH.Languages);
 	}

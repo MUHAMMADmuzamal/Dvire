@@ -13,7 +13,7 @@
           v-model="name"
           counter
           :error-messages="errors"
-          :label="section1.name"
+          :label="translate(section1.name)"
           required
         ></v-text-field>
       </validation-provider>
@@ -26,7 +26,7 @@
           v-model="surname"
           counter
           :error-messages="errors"
-          :label="section1.surname"
+          :label="translate(section1.surname)"
           required
         ></v-text-field>
       </validation-provider>
@@ -39,7 +39,7 @@
           v-model="address"
           counter
           :error-messages="errors"
-          :label="section1.address"
+          :label="translate(section1.address)"
           required
         ></v-text-field>
       </validation-provider>
@@ -84,7 +84,7 @@
           v-model="phoneNumber"
           :counter="11"
           :error-messages="errors"
-          :label="section1.phoneNumber"
+          :label="translate(section1.phoneNumber)"
           required
         ></v-text-field>
       </validation-provider>
@@ -98,7 +98,7 @@
           v-model="gas_available_for_transport"
           counter
           :error-messages="errors"
-          :label="section1.gas_available_for_transport"
+          :label="translate(section1.gas_available_for_transport)"
         ></v-text-field>
       </validation-provider>
       <validation-provider
@@ -111,7 +111,7 @@
           v-model="gas_planned_to_have_vehicles"
           counter
           :error-messages="errors"
-          :label="section1.gas_planned_to_have_vehicles"
+          :label="translate(section1.gas_planned_to_have_vehicles)"
         ></v-text-field>
       </validation-provider>
       <validation-provider
@@ -122,7 +122,7 @@
         <v-text-field
           v-model="email"
           :error-messages="errors"
-          :label="section1.email"
+          :label="translate(section1.email)"
           counter
           required
         ></v-text-field>
@@ -131,7 +131,7 @@
         <v-text-field
             v-model="password"
             name="input-10-1"
-            :label="section1.password"
+            :label="translate(section1.password)"
             hint="At least 8 characters"
             counter
             :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
@@ -148,7 +148,7 @@
           v-model="receive_news_and_notices"
           :error-messages="errors"
           :value="receive_news_and_notices"
-          :label="section1.receive_news_and_notices"
+          :label="translate(section1.receive_news_and_notices)"
           type="checkbox"
         ></v-checkbox>
       </validation-provider>
@@ -158,10 +158,10 @@
         type="submit"
         :disabled="invalid"
       >
-        {{section1.submit_button}}
+        {{translate(section1.submit_button)}}
       </v-btn>
       <v-btn @click="clear">
-        clear
+        {{translate('clear')}}
       </v-btn>
     </form>
   </validation-observer>
@@ -291,6 +291,9 @@
               }  
             }
             console.log(content)
+      },
+      translate(key){
+        return this.$store.getters.localised(key);
       },
     },
     created () {

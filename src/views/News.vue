@@ -13,15 +13,15 @@
 
         <v-col md="6">
           <h1 class="pt-6" >
-            {{section1.heading_1}}
+            {{translate(section1.heading_1)}}
           </h1>
           <p class="py-6">
-            {{section1.paragraph_1}}
+            {{translate(section1.paragraph_1)}}
           </p>
 
           <!-- <button class="btn1 col-sm-6" >Skaityti</button> -->
           <div class="col-sm-6">
-            <generic-button :text="section1.buttonText1"/>
+            <generic-button :text="translate(section1.buttonText1)"/>
           </div>
 
         </v-col>
@@ -51,8 +51,8 @@
           aspect-ratio="1.5"
           contain
           :src="ns.thumbnail"></v-img>
-          <h2>{{ns.title}}</h2>
-          <p>{{ns.short_description}}</p>
+          <h2>{{translate(ns.title)}}</h2>
+          <p>{{translate(ns.short_description)}}</p>
         </div>
       </div>
     </v-row>
@@ -60,7 +60,7 @@
     <v-row>
       <v-col class="d-flex justify-center py-16">
         <!-- <button class="btn1" >Rodyti daugiau</button> -->
-        <generic-button :text="section1.buttonText2"/>
+        <generic-button :text="translate(section1.buttonText2)"/>
       </v-col>
     </v-row>
   </v-container>
@@ -127,7 +127,10 @@ export default {
        this.$router.push( PATH.NEWS_PAGE+`/${id}`)
         // next({ path: PATH.NEWS_PAGE+`/${id}`})
         // this.$router.resolve({ path: PATH.NEWS_DETAIL_PAGE+ `/${id}` })
-      }
+      },
+      translate(key){
+        return this.$store.getters.localised(key);
+      },
 
      },
 };

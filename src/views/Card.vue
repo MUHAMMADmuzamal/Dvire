@@ -5,8 +5,8 @@
       <v-row  >
         <v-col md="6" class=" d-flex  align-center">
           <div class="col-sm-8 col-md-9">
-              <h1>{{section1.heading_1}} <br> {{section1.heading_1_text_after_br_tag}}</h1>
-              <p class="pt-4">{{section1.paragraph_1}}</p>
+              <h1>{{translate(section1.heading_1)}} <br> {{translate(section1.heading_1_text_after_br_tag)}}</h1>
+              <p class="pt-4">{{translate(section1.paragraph_1)}}</p>
           </div>
         </v-col>
         <v-col md="6" class=" mb-n16">
@@ -26,7 +26,7 @@
 
               <v-row class="py-5">
                 <v-col>
-                  <h1>{{section2.heading_1}}</h1>
+                  <h1>{{translate(section2.heading_1)}}</h1>
                 </v-col>
               </v-row>
               
@@ -34,11 +34,11 @@
                 <v-col>
                   
                 <p>
-                    {{section2.paragraph_1}}
+                    {{translate(section2.paragraph_1)}}
                     <br><br><br>
-                    {{section2.paragraph_2}}
+                    {{translate(section2.paragraph_2)}}
                     <br><br><br>
-                    {{section2.paragraph_3}}
+                    {{translate(section2.paragraph_3)}}
                 </p>
                 </v-col>
               </v-row>
@@ -70,18 +70,18 @@
 
               <v-container class="pe-md-16 pe-sm-16">
                 
-                  <h1>{{section3.heading_1}}</h1>
+                  <h1>{{translate(section3.heading_1)}}</h1>
                 
                   
              <p>
-                    {{section3.paragraph_1}}
+                    {{translate(section3.paragraph_1)}}
                     <br><br><br>
-                    {{section3.paragraph_2}}
+                    {{translate(section3.paragraph_2)}}
                     <br><br><br>
-                    {{section3.paragraph_3}}
+                    {{translate(section3.paragraph_3)}}
                 </p>
 
-                <h3 class="d-flex d-md-none justify-center ">{{section4.heading_1}}</h3>
+                <h3 class="d-flex d-md-none justify-center ">{{translate(section4.heading_1)}}</h3>
                 
               </v-container>
 
@@ -220,29 +220,29 @@
       <v-col md="6" class="px-md-16">
         
        <form class="px-md-16">
-        <h1 class="py-6">{{section5.heading_1}}</h1>
+        <h1 class="py-6">{{translate(section5.heading_1)}}</h1>
     <v-text-field
       :counter="10"
-      :label="section5.form_field_1"
+      :label="translate(section5.form_field_1)"
       required
     ></v-text-field>
     <v-text-field
       :counter="10"
-      :label="section5.form_field_2"
+      :label="translate(section5.form_field_2)"
       required
     ></v-text-field>
     <v-text-field
       :counter="10"
-      :label="section5.form_field_3"
+      :label="translate(section5.form_field_3)"
       required
     ></v-text-field>
     <v-text-field
-      :label="section5.form_field_4"
+      :label="translate(section5.form_field_4)"
       required
     ></v-text-field>
     
     <v-checkbox
-      :label="section5.checkbox"
+      :label="translate(section5.checkbox)"
       required
     ></v-checkbox>
 
@@ -255,7 +255,7 @@
       style="color:white "
       color="#25ACAB"
     >
-      {{section5.buttonText}}
+      {{translate(section5.buttonText)}}
     </v-btn>
     
   </form>
@@ -274,7 +274,7 @@
 
   <!-- ----------------------------------------------------- -->
   <v-container>
-    <h1 class="d-flex justify-center mt-n16">{{section6.heading_1}}</h1>
+    <h1 class="d-flex justify-center mt-n16">{{translate(section6.heading_1)}}</h1>
     <v-row class="d-flex justify-space-around py-16">
       <v-col class="pa-4" > 
         <div elevation class="pa-4" style="border:2px solid #25ACAB;">
@@ -362,6 +362,9 @@ export default {
               }  
             }
             console.log(content)
+      },
+      translate(key){
+        return this.$store.getters.localised(key);
       },
 
      },

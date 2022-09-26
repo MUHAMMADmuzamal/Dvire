@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{about.title}}</h1>
+    <h1>{{translate(about.title)}}</h1>
     <div v-html="about.content">      
     </div>
   </div>

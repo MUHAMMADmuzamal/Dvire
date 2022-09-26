@@ -1,7 +1,7 @@
 <template>
       <v-container fluid style="padding-left:10%;">
-    <h1 class="pt-6">{{data.heading_1}}</h1>
-    <p class="pt-10">{{data.paragraph_1}}</p>
+    <h1 class="pt-6">{{translate(data.heading_1)}}</h1>
+    <p class="pt-10">{{translate(data.paragraph_1)}}</p>
 
     <v-row>
       <v-col md="6">
@@ -60,6 +60,11 @@ export default {
       this.gas_station_image = this.data.image_1[0].image_url
       }
     this.run=false
+  },
+  methods:{
+    translate(key){
+      return this.$store.getters.localised(key);
+      },
   }
 };
 </script>

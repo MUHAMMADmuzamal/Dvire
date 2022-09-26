@@ -1,9 +1,9 @@
 <template>
   <v-container fluid class=" pa-5 mb-5 mt-5 ">
-    <h1 class="text-center">{{data.heading_1}}</h1>
+    <h1 class="text-center">{{translate(data.heading_1)}}</h1>
     <v-container class=" mt-4" :style="{ 'background-color': card_color }">
         <p class="text-center" style="width:80%; margin:auto;">
-            {{data.paragraph_1}}
+            {{translate(data.paragraph_1)}}
         </p>     
         <v-row class="d-none d-md-flex text-center" style="width:80%; margin:auto;">
           <v-col md="4" class="mb-n13">
@@ -59,6 +59,11 @@ export default {
       this.flash_image = this.data.icon_3[0].image_url
       this.leaf_image = this.data.icon_1[0].image_url
 
+  },
+  methods:{
+    translate(key){
+      return this.$store.getters.localised(key);
+    }
   }
 };
 </script>

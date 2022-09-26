@@ -1,6 +1,6 @@
 <template>
 <div>
-  <h1>{{title}}</h1>
+  <h1>{{translate(title)}}</h1>
   <p v-html="content"></p>
 </div>
 </template>
@@ -28,6 +28,9 @@ export default {
             console.log(news_detail.data)
             this.title= news_detail.data.title
             this.content= news_detail.data.content
+      },
+      translate(key){
+        return this.$store.getters.localised(key);
       },
 
      },

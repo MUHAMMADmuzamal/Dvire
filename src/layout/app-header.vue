@@ -11,7 +11,7 @@
         </v-list-item-avatar>
 
         <v-list-item-content>
-          <v-list-item-title>{{user_name}}</v-list-item-title>
+          <v-list-item-title>{{translate(user_name)}}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 
@@ -29,7 +29,7 @@
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title  style="cursor: pointer">{{ item.title }}</v-list-item-title>
+            <v-list-item-title  style="cursor: pointer">{{translate(item.title)}}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -68,11 +68,11 @@
         bottom
       >
         <template v-slot:activator="{ on, attrs }">
-          <button @click="changeLanguage('en')">En</button> 
+          <button class="px-2 nav_hover" @click="changeLanguage('en')">En</button> 
           | 
-          <button @click="changeLanguage('lt')">Lt</button>
+          <button class="px-2 nav_hover" @click="changeLanguage('lt')">Lt</button>
           | 
-          <button @click="changeLanguage('ru')">Ru</button>
+          <button class="px-2 nav_hover" @click="changeLanguage('ru')">Ru</button>
           <v-btn
             icon
             v-bind="attrs"
@@ -89,7 +89,7 @@
             :key="index"
             :to="item.path"
           >
-            <v-list-item-title>{{item.title}}</v-list-item-title>
+            <v-list-item-title>{{translate(item.title)}}</v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>
@@ -189,7 +189,14 @@ export default {
       this.drawer = !this.drawer;
     },
     translate(key){
+      if (this.$store.state.language[this.$store.state.activeLocale] != null) {
+        if (key in this.$store.state.language[this.$store.state.activeLocale]) {
         return this.$store.getters.localised(key);
+      }
+      }
+
+      return key
+        
       },
       changeLanguage(key){
         this.$store.commit('changeLanguage',key);

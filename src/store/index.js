@@ -59,11 +59,17 @@ export default new Vuex.Store({
     //use when need some calculations on data.
     localised: (state) =>(key) => {
       const lang  = localStorage.getItem('lang')
-      
+
       if (lang != undefined) {
         state.activeLocale = lang;
       }
-      return state.language[state.activeLocale][key];
+      if (state.language[state.activeLocale] != null && state.language[state.activeLocale][key] != undefined ) {
+        if (key in state.language[state.activeLocale]) {
+          return state.language[state.activeLocale][key];
+        }
+      }
+      return key 
+      // return state.language[state.activeLocale][key];
       
     },
   },

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{pageData.title}}</h1>
+    <h1>{{translate(pageData.title)}}</h1>
     <div v-html="pageData.content">      
     </div>
   </div>
@@ -30,6 +30,9 @@ export default {
         this.pageData.id=res.data.id
         this.pageData.title=res.data.title
         this.pageData.content=json_parse(res.data.content).section1
+      },
+      translate(key){
+        return this.$store.getters.localised(key);
       },
      },
 };

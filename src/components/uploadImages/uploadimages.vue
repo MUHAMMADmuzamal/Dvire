@@ -24,10 +24,10 @@
             large
             block
             >
-            Upload
+            {{translate('Upload')}}
             </v-btn>
             <p class="text-center" style="color:red; font-size: smaller;">
-                After Upload Image, kindly press update to save data.
+                {{translate('After Upload Image, kindly press update to save data.')}}
             </p>
         </v-col>
         
@@ -63,7 +63,7 @@
                             class="d-flex justify-right"
                             @click="delete_image(item)"
                             >
-                            Delete
+                            {{translate('Delete')}}
                             </v-btn>
                         </td>
                         </tr>
@@ -160,6 +160,9 @@ import ImagesApiService from '../../mixins/services/images-api-service'
                 this.$toast.error(NOTIFCATIONS.ERROR)
             }
         //    console.log('delete response',res.data)
+      },
+      translate(key){
+        return this.$store.getters.localised(key);
       },
       }
     }

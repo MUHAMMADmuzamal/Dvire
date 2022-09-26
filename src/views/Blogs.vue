@@ -2,7 +2,7 @@
   <div>
     <h1>Posts</h1>
     <div v-for="post in posts">  
-    <h1>{{post.title}}</h1>    
+    <h1>{{translate(post.title)}}</h1>    
     <hr>
     <v-img 
           height="100"
@@ -10,9 +10,9 @@
           aspect-ratio="1.5"
           contain
           :src="post.thumbnail"></v-img>
-    <h6>{{post.author}}</h6>
+    <h6>{{translate(post.author)}}</h6>
     <hr>
-    <p>{{post.short_description}}</p>
+    <p>{{translate(post.short_description)}}</p>
     </div>
   </div>
 </template>
@@ -51,6 +51,9 @@ export default {
             console.log(res.data)
             this.posts = n_arr
         // this.posts=res.data
+      },
+      translate(key){
+        return this.$store.getters.localised(key);
       },
      },
 };

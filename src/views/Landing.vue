@@ -50,6 +50,9 @@ export default {
               }  
             }
       },
+      translate(key){
+        return this.$store.getters.localised(key);
+      },
 
      },
 };

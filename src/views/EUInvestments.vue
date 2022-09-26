@@ -2,7 +2,7 @@
   <div>
     <v-container fluid class="" style="background-color: #F8F4EF;">
     <v-container>
-      <h1 class="d-flex justify-center pt-16">{{section1.heading_1}}</h1>
+      <h1 class="d-flex justify-center pt-16">{{translate(section1.heading_1)}}</h1>
       <v-row class="d-flex justify-center px-md-16">
         <v-col class="col-md-10 col-xs-12 mb-n6" >
               
@@ -23,19 +23,19 @@
         <v-row class="d-flex justify-center px-md-16">
           <v-col class="col-md-10 col-xs-12 ">
             <p class="font-weight-normal" style="color:#ABABAB;">
-              {{section2.paragraph_1}}
+              {{translate(section2.paragraph_1)}}
             </p>
             <h1 class="d-flex justify-center py-6">
-              {{section2.heading_1}}
+              {{translate(section2.heading_1)}}
             </h1>
             <p class="pt-6">
-              {{section2.paragraph_2_p1}}<b>{{section2.paragraph_2_p2}}</b> {{section2.paragraph_2_p3}}
+              {{translate(section2.paragraph_2_p1)}}<b>{{translate(section2.paragraph_2_p2)}}</b> {{translate(section2.paragraph_2_p3)}}
               <br><br> <br>
-              {{section2.paragraph_2_p4}}
+              {{translate(section2.paragraph_2_p4)}}
               <br> <br> <br>
-              {{section2.paragraph_2_p5}}
+              {{translate(section2.paragraph_2_p5)}}
               <br> <br> <br>
-              <b>{{section2.paragraph_2_p6}}</b>
+              <b>{{translate(section2.paragraph_2_p6)}}</b>
             </p>
           </v-col>
         </v-row>
@@ -75,8 +75,11 @@ export default {
                   this.flag_image = this.section1.Image[0].image_url
               }  
             }
-            console.log(content)
       },
+      translate(key){
+        return this.$store.getters.localised(key);
+      },
+
 
      },
 };

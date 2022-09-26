@@ -13,27 +13,27 @@
           class="mb-md-7"
           ></v-img>
           <br>
-          <a class="d-none d-md-flex" href="" style="color:white;">{{section1.anchor_tag_1}}</a>
+          <a class="d-none d-md-flex" href="" style="color:white;">{{translate(section1.anchor_tag_1)}}</a>
           <br>
-          <a class="d-none d-md-flex" href="" style="color:white;">{{section1.anchor_tag_2}}</a>
+          <a class="d-none d-md-flex" href="" style="color:white;">{{translate(section1.anchor_tag_2)}}</a>
         </v-col>
         <v-col class=" pa-7">
-          <h1 class="mb-md-10">{{section1.heading_1}}</h1>
-          {{section1.before_anchor_tag_1}} <a href="" style="color:white;">{{section1.inside_anchor_tag_1}}</a>
+          <h1 class="mb-md-10">{{translate(section1.heading_1)}}</h1>
+          {{translate(section1.before_anchor_tag_1)}} <a href="" style="color:white;">{{translate(section1.inside_anchor_tag_1)}}</a>
           <br> 
-          {{section1.before_anchor_tag_2}} <a href="" style="color:white;">{{section1.inside_anchor_tag_2}}</a>
+          {{translate(section1.before_anchor_tag_2)}} <a href="" style="color:white;">{{translate(section1.inside_anchor_tag_2)}}</a>
         </v-col>
         <v-col class=" pa-7">
-          <h1 class="mb-md-5">{{section1.heading_2}}</h1>
+          <h1 class="mb-md-5">{{translate(section1.heading_2)}}</h1>
           <br>
           <a href="" class="mx-2"><img :src="linkedin_icon" alt="" srcset=""></a>
           <a href="" class="mx-2"><img :src="fb_icon" alt="" srcset=""></a>
   <!-- -----------mobile view-------------------------------------------------------------- -->
                 <v-row class="d-md-none">
                   <v-col class="py-12">
-                    <a class="" href="" style="color:white;">{{section1.anchor_tag_1}}</a>
+                    <a class="" href="" style="color:white;">{{translate(section1.anchor_tag_1)}}</a>
                     <br>
-                    <a class="" href="" style="color:white;">{{section1.anchor_tag_2}}</a>
+                    <a class="" href="" style="color:white;">{{translate(section1.anchor_tag_2)}}</a>
                   
                   </v-col>
                 </v-row>
@@ -50,7 +50,7 @@
       
       <v-container >
         <hr> 
-        <center  class="pt-6">{{section1.copy_write}}</center>
+        <center  class="pt-6">{{translate(section1.copy_write)}}</center>
       </v-container>
   </v-container>
   </v-footer>
@@ -92,6 +92,9 @@ export default {
               }  
             }
             console.log(content)
+      },
+      translate(key){
+      return this.$store.getters.localised(key);
       },
   }
 };

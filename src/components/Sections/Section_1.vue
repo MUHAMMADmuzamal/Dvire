@@ -6,11 +6,10 @@
         <v-col md="6" class=" d-flex  align-center">
           <div class="">
             <slot>
-              <h1>{{data.heading_1}} <span style="color:#16ACAC;">{{data.heading_1_text_inside_span_tag}} </span><br>{{data.heading_1_after_span_tag}}</h1>
+              <h1>{{translate(data.heading_1)}} <span style="color:#16ACAC;">{{translate(data.heading_1_text_inside_span_tag)}} </span><br>{{translate(data.heading_1_after_span_tag)}}</h1>
               <v-spacer></v-spacer>
-              <p>{{data.paragraph_1}}</p>
-              
-              
+              <!-- <p>{{translate("Fuel from recyclable waste, sun and wind should be our choice.")}}</p>              -->
+              <p>{{translate(data.paragraph_1)}}</p>                        
             </slot>
           </div>
         </v-col>
@@ -31,7 +30,7 @@
               >
                 {{data.buttonText}}
               </v-btn> -->
-              <generic-button :text="data.buttonText" cls="btn1 col-md-4 col-lg-4"/>
+              <generic-button :text="translate(data.buttonText)" cls="btn1 col-md-4 col-lg-4"/>
           </v-col>
         </v-row>
 
@@ -78,6 +77,12 @@ export default {
   updated(){
       this.og_image = this.data.Image[0].image_url
 
+  },
+  methods:{
+    translate(key){
+
+        return this.$store.getters.localised(key);
+      },
   }
 };
 </script>

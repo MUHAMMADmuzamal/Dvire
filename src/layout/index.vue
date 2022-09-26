@@ -26,8 +26,9 @@ export default {
   }),
   methods:{
     getWordsForTranslation : async  function () {
-     let  lang = await this.langApi.getAllWordsForTranslation();
+     let  lang = await this.langApi.getAllWordsForTranslationLtToOther();
       lang= lang.data
+      console.log(lang)
     this.$store.commit("setEn", lang[0]);
     this.$store.commit("setLt", lang[2]);
     this.$store.commit("setRu", lang[1]);

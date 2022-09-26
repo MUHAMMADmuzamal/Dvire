@@ -17,34 +17,34 @@
 
               <v-row class="pa-5">
                 <v-col>
-                  <h1>{{data.heading_1}}</h1>
+                  <h1>{{translate(data.heading_1)}}</h1>
                 </v-col>
               </v-row>
               
               <v-row class="pl-5">
                 <v-col>
-                  <h4 style="color:#9CCB3B;">{{data.heading_2}}</h4>
+                  <h4 style="color:#9CCB3B;">{{translate(data.heading_2)}}</h4>
                 <p>
-                  {{data.paragraph_1}}
+                  {{translate(data.paragraph_1)}}
                 </p>
                 </v-col>
               </v-row>
 
               <v-row class="pl-5">
                 <v-col>
-                  <h4 style="color:#9CCB3B;">{{data.heading_3}}</h4>
+                  <h4 style="color:#9CCB3B;">{{translate(data.heading_3)}}</h4>
                 </v-col>
               </v-row>
               
               <v-row class="pl-5 d-none d-md-flex">
                 <v-col md="6" >
                   <p>
-                    {{data.paragraph_2}}
+                    {{translate(data.paragraph_2)}}
                   </p>
                 </v-col>
                 <v-col md="6" >
                   <p>
-                    {{data.paragraph_3}}
+                    {{translate(data.paragraph_3)}}
                   </p>
                 </v-col>
               </v-row>
@@ -53,11 +53,11 @@
               <v-row class="pl-5 d-md-none">
                 <v-col >
                   <p>
-                    {{data.paragraph_2}}
+                    {{translate(data.paragraph_2)}}
                   </p>
                 
                   <p>
-                    {{data.paragraph_3}}
+                    {{translate(data.paragraph_3)}}
                   </p>
                 </v-col>
               </v-row>
@@ -102,6 +102,11 @@ export default {
       updated(){
       this.gas_station_icon_image = this.data.image[0].image_url
 
+  },
+  methods:{
+    translate(key){
+      return this.$store.getters.localised(key);
+      },
   }
 };
 </script>

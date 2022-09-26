@@ -12,7 +12,7 @@
         <v-text-field
           v-model="email"
           :error-messages="errors"
-          :label="section1.email"
+          :label="translate(section1.email)"
           required
           counter
         ></v-text-field>
@@ -28,7 +28,7 @@
             :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
             :type="show ? 'text' : 'password'"
             name="password"
-            :label="section1.password"
+            :label="translate(section1.password)"
             hint="At least 6 characters"
             counter
             @click:append="show = !show"
@@ -40,7 +40,7 @@
         type="submit"
         :disabled="invalid"
       >
-        {{section1.submit_button}}
+        {{translate(section1.submit_button)}}
       </v-btn>
       <v-btn @click="clear">
         clear
@@ -48,7 +48,7 @@
     </form>
     <br>
     <router-link :to="forget_password" custom v-slot="{ navigate }">
-      <span @click="navigate" @keypress.enter="navigate" role="link" style="cursor: pointer; color: blue;">{{section1.forget_password}}</span>
+      <span @click="navigate" @keypress.enter="navigate" role="link" style="cursor: pointer; color: blue;">{{translate(section1.forget_password)}}</span>
   </router-link>
   </validation-observer>
 </template>
@@ -146,6 +146,9 @@
                   this.section1= content.section1
               }  
             }
+      },
+      translate(key){
+        return this.$store.getters.localised(key);
       },
     },
     created () {
